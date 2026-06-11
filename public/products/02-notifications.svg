@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" fill="none">
+  <rect width="480" height="600" fill="#f0f7e8"/>
+  <rect x="120" y="40" width="240" height="520" rx="28" fill="#fff" stroke="#e3e3e3"/>
+  <rect x="140" y="80" width="200" height="72" rx="14" fill="#fafafa" stroke="#e3e3e3"/>
+  <circle cx="168" cy="116" r="16" fill="#1710e6"/>
+  <text x="195" y="110" fill="#252525" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Benzoe</text>
+  <text x="195" y="128" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="10">now</text>
+  <text x="195" y="142" fill="#252525" font-family="system-ui,sans-serif" font-size="11">You're 2 patients away. Time to leave!</text>
+  <rect x="140" y="200" width="200" height="120" rx="16" fill="#1710e6"/>
+  <text x="240" y="245" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Arrival alert</text>
+  <text x="240" y="275" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Leave in 8 min</text>
+  <text x="240" y="300" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" opacity="0.85">Reach clinic on time</text>
+  <rect x="140" y="360" width="200" height="44" rx="22" fill="#8dc651"/>
+  <text x="240" y="387" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">View queue</text>
+  <circle cx="240" cy="460" r="36" fill="#fdffa3"/>
+  <text x="240" y="466" text-anchor="middle" fill="#252525" font-family="system-ui,sans-serif" font-size="20">=</text>
+</svg>

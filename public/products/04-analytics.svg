@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" fill="none">
+  <rect width="480" height="600" fill="#ecebff"/>
+  <rect x="40" y="48" width="400" height="504" rx="12" fill="#fff" stroke="#e3e3e3"/>
+  <text x="68" y="88" fill="#252525" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Queue analytics</text>
+  <text x="68" y="108" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="11">Peak hours &amp; flow insights</text>
+  <rect x="68" y="130" width="80" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
+  <text x="108" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Mon</text>
+  <text x="108" y="168" text-anchor="middle" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="9">Peak 10am</text>
+  <rect x="160" y="130" width="80" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
+  <text x="200" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Tue</text>
+  <rect x="252" y="130" width="80" height="48" rx="8" fill="#f0f7e8" stroke="#8dc651"/>
+  <text x="292" y="152" text-anchor="middle" fill="#8dc651" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Wed</text>
+  <rect x="344" y="130" width="72" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
+  <text x="380" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Thu</text>
+  <rect x="68" y="200" width="344" height="160" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
+  <rect x="100" y="300" width="32" height="40" rx="4" fill="#1710e6" opacity="0.4"/>
+  <rect x="148" y="270" width="32" height="70" rx="4" fill="#1710e6" opacity="0.6"/>
+  <rect x="196" y="240" width="32" height="100" rx="4" fill="#1710e6"/>
+  <rect x="244" y="255" width="32" height="85" rx="4" fill="#8dc651"/>
+  <rect x="292" y="280" width="32" height="60" rx="4" fill="#1710e6" opacity="0.7"/>
+  <rect x="340" y="290" width="32" height="50" rx="4" fill="#1710e6" opacity="0.5"/>
+  <text x="68" y="400" fill="#252525" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Bottleneck detected</text>
+  <text x="68" y="418" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="10">OPD counter 2 � Wed 11:0013:00</text>
+  <rect x="68" y="440" width="344" height="36" rx="8" fill="#1710e6"/>
+  <text x="240" y="462" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="12" font-weight="600">View full report</text>
+</svg>
