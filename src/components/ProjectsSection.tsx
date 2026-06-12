@@ -91,7 +91,7 @@ function ProjectCard({
     >
       <motion.article
         style={{ scale }}
-        className="group overflow-hidden rounded-[2rem] border border-border bg-white/78 shadow-[0_30px_100px_rgba(37,37,37,0.08)] backdrop-blur-xl"
+        className="group overflow-hidden rounded-sm border border-border bg-bg"
       >
         <div className="grid md:min-h-[560px] md:grid-cols-2 md:items-stretch">
           <div className="flex flex-col p-6 md:p-10 lg:p-12">
@@ -147,9 +147,8 @@ function ProjectCard({
             </a>
           </div>
 
-          <div className="relative min-h-[390px] overflow-hidden bg-gradient-to-br from-blue-soft via-bg-soft to-green-soft md:h-auto md:min-h-0">
-            <div className="absolute inset-6 rounded-[2rem] border border-white/70 bg-white/45 backdrop-blur" />
-            <div className="absolute inset-0 blueprint-grid opacity-60" />
+          <div className="relative min-h-[390px] overflow-hidden border-t border-border bg-bg-soft md:h-auto md:min-h-0 md:border-t-0 md:border-l">
+            <div className="absolute inset-6 border border-border bg-bg/60" />
             <img
               src={project.image}
               alt={project.alt}
@@ -169,7 +168,7 @@ export function ProjectsSection() {
     <section className="border-t border-border py-16 md:py-24">
       <div className="section-wrap">
         <div
-          className="sticky z-30 mb-12 bg-bg/80 py-4 backdrop-blur-xl md:mb-16"
+          className="sticky z-30 mb-12 bg-bg/95 py-4 backdrop-blur-sm md:mb-16"
           style={{ top: "94px" }}
         >
           <motion.div

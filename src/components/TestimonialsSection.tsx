@@ -24,19 +24,13 @@ export function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section
-      id="why-benzoe"
-      className="relative overflow-hidden border-t border-border bg-ink py-16 text-white md:py-24"
-    >
-      <div className="pointer-events-none absolute top-[-14rem] left-[-10rem] h-[32rem] w-[32rem] rounded-full bg-blue/35 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-12rem] bottom-[-14rem] h-[34rem] w-[34rem] rounded-full bg-green/20 blur-3xl" />
-
-      <div className="section-wrap relative z-10 mb-12 md:mb-16">
+    <section id="why-benzoe" className="border-t border-border py-16 md:py-24">
+      <div className="section-wrap mb-12 md:mb-16">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-5 text-xs font-bold tracking-[0.16em] text-green uppercase"
+          className="mb-5 text-sm text-ink-soft"
         >
           Why Benzoe
         </motion.p>
@@ -44,20 +38,17 @@ export function TestimonialsSection() {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-[980px] font-display leading-[0.95] tracking-[-0.035em]"
-          style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
+          className="font-display leading-[0.95] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(2.5rem, 10vw, 8rem)" }}
         >
-          Not another appointment portal.
+          Not another
+          <br /> appointment portal.
         </motion.h2>
-        <p className="mt-6 max-w-[720px] text-base leading-8 text-white/60 md:text-lg">
-          Benzoe is a clinic management app for the messy, high-volume, walk-in
-          reality of Indian healthcare.
-        </p>
       </div>
 
       <div
         ref={scrollRef}
-        className="hide-scrollbar snap-x-mandatory relative z-10 flex gap-5 overflow-x-auto px-6 pb-4 md:gap-8 md:px-12"
+        className="hide-scrollbar snap-x-mandatory flex gap-6 overflow-x-auto px-6 pb-4 md:gap-8 md:px-12"
       >
         {points.map((point, i) => (
           <motion.article
@@ -66,23 +57,22 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: i * 0.08, duration: 0.55 }}
-            className="snap-start flex min-h-[320px] w-[86vw] shrink-0 flex-col justify-between rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl md:w-[500px] md:p-8"
+            className="snap-start w-[85vw] shrink-0 border-t border-border pt-8 md:w-[480px]"
           >
-            <div>
-              <span className="font-mono-display text-sm font-bold tracking-[0.18em] text-green uppercase">
-                0{i + 1}
-              </span>
-              <h3 className="mt-6 text-3xl font-semibold leading-tight tracking-[-0.04em] text-white md:text-4xl">
-                {point.title}
-              </h3>
-              <p className="mt-5 text-lg leading-8 text-white/72 md:text-xl md:leading-9">
-                {point.text}
-              </p>
-            </div>
-            <footer className="mt-8 border-t border-white/10 pt-4">
-              <p className="text-sm font-semibold text-white">
-                Built for India 🇮🇳
-              </p>
+            <span
+              className="font-display leading-none text-blue/20"
+              style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
+            >
+              0{i + 1}
+            </span>
+            <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em] md:text-3xl">
+              {point.title}
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-ink md:text-lg">
+              {point.text}
+            </p>
+            <footer className="mt-8 border-t border-border pt-4">
+              <p className="text-sm font-medium">Built for India 🇮🇳</p>
             </footer>
           </motion.article>
         ))}

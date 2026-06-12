@@ -5,11 +5,14 @@ const mainNav = [
   { label: "Problem", href: "#problem" },
   { label: "Solution", href: "#solution" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Doctors", href: "#doctors" },
-  { label: "Patients", href: "#patients" },
 ];
 
-const menuNav = [...mainNav, { label: "Contact", href: "#contact" }];
+const menuNav = [
+  ...mainNav,
+  { label: "Doctors", href: "#doctors" },
+  { label: "Patients", href: "#patients" },
+  { label: "Contact", href: "#contact" },
+];
 
 function LiveClock() {
   const [time, setTime] = useState("00:00:00");
@@ -32,7 +35,7 @@ function LiveClock() {
   }, []);
 
   return (
-    <span className="font-mono-display text-[13px] tabular-nums tracking-tight text-blue">
+    <span className="font-mono-display text-[14px] tabular-nums tracking-tight text-blue">
       {time}
     </span>
   );
@@ -44,26 +47,18 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] overflow-hidden bg-ink text-white"
+      className="fixed inset-0 z-[200] bg-menu text-white"
     >
-      <div className="pointer-events-none absolute top-[-12rem] right-[-8rem] h-[32rem] w-[32rem] rounded-full bg-blue/40 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-[-10rem] left-[-10rem] h-[28rem] w-[28rem] rounded-full bg-green/25 blur-3xl" />
-
-      <div className="section-wrap relative z-10 flex h-full flex-col py-6 md:py-8">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+      <div className="section-wrap flex h-full flex-col py-6 md:py-8">
+        <div className="flex items-center justify-between border-b border-white/15 pb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-blue">
-              B
-            </span>
-            <div>
-              <p className="text-sm font-semibold md:text-base">Benzoe</p>
-              <p className="text-xs text-white/50">Clinic management app</p>
-            </div>
+            <span className="text-sm font-semibold md:text-base">Benzoe</span>
+            <span className="text-sm text-green">Healthtech</span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-white/15 px-4 py-2 text-sm transition-colors hover:border-white/40"
+            className="rounded-full border border-white/20 px-4 py-2 text-sm transition-colors hover:border-white/50"
           >
             Close
           </button>
@@ -82,19 +77,19 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
                 duration: 0.45,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group border-b border-white/10 py-4 md:py-6"
+              className="group border-b border-white/15 py-5 md:py-7"
             >
-              <span className="font-display text-[clamp(2.6rem,8vw,5.8rem)] leading-none text-white transition-colors group-hover:text-green">
+              <span className="font-display text-[clamp(2.5rem,8vw,5.5rem)] leading-none transition-colors group-hover:text-green">
                 {item.label}
               </span>
             </motion.a>
           ))}
         </nav>
 
-        <div className="flex items-center justify-between border-t border-white/10 pt-4 text-sm text-white/55">
+        <div className="flex items-center justify-between border-t border-white/15 pt-4 text-sm text-white/60">
           <div className="flex items-center gap-2">
             <span className="pulse-green h-2 w-2 rounded-full bg-green" />
-            <span>Founded 2025 · Built in India</span>
+            <span>Founded 2025</span>
           </div>
           <a href="mailto:hello@benzoe.health" className="hover:text-white">
             Email
@@ -123,58 +118,57 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed top-4 right-0 left-0 z-[100]">
-        <div className="section-wrap">
-          <div className="glass-panel flex items-center justify-between rounded-full px-3 py-2 md:px-4">
-            <a
-              href="#"
-              className="flex items-center gap-3 rounded-full pr-3 transition-opacity hover:opacity-80"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue text-sm font-black text-white shadow-lg shadow-blue/20">
-                B
-              </span>
-              <span className="hidden leading-tight sm:block">
-                <span className="block text-sm font-semibold">Benzoe</span>
-                <span className="block text-[11px] text-ink-soft">
-                  Healthtech
-                </span>
-              </span>
+      <div className="fixed top-0 right-0 left-0 z-[90] border-b border-border bg-bg/95 backdrop-blur-sm">
+        <div className="section-wrap flex items-center justify-between py-3">
+          <div className="flex items-center gap-2 md:gap-3">
+            <a href="#" className="text-sm font-semibold md:text-[15px]">
+              Benzoe
             </a>
+            <span className="text-sm text-blue md:text-[15px]">Healthtech</span>
+          </div>
 
-            <nav className="hidden items-center gap-1 rounded-full border border-border bg-white/65 p-1 lg:flex">
-              {mainNav.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-full px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:bg-blue-soft hover:text-blue xl:px-4 xl:text-sm"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          <div className="hidden items-center gap-2 md:flex">
+            <LiveClock />
+            <span className="text-[14px] text-blue">IST</span>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <div className="hidden items-center gap-2 rounded-full border border-border bg-white/60 px-3 py-2 md:flex">
-                <LiveClock />
-                <span className="text-[12px] text-ink-soft">IST</span>
-              </div>
-              <a
-                href="#contact"
-                className="hidden rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue sm:inline-flex"
-              >
-                Book demo
-              </a>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(true)}
-                className="rounded-full border border-border bg-white/60 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-blue hover:text-blue"
-              >
-                Menu
-              </button>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="pulse-green h-2 w-2 rounded-full bg-green" />
+            <span className="text-xs font-medium md:text-sm">
+              Built in India
+            </span>
           </div>
         </div>
-      </header>
+      </div>
+
+      <div className="fixed top-[49px] right-0 left-0 z-[80] border-b border-border bg-bg/95 backdrop-blur-sm">
+        <div className="section-wrap flex items-center justify-center py-3">
+          <nav className="flex items-center gap-5 md:gap-8">
+            {mainNav.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm text-ink-soft transition-colors hover:text-ink"
+              >
+                {link.label}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              className="text-sm text-ink-soft transition-colors hover:text-ink"
+            >
+              Menu
+            </button>
+            <a
+              href="#contact"
+              className="text-sm font-medium text-ink underline decoration-blue decoration-2 underline-offset-[6px]"
+            >
+              Book Demo
+            </a>
+          </nav>
+        </div>
+      </div>
 
       <AnimatePresence>
         {menuOpen && <FullScreenMenu onClose={() => setMenuOpen(false)} />}
