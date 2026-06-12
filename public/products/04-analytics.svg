@@ -1,26 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" fill="none">
-  <rect width="480" height="600" fill="#ecebff"/>
-  <rect x="40" y="48" width="400" height="504" rx="12" fill="#fff" stroke="#e3e3e3"/>
-  <text x="68" y="88" fill="#252525" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Queue analytics</text>
-  <text x="68" y="108" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="11">Peak hours &amp; flow insights</text>
-  <rect x="68" y="130" width="80" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
-  <text x="108" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Mon</text>
-  <text x="108" y="168" text-anchor="middle" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="9">Peak 10am</text>
-  <rect x="160" y="130" width="80" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
-  <text x="200" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Tue</text>
-  <rect x="252" y="130" width="80" height="48" rx="8" fill="#f0f7e8" stroke="#8dc651"/>
-  <text x="292" y="152" text-anchor="middle" fill="#8dc651" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Wed</text>
-  <rect x="344" y="130" width="72" height="48" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
-  <text x="380" y="152" text-anchor="middle" fill="#1710e6" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Thu</text>
-  <rect x="68" y="200" width="344" height="160" rx="8" fill="#fafafa" stroke="#e3e3e3"/>
-  <rect x="100" y="300" width="32" height="40" rx="4" fill="#1710e6" opacity="0.4"/>
-  <rect x="148" y="270" width="32" height="70" rx="4" fill="#1710e6" opacity="0.6"/>
-  <rect x="196" y="240" width="32" height="100" rx="4" fill="#1710e6"/>
-  <rect x="244" y="255" width="32" height="85" rx="4" fill="#8dc651"/>
-  <rect x="292" y="280" width="32" height="60" rx="4" fill="#1710e6" opacity="0.7"/>
-  <rect x="340" y="290" width="32" height="50" rx="4" fill="#1710e6" opacity="0.5"/>
-  <text x="68" y="400" fill="#252525" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Bottleneck detected</text>
-  <text x="68" y="418" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="10">OPD counter 2 � Wed 11:0013:00</text>
-  <rect x="68" y="440" width="344" height="36" rx="8" fill="#1710e6"/>
-  <text x="240" y="462" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="12" font-weight="600">View full report</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 760" role="img" aria-label="Animated Benzoe SaaS analytics and subscription dashboard">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ecebff"/><stop offset=".55" stop-color="#fafafa"/><stop offset="1" stop-color="#fdffa3"/></linearGradient>
+    <linearGradient id="blue" x1="0" x2="1"><stop stop-color="#1710e6"/><stop offset="1" stop-color="#635bff"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#252525" flood-opacity="0.16"/></filter>
+    <style>.txt{font-family:Inter,system-ui,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.bar{transform-box:fill-box;transform-origin:bottom;animation:bar 2.6s ease-in-out infinite}.b2{animation-delay:.2s}.b3{animation-delay:.4s}.b4{animation-delay:.6s}.orbit{transform-origin:498px 178px;animation:spin 10s linear infinite}.pulse{animation:pulse 2s ease-in-out infinite}@keyframes bar{50%{transform:scaleY(.55)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.35}}</style>
+  </defs>
+  <rect width="640" height="760" fill="url(#bg)"/>
+  <circle cx="92" cy="100" r="84" fill="#8dc651" opacity=".18"/>
+  <g filter="url(#shadow)">
+    <rect x="56" y="70" width="528" height="620" rx="28" fill="#fff" stroke="#e3e3e3"/>
+    <text x="92" y="120" class="txt" font-size="22" font-weight="900" fill="#252525">Facility growth dashboard</text>
+    <text x="92" y="146" class="txt" font-size="13" fill="#666">Tiered SaaS subscriptions for clinics and hospitals</text>
+
+    <rect x="92" y="184" width="150" height="98" rx="22" fill="#252525"/>
+    <text x="116" y="220" class="mono" font-size="11" fill="#fff" opacity=".72">ACTIVE CLINICS</text>
+    <text x="116" y="260" class="txt" font-size="40" font-weight="900" fill="#fff">128</text>
+    <rect x="258" y="184" width="150" height="98" rx="22" fill="#ecebff"/>
+    <text x="282" y="220" class="mono" font-size="11" fill="#1710e6">MONTHLY VISITS</text>
+    <text x="282" y="260" class="txt" font-size="40" font-weight="900" fill="#1710e6">42k</text>
+    <rect x="424" y="184" width="96" height="98" rx="22" fill="#f0f8e9"/>
+    <text x="448" y="220" class="mono" font-size="11" fill="#527d28">UPI</text>
+    <text x="448" y="260" class="txt" font-size="40" font-weight="900" fill="#6da13b">₹</text>
+
+    <rect x="92" y="322" width="300" height="210" rx="24" fill="#fafafa" stroke="#e3e3e3"/>
+    <text x="120" y="360" class="txt" font-size="16" font-weight="800" fill="#252525">Patient flow</text>
+    <rect class="bar" x="126" y="444" width="28" height="58" rx="7" fill="#1710e6" opacity=".45"/>
+    <rect class="bar b2" x="172" y="408" width="28" height="94" rx="7" fill="#1710e6" opacity=".7"/>
+    <rect class="bar b3" x="218" y="376" width="28" height="126" rx="7" fill="#1710e6"/>
+    <rect class="bar b4" x="264" y="396" width="28" height="106" rx="7" fill="#8dc651"/>
+    <rect class="bar b2" x="310" y="426" width="28" height="76" rx="7" fill="#1710e6" opacity=".6"/>
+    <path d="M120 476C166 418 202 426 238 386C284 338 320 398 360 354" fill="none" stroke="#8dc651" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="360" cy="354" r="8" fill="#8dc651" class="pulse"/>
+
+    <rect x="416" y="322" width="132" height="210" rx="24" fill="url(#blue)"/>
+    <text x="442" y="360" class="mono" font-size="11" fill="#fff" opacity=".7">PLAN</text>
+    <text x="442" y="392" class="txt" font-size="28" font-weight="900" fill="#fff">Clinic+</text>
+    <text x="442" y="424" class="txt" font-size="13" fill="#fff" opacity=".8">Queues</text>
+    <text x="442" y="452" class="txt" font-size="13" fill="#fff" opacity=".8">Records</text>
+    <text x="442" y="480" class="txt" font-size="13" fill="#fff" opacity=".8">UPI billing</text>
+
+    <rect x="92" y="572" width="456" height="64" rx="22" fill="#fdffa3"/>
+    <text x="120" y="611" class="txt" font-size="17" font-weight="900" fill="#252525">One subscription — your entire clinic goes digital.</text>
+  </g>
+  <g class="orbit"><circle cx="498" cy="108" r="10" fill="#1710e6"/><circle cx="558" cy="178" r="8" fill="#8dc651"/><circle cx="498" cy="248" r="7" fill="#ff80bf"/></g>
 </svg>

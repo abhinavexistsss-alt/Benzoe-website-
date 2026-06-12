@@ -1,17 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" fill="none">
-  <rect width="480" height="600" fill="#f0f7e8"/>
-  <rect x="120" y="40" width="240" height="520" rx="28" fill="#fff" stroke="#e3e3e3"/>
-  <rect x="140" y="80" width="200" height="72" rx="14" fill="#fafafa" stroke="#e3e3e3"/>
-  <circle cx="168" cy="116" r="16" fill="#1710e6"/>
-  <text x="195" y="110" fill="#252525" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Benzoe</text>
-  <text x="195" y="128" fill="#5b5b5b" font-family="system-ui,sans-serif" font-size="10">now</text>
-  <text x="195" y="142" fill="#252525" font-family="system-ui,sans-serif" font-size="11">You're 2 patients away. Time to leave!</text>
-  <rect x="140" y="200" width="200" height="120" rx="16" fill="#1710e6"/>
-  <text x="240" y="245" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Arrival alert</text>
-  <text x="240" y="275" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Leave in 8 min</text>
-  <text x="240" y="300" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" opacity="0.85">Reach clinic on time</text>
-  <rect x="140" y="360" width="200" height="44" rx="22" fill="#8dc651"/>
-  <text x="240" y="387" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">View queue</text>
-  <circle cx="240" cy="460" r="36" fill="#fdffa3"/>
-  <text x="240" y="466" text-anchor="middle" fill="#252525" font-family="system-ui,sans-serif" font-size="20">=</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 760" role="img" aria-label="Animated Benzoe patient alerts and digital records phone">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f0f8e9"/><stop offset=".5" stop-color="#fafafa"/><stop offset="1" stop-color="#ecebff"/></linearGradient>
+    <linearGradient id="card" x1="0" x2="1"><stop stop-color="#1710e6"/><stop offset="1" stop-color="#635bff"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="22" stdDeviation="20" flood-color="#252525" flood-opacity="0.18"/></filter>
+    <style>.txt{font-family:Inter,system-ui,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.bell{transform-origin:320px 214px;animation:ring 1.8s ease-in-out infinite}.float{animation:float 4.4s ease-in-out infinite}.float2{animation:float 5s ease-in-out infinite reverse}.dash{stroke-dasharray:10 12;animation:dash 8s linear infinite}@keyframes ring{0%,100%{transform:rotate(0)}25%{transform:rotate(8deg)}75%{transform:rotate(-8deg)}}@keyframes float{50%{transform:translateY(-16px)}}@keyframes dash{to{stroke-dashoffset:-120}}</style>
+  </defs>
+  <rect width="640" height="760" fill="url(#bg)"/>
+  <path d="M98 612C182 514 272 708 362 590C444 482 502 560 560 492" fill="none" stroke="#1710e6" stroke-opacity=".16" stroke-width="4" class="dash"/>
+  <g filter="url(#shadow)">
+    <rect x="180" y="54" width="280" height="652" rx="48" fill="#252525"/>
+    <rect x="200" y="84" width="240" height="592" rx="34" fill="#fff"/>
+    <rect x="284" y="102" width="72" height="9" rx="5" fill="#252525" opacity=".2"/>
+
+    <circle cx="320" cy="214" r="66" fill="#fdffa3"/>
+    <g class="bell">
+      <path d="M292 220c0-29 17-48 28-48s28 19 28 48l12 20h-80l12-20Z" fill="#1710e6"/>
+      <circle cx="320" cy="248" r="10" fill="#1710e6"/>
+    </g>
+    <text x="320" y="318" text-anchor="middle" class="mono" font-size="12" font-weight="900" fill="#1710e6">BENZOE ALERT</text>
+    <text x="320" y="354" text-anchor="middle" class="txt" font-size="30" font-weight="900" fill="#252525">You are next</text>
+    <text x="320" y="382" text-anchor="middle" class="txt" font-size="14" fill="#666">Reach clinic in 12 minutes</text>
+
+    <rect x="228" y="428" width="184" height="72" rx="22" fill="url(#card)"/>
+    <text x="252" y="456" class="mono" font-size="11" fill="#fff" opacity=".7">LIVE POSITION</text>
+    <text x="252" y="486" class="txt" font-size="30" font-weight="900" fill="#fff">#2</text>
+    <text x="306" y="486" class="txt" font-size="13" fill="#fff" opacity=".82">patients away</text>
+
+    <rect x="228" y="524" width="184" height="50" rx="16" fill="#fafafa" stroke="#e3e3e3"/>
+    <circle cx="252" cy="549" r="10" fill="#8dc651"/>
+    <text x="272" y="554" class="txt" font-size="13" font-weight="800" fill="#252525">Prescription saved</text>
+    <rect x="228" y="592" width="184" height="50" rx="16" fill="#fafafa" stroke="#e3e3e3"/>
+    <circle cx="252" cy="617" r="10" fill="#1710e6"/>
+    <text x="272" y="622" class="txt" font-size="13" font-weight="800" fill="#252525">Digital receipt</text>
+  </g>
+  <g class="float"><rect x="70" y="162" width="170" height="64" rx="22" fill="#fff" stroke="#e3e3e3"/><text x="155" y="202" text-anchor="middle" class="txt" font-size="14" font-weight="900" fill="#252525">No app needed</text></g>
+  <g class="float2"><rect x="418" y="438" width="146" height="64" rx="22" fill="#8dc651"/><text x="491" y="477" text-anchor="middle" class="txt" font-size="14" font-weight="900" fill="#252525">SMS / Link</text></g>
 </svg>
