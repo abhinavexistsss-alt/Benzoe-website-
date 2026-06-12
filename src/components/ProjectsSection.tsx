@@ -4,51 +4,59 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const projects = [
   {
     num: "01",
-    year: "2026",
-    title: "Real-time queue tracking for patients",
+    anchor: "solution",
+    year: "All-in-one",
+    title: "What Benzoe does",
     description:
-      "See your position in line, how the queue is moving, and when to expect your turn — updated live from the clinic floor.",
-    discipline: "Mobile app, Real-time data, Patient UX",
-    role: "For patients & caregivers",
-    timeline: "In development",
-    image: "/products/01-queue-tracking.svg",
-    alt: "Benzoe mobile app showing live queue position and estimated wait time",
+      "Benzoe replaces paper queues, handwritten prescriptions, and cash-only billing with one simple clinic management app for India’s doctors, staff, and patients.",
+    discipline: "Queue + prescription + billing + records",
+    role: "Clinic owners, doctors, staff, patients",
+    timeline: "Complete workflow",
+    impact: "A cleaner, more organised clinic day",
+    image: "/products/03-clinic-dashboard.svg",
+    alt: "Benzoe clinic dashboard for queue, prescription, billing, and records",
   },
   {
     num: "02",
-    year: "2026",
-    title: "Smart arrival notifications",
+    anchor: "doctors",
+    year: "For clinics",
+    title: "For doctors & clinic staff",
     description:
-      "Get a heads-up when you're next in line. Leave home at the right moment instead of sitting in a crowded lobby.",
-    discipline: "Push notifications, Contextual UX",
-    role: "Mobile-first experience",
-    timeline: "In development",
-    image: "/products/02-notifications.svg",
-    alt: "Benzoe push notification alerting patient when to leave for clinic",
+      "Manage real-time walk-in OPD queues, write digital prescriptions, collect UPI payments, and see patient history without digging through old files.",
+    discipline: "Walk-in queue, digital prescription pad, UPI",
+    role: "Doctors in Nagpur, Jaipur, Indore, and beyond",
+    timeline: "Built for daily OPD",
+    impact: "Less front-desk pressure, faster consultations",
+    image: "/products/01-queue-tracking.svg",
+    alt: "Benzoe interface for doctors and clinic staff managing walk-in queues",
   },
   {
     num: "03",
-    year: "2026",
-    title: "Queue management for clinics & hospitals",
+    anchor: "patients",
+    year: "For patients",
+    title: "For patients and families",
     description:
-      "A simple dashboard for front-desk teams to manage patient flow, update wait times, and reduce lobby congestion.",
-    discipline: "Webapp, B2B SaaS, Queue ops",
-    role: "For healthcare providers",
-    timeline: "In development",
-    image: "/products/03-clinic-dashboard.svg",
-    alt: "Benzoe clinic dashboard for staff queue management",
+      "Patients can see their live queue position, receive digital prescriptions, and get digital receipts for every visit — no app download needed.",
+    discipline: "Live queue, records, receipts",
+    role: "Walk-in OPD patients and caregivers",
+    timeline: "No app download needed",
+    impact: "Less anxious waiting, better health history",
+    image: "/products/02-notifications.svg",
+    alt: "Benzoe patient phone showing live queue position and digital records",
   },
   {
     num: "04",
-    year: "2026",
-    title: "Operational insights for better flow",
+    anchor: "business",
+    year: "SaaS",
+    title: "B2B + B2C subscription model",
     description:
-      "Understand peak hours, bottlenecks, and staffing gaps — so facilities can improve wait times over time.",
-    discipline: "Data dashboard, Health ops",
-    role: "For hospital administrators",
-    timeline: "Planned",
+      "Benzoe is a tiered SaaS product for healthcare facilities, with patient-facing digital records and queue visibility built around the clinic workflow.",
+    discipline: "Tiered subscriptions, facility onboarding",
+    role: "Independent clinics and hospitals",
+    timeline: "Private Limited · Reg: AAOCB6577A",
+    impact: "One subscription — your clinic goes digital",
     image: "/products/04-analytics.svg",
-    alt: "Benzoe analytics dashboard showing queue peak hours and bottlenecks",
+    alt: "Benzoe analytics dashboard for clinic operations and subscriptions",
   },
 ];
 
@@ -72,8 +80,9 @@ function ProjectCard({
 
   return (
     <div
+      id={project.anchor}
       ref={ref}
-      className="relative mb-8"
+      className="relative mb-8 scroll-mt-32"
       style={{
         position: "sticky",
         top: STICKY_TOP + index * STICKY_STEP,
@@ -100,17 +109,17 @@ function ProjectCard({
               </span>
             </div>
 
-            <h3 className="max-w-[520px] text-2xl font-semibold leading-tight tracking-[-0.03em] md:text-3xl lg:text-[38px]">
+            <h3 className="max-w-[560px] text-2xl font-semibold leading-tight tracking-[-0.03em] md:text-3xl lg:text-[38px]">
               {project.title}
             </h3>
-            <p className="mt-5 max-w-[560px] text-base leading-8 text-ink-soft">
+            <p className="mt-5 max-w-[580px] text-base leading-8 text-ink-soft">
               {project.description}
             </p>
 
             <div className="mt-9 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-border bg-bg/70 p-4">
                 <p className="text-[10px] font-bold tracking-[0.14em] text-blue uppercase">
-                  Discipline
+                  Includes
                 </p>
                 <p className="mt-2 text-sm leading-relaxed">
                   {project.discipline}
@@ -126,9 +135,7 @@ function ProjectCard({
                 <p className="text-[10px] font-bold tracking-[0.14em] text-blue uppercase">
                   Impact
                 </p>
-                <p className="mt-2 text-sm leading-relaxed">
-                  Less crowding, more trust
-                </p>
+                <p className="mt-2 text-sm leading-relaxed">{project.impact}</p>
               </div>
             </div>
 
@@ -136,7 +143,7 @@ function ProjectCard({
               href="#contact"
               className="mt-auto inline-flex w-fit items-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue"
             >
-              Join waitlist <span className="ml-2">→</span>
+              Book a demo <span className="ml-2">→</span>
             </a>
           </div>
 
@@ -159,7 +166,7 @@ function ProjectCard({
 
 export function ProjectsSection() {
   return (
-    <section id="product" className="border-t border-border py-16 md:py-24">
+    <section className="border-t border-border py-16 md:py-24">
       <div className="section-wrap">
         <div
           className="sticky z-30 mb-12 bg-bg/80 py-4 backdrop-blur-xl md:mb-16"
@@ -171,13 +178,13 @@ export function ProjectsSection() {
             viewport={{ once: true }}
           >
             <p className="mb-3 text-xs font-bold tracking-[0.16em] text-blue uppercase">
-              Product suite
+              The solution
             </p>
             <h2
               className="leading-none tracking-[-0.05em]"
               style={{ fontSize: "clamp(4rem, 16vw, 11rem)" }}
             >
-              <span className="font-mono-display font-medium">Product</span>
+              <span className="font-mono-display font-medium">Benzoe</span>
               <span className="font-display italic text-ink/35">(04)</span>
             </h2>
           </motion.div>

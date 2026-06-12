@@ -2,17 +2,14 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const mainNav = [
-  { label: "Product", href: "#product" },
-  { label: "About", href: "#about" },
-  { label: "Roadmap", href: "#roadmap" },
+  { label: "Problem", href: "#problem" },
+  { label: "Solution", href: "#solution" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Doctors", href: "#doctors" },
+  { label: "Patients", href: "#patients" },
 ];
 
-const menuNav = [
-  { label: "Product", href: "#product" },
-  { label: "About", href: "#about" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "Waitlist", href: "#contact" },
-];
+const menuNav = [...mainNav, { label: "Contact", href: "#contact" }];
 
 function LiveClock() {
   const [time, setTime] = useState("00:00:00");
@@ -60,7 +57,7 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
             </span>
             <div>
               <p className="text-sm font-semibold md:text-base">Benzoe</p>
-              <p className="text-xs text-white/50">Healthtech queue OS</p>
+              <p className="text-xs text-white/50">Clinic management app</p>
             </div>
           </div>
           <button
@@ -85,9 +82,9 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
                 duration: 0.45,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group border-b border-white/10 py-5 md:py-7"
+              className="group border-b border-white/10 py-4 md:py-6"
             >
-              <span className="font-display text-[clamp(3rem,9vw,6.5rem)] leading-none text-white transition-colors group-hover:text-green">
+              <span className="font-display text-[clamp(2.6rem,8vw,5.8rem)] leading-none text-white transition-colors group-hover:text-green">
                 {item.label}
               </span>
             </motion.a>
@@ -97,16 +94,11 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between border-t border-white/10 pt-4 text-sm text-white/55">
           <div className="flex items-center gap-2">
             <span className="pulse-green h-2 w-2 rounded-full bg-green" />
-            <span>Launching soon</span>
+            <span>Founded 2025 · Built in India</span>
           </div>
-          <div className="flex gap-5">
-            <a href="mailto:hello@benzoe.health" className="hover:text-white">
-              Email
-            </a>
-            <a href="#contact" className="hover:text-white">
-              Waitlist
-            </a>
-          </div>
+          <a href="mailto:hello@benzoe.health" className="hover:text-white">
+            Email
+          </a>
         </div>
       </div>
     </motion.div>
@@ -149,12 +141,12 @@ export function SiteHeader() {
               </span>
             </a>
 
-            <nav className="hidden items-center gap-1 rounded-full border border-border bg-white/65 p-1 md:flex">
+            <nav className="hidden items-center gap-1 rounded-full border border-border bg-white/65 p-1 lg:flex">
               {mainNav.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-blue-soft hover:text-blue"
+                  className="rounded-full px-3 py-2 text-xs font-semibold text-ink-soft transition-colors hover:bg-blue-soft hover:text-blue xl:px-4 xl:text-sm"
                 >
                   {link.label}
                 </a>
@@ -170,7 +162,7 @@ export function SiteHeader() {
                 href="#contact"
                 className="hidden rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue sm:inline-flex"
               >
-                Waitlist
+                Book demo
               </a>
               <button
                 type="button"

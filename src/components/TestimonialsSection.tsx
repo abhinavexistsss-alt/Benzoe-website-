@@ -1,57 +1,33 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 
-const stories = [
+const points = [
   {
-    quote:
-      "You check in, sit down, and stare at a number on a screen that never seems to move. Nobody tells you how long the wait actually is.",
-    highlight: "Nobody tells you how long the wait actually is.",
-    source: "The waiting room problem",
+    title: "Built for doctors",
+    text: "A full management app built for doctors — not just a patient booking portal.",
   },
   {
-    quote:
-      "Caregivers lose hours every week sitting in hospital lobbies — time they could spend working, resting, or being with family.",
-    highlight: "time they could spend working, resting, or being with family.",
-    source: "Why visibility matters",
+    title: "Walk-in OPD first",
+    text: "Designed for real Indian walk-in patients, not only appointment-led workflows.",
   },
   {
-    quote:
-      'Front-desk teams are constantly asked "how much longer?" with no good answer. The data exists — it just never reaches the patient.',
-    highlight: "The data exists — it just never reaches the patient.",
-    source: "The gap we're closing",
+    title: "Made for independent clinics",
+    text: "Designed for India’s independent clinics and hospitals, not just big chains.",
   },
   {
-    quote:
-      "Healthcare shouldn't feel like a guessing game. Real-time queue data is a small fix with an outsized impact on patient trust.",
-    highlight: "an outsized impact on patient trust.",
-    source: "Our thesis",
+    title: "One subscription",
+    text: "Queue, prescription, billing, and records together — your entire clinic goes digital.",
   },
 ];
-
-function HighlightQuote({
-  text,
-  highlight,
-}: {
-  text: string;
-  highlight: string;
-}) {
-  const parts = text.split(highlight);
-  if (parts.length === 1) return <>{text}</>;
-
-  return (
-    <>
-      {parts[0]}
-      <mark className="highlight bg-transparent text-ink">{highlight}</mark>
-      {parts[1]}
-    </>
-  );
-}
 
 export function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative overflow-hidden border-t border-border bg-ink py-16 text-white md:py-24">
+    <section
+      id="why-benzoe"
+      className="relative overflow-hidden border-t border-border bg-ink py-16 text-white md:py-24"
+    >
       <div className="pointer-events-none absolute top-[-14rem] left-[-10rem] h-[32rem] w-[32rem] rounded-full bg-blue/35 blur-3xl" />
       <div className="pointer-events-none absolute right-[-12rem] bottom-[-14rem] h-[34rem] w-[34rem] rounded-full bg-green/20 blur-3xl" />
 
@@ -62,7 +38,7 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           className="mb-5 text-xs font-bold tracking-[0.16em] text-green uppercase"
         >
-          Problem signals
+          Why Benzoe
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 32 }}
@@ -71,40 +47,42 @@ export function TestimonialsSection() {
           className="max-w-[980px] font-display leading-[0.95] tracking-[-0.035em]"
           style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
         >
-          Waiting rooms weren&apos;t designed for humans.
+          Not another appointment portal.
         </motion.h2>
+        <p className="mt-6 max-w-[720px] text-base leading-8 text-white/60 md:text-lg">
+          Benzoe is a clinic management app for the messy, high-volume, walk-in
+          reality of Indian healthcare.
+        </p>
       </div>
 
       <div
         ref={scrollRef}
         className="hide-scrollbar snap-x-mandatory relative z-10 flex gap-5 overflow-x-auto px-6 pb-4 md:gap-8 md:px-12"
       >
-        {stories.map((story, i) => (
+        {points.map((point, i) => (
           <motion.article
-            key={story.source}
+            key={point.title}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: i * 0.08, duration: 0.55 }}
-            className="snap-start flex min-h-[360px] w-[86vw] shrink-0 flex-col justify-between rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl md:w-[500px] md:p-8"
+            className="snap-start flex min-h-[320px] w-[86vw] shrink-0 flex-col justify-between rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl md:w-[500px] md:p-8"
           >
             <div>
-              <span
-                className="font-display leading-none text-green/70"
-                style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
-              >
-                “
+              <span className="font-mono-display text-sm font-bold tracking-[0.18em] text-green uppercase">
+                0{i + 1}
               </span>
-              <p className="mt-2 text-lg leading-8 text-white/82 md:text-xl md:leading-9">
-                <HighlightQuote
-                  text={story.quote}
-                  highlight={story.highlight}
-                />
+              <h3 className="mt-6 text-3xl font-semibold leading-tight tracking-[-0.04em] text-white md:text-4xl">
+                {point.title}
+              </h3>
+              <p className="mt-5 text-lg leading-8 text-white/72 md:text-xl md:leading-9">
+                {point.text}
               </p>
             </div>
             <footer className="mt-8 border-t border-white/10 pt-4">
-              <p className="text-sm font-semibold text-white">{story.source}</p>
-              <p className="mt-1 text-xs text-white/40">Benzoe research note</p>
+              <p className="text-sm font-semibold text-white">
+                Built for India 🇮🇳
+              </p>
             </footer>
           </motion.article>
         ))}

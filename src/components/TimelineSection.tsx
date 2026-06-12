@@ -1,24 +1,27 @@
 import { motion } from "framer-motion";
 
 const items = [
-  { org: "Benzoe", role: "Idea & research", period: "Early 2026" },
   {
-    org: "Patient interviews",
-    role: "Discovery & problem validation",
-    period: "Q1 2026",
+    org: "Clinic signs up",
+    role: "A clinic or hospital starts using Benzoe with a subscription suited to its size and workflow.",
+    period: "Step 1",
   },
-  { org: "Product design", role: "UX flows & prototype", period: "Q1 2026" },
   {
-    org: "Pilot conversations",
-    role: "Hospital & clinic outreach",
-    period: "Q2 2026",
+    org: "Doctor and staff manage digitally",
+    role: "Walk-ins, prescriptions, UPI billing, and patient history move from paper to one clean app.",
+    period: "Step 2",
+  },
+  {
+    org: "Patient stays informed",
+    role: "The patient gets live queue updates, digital receipts, and a permanent digital health record.",
+    period: "Step 3",
   },
 ];
 
 export function TimelineSection() {
   return (
     <section
-      id="roadmap"
+      id="how-it-works"
       className="relative overflow-hidden border-t border-border bg-bg py-16 md:py-24"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-full blueprint-grid opacity-35" />
@@ -30,18 +33,18 @@ export function TimelineSection() {
             viewport={{ once: true }}
           >
             <p className="inline-flex rounded-full border border-border bg-white/70 px-3 py-2 text-xs font-bold tracking-[0.14em] text-blue uppercase backdrop-blur">
-              Roadmap
+              How it works
             </p>
             <h2
               className="mt-8 font-display leading-[0.98] tracking-[-0.035em]"
               style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
             >
-              From insight
-              <br /> to pilots.
+              Three steps from paper to digital.
             </h2>
-            <p className="mt-6 max-w-[420px] text-base leading-8 text-ink-soft md:text-lg">
-              A healthtech startup building in India, moving carefully from
-              research to real clinic workflows.
+            <p className="mt-6 max-w-[460px] text-base leading-8 text-ink-soft md:text-lg">
+              No complicated feature grid. Benzoe follows the way Indian clinics
+              actually run: walk-ins first, doctors in control, patients
+              informed.
             </p>
           </motion.div>
 
@@ -55,7 +58,7 @@ export function TimelineSection() {
             <div className="space-y-3">
               {items.map((item, index) => (
                 <div
-                  key={item.org + item.period}
+                  key={item.org}
                   className="group relative rounded-3xl border border-border bg-white/70 p-5 transition-colors hover:border-blue/30 hover:bg-blue-soft/70"
                 >
                   <div className="flex items-start gap-4">
@@ -85,12 +88,10 @@ export function TimelineSection() {
               ))}
             </div>
 
-            <a
-              href="#contact"
-              className="mt-5 inline-flex items-center rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-            >
-              Join the waitlist <span className="ml-2">→</span>
-            </a>
+            <div className="mt-5 rounded-3xl border border-border bg-bg/80 p-5 text-sm leading-7 text-ink-soft">
+              Founded 2025 · Private Limited · Reg: AAOCB6577A · Built in India
+              🇮🇳
+            </div>
           </motion.div>
         </div>
       </div>
