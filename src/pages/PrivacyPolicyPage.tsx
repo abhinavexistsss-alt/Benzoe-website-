@@ -3,147 +3,173 @@ import { LegalPageLayout } from "../components/LegalPageLayout";
 export function PrivacyPolicyPage() {
   return (
     <LegalPageLayout title="Privacy Policy">
-      <p className="font-semibold text-ink">Benzoe Global Private Limited</p>
-
-      <h2 className="text-lg font-semibold text-ink">1. Introduction</h2>
       <p>
-        Benzoe Global Private Limited (&quot;Benzoe&quot;, &quot;we&quot;,
-        &quot;our&quot;, or &quot;us&quot;) is committed to protecting the
-        privacy of all individuals who use our platforms. This Privacy Policy
-        applies to both:
+        Benzoe respects the privacy of clinics, doctors, staff, and patients who
+        use our services. This Privacy Policy explains what information we
+        collect, how we use it, and the choices users have when using Benzoe.
       </p>
+
+      <h2 className="text-lg font-semibold text-ink">1. Scope</h2>
+      <p>This Privacy Policy applies to Benzoe services, including:</p>
       <ul className="list-disc space-y-2 pl-6">
         <li>
-          <strong className="text-ink">Benzoe Clinic App</strong> — the clinic
-          and hospital management application used by doctors, clinic owners,
-          and hospital staff
+          Clinic and hospital management tools used by doctors, clinic owners,
+          and staff
         </li>
         <li>
-          <strong className="text-ink">Benzoe Patient App</strong> — the
-          patient-facing application used by individuals to track queues, access
-          prescriptions, and manage health records
+          Patient-facing tools used to track queues, access prescriptions, and
+          view visit records
+        </li>
+        <li>
+          Any related website, dashboard, support, or communication experience
+          provided by Benzoe
         </li>
       </ul>
-      <p>
-        By accessing or using either app, you agree to the terms of this Privacy
-        Policy. If you do not agree, please discontinue use of our services.
-      </p>
 
       <h2 className="text-lg font-semibold text-ink">
         2. Information We Collect
       </h2>
       <h3 className="font-semibold text-ink">
-        2.1 Clinic App — Clinics, Doctors & Staff
+        Clinic, Doctor, and Staff Information
       </h3>
       <ul className="list-disc space-y-2 pl-6">
-        <li>Clinic/hospital name, address, city, and state</li>
+        <li>Clinic or hospital name, location, and operational details</li>
         <li>
-          Doctor&apos;s name, qualification, specialisation, and registration
-          number
+          Doctor profile details such as name, qualification, speciality, and
+          professional details
         </li>
-        <li>Contact details including email address and phone number</li>
-        <li>UPI ID and payment account details for billing integration</li>
-        <li>Staff member names and roles</li>
+        <li>
+          Staff names, roles, permissions, and activity within the clinic
+          workspace
+        </li>
+        <li>
+          Billing, payment, and subscription-related information required to
+          operate the service
+        </li>
       </ul>
 
-      <h3 className="font-semibold text-ink">2.2 Patient App — Patients</h3>
+      <h3 className="font-semibold text-ink">Patient Information</h3>
       <ul className="list-disc space-y-2 pl-6">
-        <li>Name, age, gender, and contact number</li>
-        <li>Visit history, symptoms, and diagnosis notes</li>
-        <li>Digital prescriptions issued during consultations</li>
-        <li>Payment and billing records</li>
-        <li>Queue token and appointment records</li>
-        <li>ABHA number, if provided</li>
+        <li>
+          Name, age, gender, and contact details shared during registration or
+          clinic visits
+        </li>
+        <li>Queue tokens, appointment details, and visit history</li>
+        <li>
+          Symptoms, diagnosis notes, prescriptions, and other records created
+          during consultation
+        </li>
+        <li>Payment and receipt details related to clinic visits</li>
+        <li>
+          Health identifiers or documents voluntarily provided by the user
+        </li>
       </ul>
 
       <h3 className="font-semibold text-ink">
-        2.3 Collected Automatically (Both Apps)
+        Automatically Collected Information
       </h3>
       <ul className="list-disc space-y-2 pl-6">
-        <li>Device type, OS, and app version</li>
-        <li>IP address and approximate location</li>
-        <li>Features used and session timestamps</li>
-      </ul>
-
-      <h2 className="text-lg font-semibold text-ink">
-        3. How We Use Your Information
-      </h2>
-      <ul className="list-disc space-y-2 pl-6">
-        <li>Operate the Benzoe Clinic App and Patient App</li>
-        <li>Enable real-time queue management and live queue tracking</li>
-        <li>Generate and store digital prescriptions and billing records</li>
-        <li>Process UPI payments and generate digital receipts</li>
-        <li>Send queue status updates and notifications to patients</li>
-        <li>Allow doctors to access patient visit history</li>
-        <li>Comply with Indian laws including the DPDP Act, 2023</li>
-      </ul>
-
-      <h2 className="text-lg font-semibold text-ink">
-        4. Sharing of Information
-      </h2>
-      <ul className="list-disc space-y-2 pl-6">
+        <li>Device type, browser, app version, and usage logs</li>
+        <li>Approximate location, session activity, and feature usage</li>
         <li>
-          <strong className="text-ink">Between apps:</strong> Patient data from
-          the Clinic App is accessible only to that same patient on the Patient
-          App — not to any other clinic or patient
-        </li>
-        <li>
-          <strong className="text-ink">Payment Processors:</strong> Shared with
-          authorised payment gateways only to process transactions
-        </li>
-        <li>
-          <strong className="text-ink">Service Providers:</strong> Trusted third
-          parties (cloud hosting, SMS) under confidentiality agreements
-        </li>
-        <li>
-          <strong className="text-ink">Legal Compliance:</strong> If required by
-          Indian law or court order
+          Technical information used for security, debugging, and service
+          improvement
         </li>
       </ul>
 
       <h2 className="text-lg font-semibold text-ink">
-        5. Data Storage and Security
+        3. How We Use Information
       </h2>
       <ul className="list-disc space-y-2 pl-6">
-        <li>All data stored on servers in India</li>
-        <li>TLS/SSL encryption for all data transmission</li>
-        <li>Regular security audits and restricted access controls</li>
+        <li>
+          To operate clinic queue management, prescription, billing, and patient
+          record features
+        </li>
+        <li>
+          To show patients live queue updates and clinic visit information
+        </li>
+        <li>
+          To help doctors and staff access patient history and manage clinic
+          workflows
+        </li>
+        <li>
+          To process payments, generate receipts, and maintain billing records
+        </li>
+        <li>
+          To improve product reliability, security, analytics, and support
+        </li>
+        <li>To comply with applicable laws and valid legal requests</li>
       </ul>
+
+      <h2 className="text-lg font-semibold text-ink">4. Data Sharing</h2>
+      <p>
+        Benzoe does not sell personal data. Information may be shared only when
+        necessary:
+      </p>
+      <ul className="list-disc space-y-2 pl-6">
+        <li>Between a clinic and the patient connected to that clinic visit</li>
+        <li>
+          With authorised payment, hosting, messaging, analytics, or support
+          service providers
+        </li>
+        <li>
+          With doctors, staff, or clinic administrators based on their role and
+          permissions
+        </li>
+        <li>
+          When required to comply with law, regulation, or a valid legal process
+        </li>
+      </ul>
+
+      <h2 className="text-lg font-semibold text-ink">5. Security</h2>
+      <p>
+        Benzoe uses reasonable technical and organisational safeguards to
+        protect user information. These may include encryption in transit,
+        access controls, monitoring, and restricted internal access. No digital
+        service can guarantee absolute security, but we work to reduce risk and
+        respond responsibly to security concerns.
+      </p>
 
       <h2 className="text-lg font-semibold text-ink">6. Data Retention</h2>
+      <p>
+        We retain information for as long as needed to provide Benzoe services,
+        meet legal or regulatory requirements, resolve disputes, and maintain
+        accurate clinic and patient records. Retention periods may vary
+        depending on the type of information and the purpose for which it is
+        stored.
+      </p>
+
+      <h2 className="text-lg font-semibold text-ink">
+        7. User Choices and Rights
+      </h2>
+      <p>Subject to applicable law, users may request to:</p>
       <ul className="list-disc space-y-2 pl-6">
         <li>
-          Clinic data: retained for active subscription + 3 years after
-          termination
+          Access personal information associated with their account or clinic
+          visit
         </li>
+        <li>Correct inaccurate or incomplete information</li>
         <li>
-          Patient records: retained while clinic is active; patients may request
-          a copy before deletion
+          Request deletion of information where legally and operationally
+          possible
         </li>
-        <li>
-          Payment records: retained for 7 years per Indian financial regulations
-        </li>
+        <li>Withdraw consent for optional processing or communications</li>
       </ul>
 
       <h2 className="text-lg font-semibold text-ink">
-        7. Your Rights (under DPDP Act, 2023)
+        8. Updates to This Policy
       </h2>
-      <ul className="list-disc space-y-2 pl-6">
-        <li>Access, correct, or delete your personal data</li>
-        <li>Withdraw consent at any time</li>
-        <li>Nominate a person to exercise rights on your behalf</li>
-      </ul>
-
-      <h2 className="text-lg font-semibold text-ink">8. Contact Us</h2>
       <p>
-        Benzoe Global
-        <br />
-        Email:{" "}
-        <a href="mailto:benzoe.mail1@gmail.com" className="text-blue underline">
-          benzoe.mail1@gmail.com
-        </a>
+        Benzoe may update this Privacy Policy from time to time. Continued use
+        of Benzoe after an update means the revised policy applies.
       </p>
-      <p>Governed by the laws of India.</p>
+
+      <h2 className="text-lg font-semibold text-ink">9. Contact</h2>
+      <p>
+        For privacy-related requests, users can contact Benzoe through the
+        official support or contact channels made available inside the product
+        or on the website.
+      </p>
     </LegalPageLayout>
   );
 }

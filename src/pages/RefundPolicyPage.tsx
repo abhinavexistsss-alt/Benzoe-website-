@@ -3,118 +3,102 @@ import { LegalPageLayout } from "../components/LegalPageLayout";
 export function RefundPolicyPage() {
   return (
     <LegalPageLayout title="Refund Policy">
-      <p className="font-semibold text-ink">Benzoe Global Private Limited</p>
+      <p>
+        This Refund Policy explains how cancellations and refunds work for paid
+        Benzoe plans and services. It applies to clinic-facing and
+        patient-facing paid features where billing is enabled.
+      </p>
 
-      <h2 className="text-lg font-semibold text-ink">1. Overview</h2>
-      <p>Applies to all paid plans across:</p>
+      <h2 className="text-lg font-semibold text-ink">1. General Policy</h2>
+      <p>
+        Benzoe provides digital tools for clinic management, patient queue
+        visibility, prescriptions, billing, and health records. Refunds are
+        reviewed based on the plan type, billing cycle, usage, and reason for
+        the request.
+      </p>
+
+      <h2 className="text-lg font-semibold text-ink">2. Monthly Plans</h2>
       <ul className="list-disc space-y-2 pl-6">
+        <li>Monthly plans may be cancelled at any time.</li>
         <li>
-          <strong className="text-ink">Benzoe Clinic App</strong> — clinic and
-          hospital subscription plans
+          Access generally continues until the end of the active billing period.
         </li>
         <li>
-          <strong className="text-ink">Benzoe Patient App</strong> — any paid
-          patient features or premium plans
+          Unused days in an active monthly billing cycle are usually not
+          refundable.
         </li>
       </ul>
 
-      <h2 className="text-lg font-semibold text-ink">2. Cancellation Policy</h2>
-      <h3 className="font-semibold text-ink">Monthly Plans</h3>
-      <ul className="list-disc space-y-2 pl-6">
-        <li>Cancel anytime; access continues till end of billing cycle</li>
-        <li>No refund for unused days in the current month</li>
-      </ul>
-
-      <h3 className="font-semibold text-ink">Annual Plans</h3>
+      <h2 className="text-lg font-semibold text-ink">3. Annual Plans</h2>
       <ul className="list-disc space-y-2 pl-6">
         <li>
-          Cancel within 7 days of first purchase (minimal usage) → Full refund
+          Annual plans may be eligible for a refund if cancellation is requested
+          shortly after purchase.
         </li>
         <li>
-          Cancel after 7 days → No refund; access continues till end of period
+          Refund eligibility may depend on usage, onboarding status, and whether
+          premium features were used.
+        </li>
+        <li>
+          After the initial review window, annual plan access generally
+          continues until the end of the paid term.
         </li>
       </ul>
 
       <h2 className="text-lg font-semibold text-ink">
-        3. Eligible Refund Scenarios
+        4. Refunds We May Approve
       </h2>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[520px] border-collapse text-left text-sm">
-          <thead>
-            <tr className="border-b border-border text-ink">
-              <th className="py-3 pr-4 font-semibold">Scenario</th>
-              <th className="py-3 font-semibold">Refund</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-border">
-              <td className="py-3 pr-4">
-                Duplicate payment due to technical error
-              </td>
-              <td className="py-3">Full refund</td>
-            </tr>
-            <tr className="border-b border-border">
-              <td className="py-3 pr-4">
-                Charged after confirmed cancellation
-              </td>
-              <td className="py-3">Full refund</td>
-            </tr>
-            <tr className="border-b border-border">
-              <td className="py-3 pr-4">
-                Platform down 72+ consecutive hours (our fault)
-              </td>
-              <td className="py-3">Pro-rated refund</td>
-            </tr>
-            <tr className="border-b border-border">
-              <td className="py-3 pr-4">
-                Annual plan cancelled within 7 days, minimal use
-              </td>
-              <td className="py-3">Full refund</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h2 className="text-lg font-semibold text-ink">4. Non-Refundable</h2>
       <ul className="list-disc space-y-2 pl-6">
-        <li>Change of mind after 7-day window</li>
-        <li>Unused monthly billing cycle</li>
-        <li>Never used the app after subscribing</li>
-        <li>Account suspended for Terms violation</li>
-      </ul>
-
-      <h2 className="text-lg font-semibold text-ink">5. How to Request</h2>
-      <p>
-        Email{" "}
-        <a href="mailto:benzoe.mail1@gmail.com" className="text-blue underline">
-          benzoe.mail1@gmail.com
-        </a>{" "}
-        — Subject: &quot;Refund Request – [Your Name / Clinic Name]&quot;
-      </p>
-      <ul className="list-disc space-y-2 pl-6">
-        <li>Mention which app (Clinic App or Patient App)</li>
+        <li>Duplicate payments caused by a technical error</li>
+        <li>Charges made after a confirmed cancellation</li>
         <li>
-          Include registered phone/email, plan name, payment date, and reason
+          Major service unavailability caused by Benzoe for an extended period
         </li>
-        <li>Attach payment screenshot if available</li>
         <li>
-          Response within 5 business days; approved refunds processed in 7–10
-          business days
+          New annual subscription cancellation requests with minimal usage
         </li>
       </ul>
 
-      <h2 className="text-lg font-semibold text-ink">6. Contact Us</h2>
+      <h2 className="text-lg font-semibold text-ink">
+        5. Non-Refundable Cases
+      </h2>
+      <ul className="list-disc space-y-2 pl-6">
+        <li>Change of mind after meaningful use of the service</li>
+        <li>Unused time within a monthly billing period</li>
+        <li>Failure to use the service after subscribing</li>
+        <li>Suspension or termination due to violation of Benzoe terms</li>
+        <li>
+          Issues caused by incorrect information entered by the clinic, staff,
+          or patient
+        </li>
+      </ul>
+
+      <h2 className="text-lg font-semibold text-ink">
+        6. How to Request a Refund
+      </h2>
       <p>
-        Benzoe Global
-        <br />
-        Email:{" "}
-        <a href="mailto:benzoe.mail1@gmail.com" className="text-blue underline">
-          benzoe.mail1@gmail.com
-        </a>
+        Refund requests should be submitted through the official support or
+        billing channels provided by Benzoe. Requests should include the user or
+        clinic name, plan details, payment date, reason for the request, and any
+        relevant proof of payment.
       </p>
+
+      <h2 className="text-lg font-semibold text-ink">
+        7. Review and Processing
+      </h2>
       <p>
-        Governed by the Consumer Protection Act, 2019 and applicable Indian
-        laws.
+        Benzoe reviews refund requests in good faith. Approved refunds are
+        processed through the original payment method where possible. Processing
+        timelines may vary depending on the payment provider or banking partner.
+      </p>
+
+      <h2 className="text-lg font-semibold text-ink">
+        8. Changes to This Policy
+      </h2>
+      <p>
+        Benzoe may update this Refund Policy from time to time. The version
+        published on the website or inside the product will apply to refund
+        requests made after the update.
       </p>
     </LegalPageLayout>
   );
