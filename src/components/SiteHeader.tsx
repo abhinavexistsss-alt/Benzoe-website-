@@ -1,43 +1,44 @@
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const mainNav = [
-  { label: 'Product', href: '#product' },
-  { label: 'About', href: '#about' },
-]
+  { label: "Product", href: "#product" },
+  { label: "About", href: "#about" },
+  { label: "Roadmap", href: "#roadmap" },
+];
 
 const menuNav = [
-  { label: 'Product', href: '#product' },
-  { label: 'About', href: '#about' },
-  { label: 'Menu', href: '#' },
-  { label: 'Waitlist', href: '#contact' },
-]
+  { label: "Product", href: "#product" },
+  { label: "About", href: "#about" },
+  { label: "Roadmap", href: "#roadmap" },
+  { label: "Waitlist", href: "#contact" },
+];
 
 function LiveClock() {
-  const [time, setTime] = useState('00:00:00')
+  const [time, setTime] = useState("00:00:00");
 
   useEffect(() => {
     const tick = () => {
       setTime(
-        new Date().toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
           hour12: false,
-          timeZone: 'Asia/Kolkata',
+          timeZone: "Asia/Kolkata",
         }),
-      )
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [])
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <span className="font-mono-display text-[14px] tabular-nums tracking-tight text-blue">
+    <span className="font-mono-display text-[13px] tabular-nums tracking-tight text-blue">
       {time}
     </span>
-  )
+  );
 }
 
 function FullScreenMenu({ onClose }: { onClose: () => void }) {
@@ -46,18 +47,26 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-bg"
+      className="fixed inset-0 z-[200] overflow-hidden bg-ink text-white"
     >
-      <div className="section-wrap flex h-full flex-col py-6 md:py-8">
-        <div className="flex items-center justify-between border-b border-border pb-4">
+      <div className="pointer-events-none absolute top-[-12rem] right-[-8rem] h-[32rem] w-[32rem] rounded-full bg-blue/40 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-[-10rem] left-[-10rem] h-[28rem] w-[28rem] rounded-full bg-green/25 blur-3xl" />
+
+      <div className="section-wrap relative z-10 flex h-full flex-col py-6 md:py-8">
+        <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold md:text-base">Benzoe</span>
-            <span className="text-sm text-blue">Healthtech</span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-blue">
+              B
+            </span>
+            <div>
+              <p className="text-sm font-semibold md:text-base">Benzoe</p>
+              <p className="text-xs text-white/50">Healthtech queue OS</p>
+            </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-ink"
+            className="rounded-full border border-white/15 px-4 py-2 text-sm transition-colors hover:border-white/40"
           >
             Close
           </button>
@@ -68,112 +77,116 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
             <motion.a
               key={item.label}
               href={item.href}
-              onClick={(e) => {
-                if (item.label === 'Menu') e.preventDefault()
-                else onClose()
-              }}
+              onClick={onClose}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 + i * 0.07, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="group border-b border-border py-5 md:py-7"
+              transition={{
+                delay: 0.05 + i * 0.07,
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="group border-b border-white/10 py-5 md:py-7"
             >
-              <span className="font-display text-[clamp(2.5rem,8vw,5.5rem)] leading-none transition-colors group-hover:text-blue">
+              <span className="font-display text-[clamp(3rem,9vw,6.5rem)] leading-none text-white transition-colors group-hover:text-green">
                 {item.label}
               </span>
             </motion.a>
           ))}
         </nav>
 
-        <div className="flex items-center justify-between border-t border-border pt-4 text-sm text-ink-soft">
+        <div className="flex items-center justify-between border-t border-white/10 pt-4 text-sm text-white/55">
           <div className="flex items-center gap-2">
             <span className="pulse-green h-2 w-2 rounded-full bg-green" />
             <span>Launching soon</span>
           </div>
           <div className="flex gap-5">
-            <a href="mailto:hello@benzoe.health" className="hover:text-blue">
+            <a href="mailto:hello@benzoe.health" className="hover:text-white">
               Email
             </a>
-            <a href="#" className="hover:text-blue">
-              LinkedIn
+            <a href="#contact" className="hover:text-white">
+              Waitlist
             </a>
           </div>
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
 
 export function SiteHeader() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', menuOpen)
-    return () => document.body.classList.remove('menu-open')
-  }, [menuOpen])
+    document.body.classList.toggle("menu-open", menuOpen);
+    return () => document.body.classList.remove("menu-open");
+  }, [menuOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <>
-      {/* Row 1 — name / label / clock / status */}
-      <div className="fixed top-0 right-0 left-0 z-[90] border-b border-border bg-bg/95 backdrop-blur-md">
-        <div className="section-wrap flex items-center justify-between py-3">
-          <div className="flex items-center gap-2 md:gap-3">
-            <a href="#" className="text-sm font-semibold md:text-[15px]">
-              Benzoe
-            </a>
-            <span className="text-sm text-blue md:text-[15px]">Healthtech</span>
-          </div>
-
-          <div className="hidden items-center gap-2 md:flex">
-            <LiveClock />
-            <span className="text-[14px] text-blue">IST</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="pulse-green h-2 w-2 rounded-full bg-green" />
-            <span className="text-xs font-medium md:text-sm">Launching soon</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Row 2 — Work Play About Menu Resume */}
-      <div className="fixed top-[49px] right-0 left-0 z-[80] border-b border-border bg-bg/95 backdrop-blur-md">
-        <div className="section-wrap flex items-center justify-center py-3">
-          <nav className="flex items-center gap-5 md:gap-8">
-            {mainNav.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm text-ink-soft transition-colors hover:text-ink"
-              >
-                {link.label}
-              </a>
-            ))}
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              className="text-sm text-ink-soft transition-colors hover:text-ink"
-            >
-              Menu
-            </button>
+      <header className="fixed top-4 right-0 left-0 z-[100]">
+        <div className="section-wrap">
+          <div className="glass-panel flex items-center justify-between rounded-full px-3 py-2 md:px-4">
             <a
-              href="#contact"
-              className="text-sm font-medium text-ink underline decoration-blue decoration-2 underline-offset-[6px]"
+              href="#"
+              className="flex items-center gap-3 rounded-full pr-3 transition-opacity hover:opacity-80"
             >
-              Waitlist
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue text-sm font-black text-white shadow-lg shadow-blue/20">
+                B
+              </span>
+              <span className="hidden leading-tight sm:block">
+                <span className="block text-sm font-semibold">Benzoe</span>
+                <span className="block text-[11px] text-ink-soft">
+                  Healthtech
+                </span>
+              </span>
             </a>
-          </nav>
-        </div>
-      </div>
 
-      <AnimatePresence>{menuOpen && <FullScreenMenu onClose={() => setMenuOpen(false)} />}</AnimatePresence>
+            <nav className="hidden items-center gap-1 rounded-full border border-border bg-white/65 p-1 md:flex">
+              {mainNav.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-blue-soft hover:text-blue"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-2 rounded-full border border-border bg-white/60 px-3 py-2 md:flex">
+                <LiveClock />
+                <span className="text-[12px] text-ink-soft">IST</span>
+              </div>
+              <a
+                href="#contact"
+                className="hidden rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue sm:inline-flex"
+              >
+                Waitlist
+              </a>
+              <button
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                className="rounded-full border border-border bg-white/60 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-blue hover:text-blue"
+              >
+                Menu
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && <FullScreenMenu onClose={() => setMenuOpen(false)} />}
+      </AnimatePresence>
     </>
-  )
+  );
 }
