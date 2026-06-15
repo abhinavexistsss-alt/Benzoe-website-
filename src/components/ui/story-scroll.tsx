@@ -122,17 +122,6 @@ const FlowArt: React.FC<FlowArtProps> = ({
         };
       });
 
-      // Clear GSAP inline styles on mobile screens to ensure perfect normal scrolling and height auto-resizing
-      mm.add('(max-width: 767px)', () => {
-        sections.forEach((section) => {
-          const inner = section.querySelector<HTMLElement>('.flow-art-container');
-          if (inner) {
-            gsap.set(inner, { clearProps: 'all' });
-          }
-          gsap.set(section, { clearProps: 'all' });
-        });
-      });
-
       return () => {
         mm.revert();
       };
