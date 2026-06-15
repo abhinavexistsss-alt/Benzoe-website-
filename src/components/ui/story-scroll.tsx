@@ -27,12 +27,12 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
   <section
     data-flow-section
     aria-label={ariaLabel}
-    className={cx('relative min-h-screen w-full overflow-hidden', className)}
+    className={cx('relative min-h-screen w-full overflow-visible md:overflow-hidden', className)}
   >
     <div
       data-flow-inner
       className={cx(
-        'flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[4vw]',
+        'flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[6vw] md:px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[6vw] md:pb-[4vw]',
         'will-change-transform',
       )}
       style={{ transformOrigin: 'bottom left', ...style }}
@@ -75,46 +75,66 @@ const FlowArt: React.FC<FlowArtProps> = ({
       );
       if (sections.length === 0) return;
 
-      const triggers: ScrollTrigger[] = [];
+      const mm = gsap.matchMedia();
 
-      sections.forEach((section, i) => {
-        gsap.set(section, { zIndex: i + 1 });
+      // Only pin and rotate on screen widths 768px and up (desktop/laptop/large tablet)
+      mm.add('(min-width: 768px)', () => {
+        const triggers: ScrollTrigger[] = [];
 
-        const inner = section.querySelector<HTMLElement>('.flow-art-container');
-        if (!inner) return;
+        sections.forEach((section, i) => {
+          gsap.set(section, { zIndex: i + 1 });
 
-        if (i > 0) {
-          gsap.set(inner, { rotation: 30, transformOrigin: 'bottom left' });
-          const tween = gsap.to(inner, {
-            rotation: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top bottom',
-              end: 'top 25%',
-              scrub: true,
-            },
-          });
-          if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
-        }
+          const inner = section.querySelector<HTMLElement>('.flow-art-container');
+          if (!inner) return;
 
-        if (i < sections.length - 1) {
-          triggers.push(
-            ScrollTrigger.create({
-              trigger: section,
-              start: 'bottom bottom',
-              end: 'bottom top',
-              pin: true,
-              pinSpacing: false,
-            }),
-          );
-        }
+          if (i > 0) {
+            gsap.set(inner, { rotation: 30, transformOrigin: 'bottom left' });
+            const tween = gsap.to(inner, {
+              rotation: 0,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'top 25%',
+                scrub: true,
+              },
+            });
+            if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
+          }
+
+          if (i < sections.length - 1) {
+            triggers.push(
+              ScrollTrigger.create({
+                trigger: section,
+                start: 'bottom bottom',
+                end: 'bottom top',
+                pin: true,
+                pinSpacing: false,
+              }),
+            );
+          }
+        });
+
+        ScrollTrigger.refresh();
+
+        return () => {
+          triggers.forEach((t) => t.kill());
+        };
       });
 
-      ScrollTrigger.refresh();
+      // Clear GSAP inline styles on mobile screens to ensure perfect normal scrolling and height auto-resizing
+      mm.add('(max-width: 767px)', () => {
+        sections.forEach((section) => {
+          const inner = section.querySelector<HTMLElement>('.flow-art-container');
+          if (inner) {
+            gsap.set(inner, { clearProps: 'all' });
+          }
+          gsap.set(section, { clearProps: 'all' });
+        });
+      });
 
       return () => {
-        triggers.forEach((t) => t.kill());
+        mm.revert();
       };
     },
     { scope: containerRef, dependencies: [childCount(children), reducedMotion] },

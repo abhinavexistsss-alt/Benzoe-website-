@@ -9,7 +9,7 @@ export function HomePage() {
         <hr className="my-[2vw] border-none border-t border-black opacity-100" />
         <div>
           <h1
-            className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+            className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
           >
             India&apos;s
             <br />
@@ -34,7 +34,7 @@ export function HomePage() {
         <hr className="my-[2vw] border-none border-t border-white/60" />
         <div>
           <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+            className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
           >
             Still
             <br />
@@ -49,22 +49,22 @@ export function HomePage() {
           cash counters. It feels normal only because everyone has been forced to adjust.
         </p>
         <hr className="my-[2vw] border-none border-t border-white/60" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Paper Registers</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Walk-in queues are still written by hand. Staff keep answering &quot;mera number kab
               aayega?&quot; while the OPD gets crowded.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Lost Prescriptions</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Handwritten prescriptions are hard to read and easy to lose, so every follow-up starts
               without proper context.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Cash-Only Billing</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Payments and receipts stay outside a digital trail, making records messy for clinics
@@ -73,22 +73,22 @@ export function HomePage() {
           </div>
         </div>
         <hr className="my-[2vw] border-none border-t border-white/60" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">No Patient History</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Old files get buried. Patients can&apos;t access their own health records without
               visiting the clinic again.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Crowded Waiting Rooms</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               No live queue visibility means patients arrive hours early and wait anxiously with no
               sense of their position.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Staff Overload</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Front-desk staff juggle queue management, billing, and patient queries all manually —
@@ -109,7 +109,7 @@ export function HomePage() {
         <hr className="my-[2vw] border-none border-t border-black/60" />
         <div>
           <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+            className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
           >
             Sign
             <br />
@@ -126,22 +126,22 @@ export function HomePage() {
           subscribe.
         </p>
         <hr className="my-[2vw] border-none border-t border-black/60" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">01 — Clinic Signs Up</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Pick a subscription suited to your clinic&apos;s size and workflow. Setup takes
               minutes, not weeks.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">02 — Staff Goes Digital</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Walk-ins, prescriptions, UPI billing, and patient history move from paper registers to
               one clean app.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">03 — Patients Stay Informed</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Live queue updates, digital prescriptions, and permanent health records — no app
@@ -150,22 +150,22 @@ export function HomePage() {
           </div>
         </div>
         <hr className="my-[2vw] border-none border-t border-black/60" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">For Doctors</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Write digital prescriptions, manage walk-in queues, and see full patient history
               without digging through old files.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">For Staff</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Manage real-time OPD queues, collect UPI payments, and generate digital receipts — all
               from one dashboard.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">For Patients</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               See your live queue position, receive clear digital prescriptions, and carry your
@@ -181,7 +181,7 @@ export function HomePage() {
         <hr className="my-[2vw] border-none border-t border-white/50" />
         <div>
           <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+            className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
           >
             One
             <br />
@@ -198,22 +198,22 @@ export function HomePage() {
           actually run.
         </p>
         <hr className="my-[2vw] border-none border-t border-white/50" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Queue Management</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Real-time walk-in OPD queue with token tracking. Patients see their live position and
               estimated wait time.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Digital Prescriptions</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Instant PDF prescriptions sent to patients. Clear, readable, and permanently stored in
               their health record.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">UPI Billing</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Digital receipts with QR code payments. Every transaction tracked — no more cash-only
@@ -227,22 +227,22 @@ export function HomePage() {
           entire clinic goes digital.
         </p>
         <hr className="my-[2vw] border-none border-t border-white/50" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[3vw]">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Patient Health Records</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Complete prescription history and visit records in one place. Patients carry their
               health data digitally.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Walk-In OPD First</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Designed for real Indian walk-in patients, not appointment-only workflows. Built for
               Nagpur, Jaipur, Indore, and beyond.
             </p>
           </div>
-          <div className="min-w-[180px] flex-1">
+          <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">One Subscription</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
               Tiered SaaS pricing for clinics and hospitals of any size. Founded 2025 · Private
@@ -258,7 +258,7 @@ export function HomePage() {
         <hr className="my-[2vw] border-none border-t border-white/60" />
         <div>
           <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+            className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
           >
             Ready
             <br />
