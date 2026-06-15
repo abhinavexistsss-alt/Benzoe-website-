@@ -9,9 +9,8 @@ const mainNav = [
 
 const menuNav = [
   ...mainNav,
-  { label: "Doctors", href: "#doctors" },
-  { label: "Patients", href: "#patients" },
-  { label: "Contact", href: "#contact" },
+  { label: "Book Demo", href: "#contact" },
+  { label: "Contact", href: "mailto:hello@benzoe.health" },
 ];
 
 function LiveClock() {
@@ -92,7 +91,7 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
             <span>Founded 2025</span>
           </div>
           <a href="mailto:hello@benzoe.health" className="hover:text-white">
-            Email
+            hello@benzoe.health
           </a>
         </div>
       </div>
@@ -127,23 +126,7 @@ export function SiteHeader() {
             <span className="text-sm text-blue md:text-[15px]">Healthtech</span>
           </div>
 
-          <div className="hidden items-center gap-2 md:flex">
-            <LiveClock />
-            <span className="text-[14px] text-blue">IST</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="pulse-green h-2 w-2 rounded-full bg-green" />
-            <span className="text-xs font-medium md:text-sm">
-              Built in India
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="fixed top-[49px] right-0 left-0 z-[80] border-b border-border bg-bg/95 backdrop-blur-sm">
-        <div className="section-wrap flex items-center justify-center py-3">
-          <nav className="flex items-center gap-5 md:gap-8">
+          <nav className="hidden items-center gap-5 md:flex">
             {mainNav.map((link) => (
               <a
                 key={link.label}
@@ -153,20 +136,36 @@ export function SiteHeader() {
                 {link.label}
               </a>
             ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <div className="hidden items-center gap-2 lg:flex">
+              <LiveClock />
+              <span className="text-[14px] text-blue">IST</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="pulse-green h-2 w-2 rounded-full bg-green" />
+              <span className="hidden text-xs font-medium sm:inline md:text-sm">
+                Built in India
+              </span>
+            </div>
+
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="text-sm text-ink-soft transition-colors hover:text-ink"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink md:text-sm"
             >
               Menu
             </button>
+
             <a
               href="#contact"
-              className="text-sm font-medium text-ink underline decoration-blue decoration-2 underline-offset-[6px]"
+              className="hidden rounded-full bg-ink px-4 py-1.5 text-xs font-semibold text-bg transition-colors hover:bg-blue sm:inline-flex md:text-sm"
             >
               Book Demo
             </a>
-          </nav>
+          </div>
         </div>
       </div>
 

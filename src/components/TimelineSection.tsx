@@ -1,50 +1,51 @@
 import { motion } from "framer-motion";
+import { FlowSection } from "./FlowArt";
 
-const items = [
+const steps = [
   {
     org: "Clinic signs up",
-    role: "A clinic or hospital starts using Benzoe with a subscription suited to its size and workflow.",
+    role: "A clinic or hospital starts using Benzoe with a subscription suited to its size and daily workflow.",
     period: "Step 1",
   },
   {
-    org: "Doctor and staff manage digitally",
-    role: "Walk-ins, prescriptions, UPI billing, and patient history move from paper to one clean app.",
+    org: "Doctor & staff go digital",
+    role: "Walk-ins, prescriptions, UPI billing, and patient history move from paper registers to one clean app.",
     period: "Step 2",
   },
   {
     org: "Patient stays informed",
-    role: "The patient gets live queue updates, digital receipts, and a permanent digital health record.",
+    role: "Patients get live queue updates, digital prescriptions, and permanent digital health records — no app download needed.",
     period: "Step 3",
   },
 ];
 
-export function TimelineSection() {
+export function HowItWorksFlowSection() {
   return (
-    <section
-      id="how-it-works"
-      className="relative overflow-hidden border-t border-border bg-bg py-16 md:py-24"
+    <FlowSection
+      aria-label="How it works"
+      className="bg-bg-soft"
+      style={{ borderRadius: "2rem 2rem 0 0" }}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-full blueprint-grid opacity-35" />
-      <div className="section-wrap relative z-10">
+      <div className="section-wrap flex flex-1 flex-col justify-center">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="inline-flex rounded-full border border-border bg-white/70 px-3 py-2 text-xs font-bold tracking-[0.14em] text-blue uppercase backdrop-blur">
+            <p className="inline-flex rounded-full border border-border bg-bg/70 px-3 py-2 text-xs font-bold tracking-[0.14em] text-blue uppercase backdrop-blur">
               How it works
             </p>
             <h2
-              className="mt-8 font-display leading-[0.98] tracking-[-0.035em]"
+              className="mt-8 font-display leading-[0.95] tracking-[-0.035em]"
               style={{ fontSize: "clamp(2.8rem, 7vw, 5.6rem)" }}
             >
               Three steps from paper to digital.
             </h2>
             <p className="mt-6 max-w-[460px] text-base leading-8 text-ink-soft md:text-lg">
               No complicated feature grid. Benzoe follows the way Indian clinics
-              actually run: walk-ins first, doctors in control, patients
-              informed.
+              actually run — walk-ins first, doctors in control, patients
+              always informed.
             </p>
           </motion.div>
 
@@ -56,17 +57,17 @@ export function TimelineSection() {
             className="glass-panel rounded-[2rem] p-4 md:p-6"
           >
             <div className="space-y-3">
-              {items.map((item, index) => (
+              {steps.map((item, index) => (
                 <div
                   key={item.org}
-                  className="group relative rounded-3xl border border-border bg-white/70 p-5 transition-colors hover:border-blue/30 hover:bg-blue-soft/70"
+                  className="group relative rounded-3xl border border-border bg-bg/70 p-5 transition-colors hover:border-blue/30 hover:bg-blue-soft/70"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex flex-col items-center">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink font-mono-display text-xs text-white group-hover:bg-blue">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink font-mono-display text-xs text-bg group-hover:bg-blue">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      {index < items.length - 1 && (
+                      {index < steps.length - 1 && (
                         <span className="mt-3 h-12 w-px bg-border" />
                       )}
                     </div>
@@ -95,6 +96,6 @@ export function TimelineSection() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </FlowSection>
   );
 }

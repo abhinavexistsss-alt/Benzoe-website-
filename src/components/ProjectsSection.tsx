@@ -1,200 +1,117 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { FlowSection } from "./FlowArt";
 
-const projects = [
+const features = [
   {
     num: "01",
-    anchor: "solution",
-    year: "All-in-one",
-    title: "What Benzoe does",
+    title: "Queue Management",
     description:
-      "Benzoe replaces paper queues, handwritten prescriptions, and cash-only billing with one simple clinic management app for India’s doctors, staff, and patients.",
-    discipline: "Queue + prescription + billing + records",
-    role: "Clinic owners, doctors, staff, patients",
-    timeline: "Complete workflow",
-    impact: "A cleaner, more organised clinic day",
-    image: "/products/03-clinic-dashboard.svg",
-    alt: "Benzoe clinic dashboard for queue, prescription, billing, and records",
+      "Real-time walk-in OPD queue with token tracking. Patients see their live position — no more asking 'mera number kab aayega?'",
+    includes: "Token system, live status, SMS alerts",
+    builtFor: "Clinic staff & walk-in patients",
+    impact: "Organised OPD, less front-desk chaos",
   },
   {
     num: "02",
-    anchor: "doctors",
-    year: "For clinics",
-    title: "For doctors & clinic staff",
+    title: "Digital Prescriptions",
     description:
-      "Manage real-time walk-in OPD queues, write digital prescriptions, collect UPI payments, and see patient history without digging through old files.",
-    discipline: "Walk-in queue, digital prescription pad, UPI",
-    role: "Doctors in Nagpur, Jaipur, Indore, and beyond",
-    timeline: "Built for daily OPD",
-    impact: "Less front-desk pressure, faster consultations",
-    image: "/products/01-queue-tracking.svg",
-    alt: "Benzoe interface for doctors and clinic staff managing walk-in queues",
+      "Write prescriptions digitally during consultations. Patients receive instant PDF prescriptions — clear, readable, and never lost.",
+    includes: "Digital Rx pad, PDF generation, history",
+    builtFor: "Doctors & patients",
+    impact: "Accurate records, better follow-ups",
   },
   {
     num: "03",
-    anchor: "patients",
-    year: "For patients",
-    title: "For patients and families",
+    title: "UPI Billing & Receipts",
     description:
-      "Patients can see their live queue position, receive digital prescriptions, and get digital receipts for every visit — no app download needed.",
-    discipline: "Live queue, records, receipts",
-    role: "Walk-in OPD patients and caregivers",
-    timeline: "No app download needed",
-    impact: "Less anxious waiting, better health history",
-    image: "/products/02-notifications.svg",
-    alt: "Benzoe patient phone showing live queue position and digital records",
+      "Collect payments via UPI with auto-generated digital receipts. Every transaction tracked — no more cash-only confusion.",
+    includes: "QR code payments, digital receipts",
+    builtFor: "Clinic billing staff & patients",
+    impact: "Clean financial records, zero leakage",
   },
   {
     num: "04",
-    anchor: "business",
-    year: "SaaS",
-    title: "B2B + B2C subscription model",
+    title: "Patient Health Records",
     description:
-      "Benzoe is a tiered SaaS product for healthcare facilities, with patient-facing digital records and queue visibility built around the clinic workflow.",
-    discipline: "Tiered subscriptions, facility onboarding",
-    role: "Independent clinics and hospitals",
-    timeline: "Private Limited · Reg: AAOCB6577A",
-    impact: "One subscription — your clinic goes digital",
-    image: "/products/04-analytics.svg",
-    alt: "Benzoe analytics dashboard for clinic operations and subscriptions",
+      "Complete prescription history and visit records in one place. Patients carry their health data digitally — no app download needed.",
+    includes: "Visit history, Rx archive, family records",
+    builtFor: "Patients, caregivers & doctors",
+    impact: "Continuity of care across visits",
+  },
+  {
+    num: "05",
+    title: "Live Queue Tracking",
+    description:
+      "Patients check their estimated wait time from their phone. Arrive when it's almost their turn — not two hours early.",
+    includes: "Live position, ETA, notifications",
+    builtFor: "Walk-in OPD patients",
+    impact: "Less anxious waiting, happier patients",
   },
 ];
 
-const STICKY_TOP = 118;
-const STICKY_STEP = 28;
-
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[number];
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.955]);
-
+export function SolutionFlowSection() {
   return (
-    <div
-      id={project.anchor}
-      ref={ref}
-      className="relative mb-8 scroll-mt-32"
-      style={{
-        position: "sticky",
-        top: STICKY_TOP + index * STICKY_STEP,
-        zIndex: index + 1,
-      }}
+    <FlowSection
+      aria-label="The solution"
+      className="bg-bg"
+      style={{ borderRadius: "2rem 2rem 0 0" }}
     >
-      <motion.article
-        style={{ scale }}
-        className="group overflow-hidden rounded-sm border border-border bg-bg"
-      >
-        <div className="grid md:min-h-[560px] md:grid-cols-2 md:items-stretch">
-          <div className="flex flex-col p-6 md:p-10 lg:p-12">
-            <div className="mb-8 flex items-start justify-between gap-6">
-              <div>
-                <span className="font-mono-display text-5xl text-blue/20 md:text-6xl">
-                  {project.num}
-                </span>
-                <span className="ml-3 rounded-full border border-border bg-bg px-3 py-1 text-xs font-semibold text-ink-soft">
-                  {project.year}
-                </span>
-              </div>
-              <span className="rounded-full bg-green-soft px-3 py-1 text-xs font-semibold text-ink">
-                {project.timeline}
+      <div className="section-wrap flex flex-1 flex-col justify-center py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <p className="mb-4 text-xs font-bold tracking-[0.16em] text-blue uppercase">
+            The solution
+          </p>
+          <h2
+            className="font-display leading-[0.95] tracking-[-0.035em]"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+          >
+            One app. Two sides.
+            <br />
+            <span className="text-ink/25">One complete solution.</span>
+          </h2>
+          <p className="mt-6 max-w-[600px] text-base leading-8 text-ink-soft md:text-lg">
+            Benzoe replaces paper queues, handwritten prescriptions, and
+            cash-only billing with one simple clinic management app — built
+            for how Indian clinics actually run.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.num}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.5 }}
+              className="group rounded-3xl border border-border bg-bg-soft/60 p-5 backdrop-blur transition-colors hover:border-blue/30 hover:bg-blue-soft/40"
+            >
+              <span className="font-mono-display text-3xl text-blue/20">
+                {feature.num}
               </span>
-            </div>
-
-            <h3 className="max-w-[560px] text-2xl font-semibold leading-tight tracking-[-0.03em] md:text-3xl lg:text-[38px]">
-              {project.title}
-            </h3>
-            <p className="mt-5 max-w-[580px] text-base leading-8 text-ink-soft">
-              {project.description}
-            </p>
-
-            <div className="mt-9 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-border bg-bg/70 p-4">
-                <p className="text-[10px] font-bold tracking-[0.14em] text-blue uppercase">
+              <h3 className="mt-3 text-lg font-semibold leading-tight tracking-[-0.02em]">
+                {feature.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-ink-soft">
+                {feature.description}
+              </p>
+              <div className="mt-5 space-y-2 border-t border-border pt-4">
+                <p className="text-[10px] font-bold tracking-[0.12em] text-blue uppercase">
                   Includes
                 </p>
-                <p className="mt-2 text-sm leading-relaxed">
-                  {project.discipline}
+                <p className="text-xs leading-relaxed text-ink-soft">
+                  {feature.includes}
                 </p>
               </div>
-              <div className="rounded-2xl border border-border bg-bg/70 p-4">
-                <p className="text-[10px] font-bold tracking-[0.14em] text-blue uppercase">
-                  Built for
-                </p>
-                <p className="mt-2 text-sm leading-relaxed">{project.role}</p>
-              </div>
-              <div className="rounded-2xl border border-border bg-bg/70 p-4">
-                <p className="text-[10px] font-bold tracking-[0.14em] text-blue uppercase">
-                  Impact
-                </p>
-                <p className="mt-2 text-sm leading-relaxed">{project.impact}</p>
-              </div>
-            </div>
-
-            <a
-              href="#contact"
-              className="mt-auto inline-flex w-fit items-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue"
-            >
-              Book a demo <span className="ml-2">→</span>
-            </a>
-          </div>
-
-          <div className="relative min-h-[390px] overflow-hidden border-t border-border bg-bg-soft md:h-auto md:min-h-0 md:border-t-0 md:border-l">
-            <div className="absolute inset-6 border border-border bg-bg/60" />
-            <img
-              src={project.image}
-              alt={project.alt}
-              className="absolute inset-0 h-full w-full object-contain p-8 transition-transform duration-700 group-hover:scale-[1.035] md:p-12"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </div>
-      </motion.article>
-    </div>
-  );
-}
-
-export function ProjectsSection() {
-  return (
-    <section className="border-t border-border py-16 md:py-24">
-      <div className="section-wrap">
-        <div
-          className="sticky z-30 mb-12 bg-bg/95 py-4 backdrop-blur-sm md:mb-16"
-          style={{ top: "94px" }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="mb-3 text-xs font-bold tracking-[0.16em] text-blue uppercase">
-              The solution
-            </p>
-            <h2
-              className="leading-none tracking-[-0.05em]"
-              style={{ fontSize: "clamp(4rem, 16vw, 11rem)" }}
-            >
-              <span className="font-mono-display font-medium">Benzoe</span>
-              <span className="font-display italic text-ink/35">(04)</span>
-            </h2>
-          </motion.div>
-        </div>
-
-        <div className="relative pb-[25vh] md:pb-[35vh]">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.num} project={project} index={i} />
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </FlowSection>
   );
 }
