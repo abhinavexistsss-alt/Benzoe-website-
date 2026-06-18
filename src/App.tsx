@@ -4,6 +4,7 @@ import { CookiePolicyPage } from './pages/CookiePolicyPage'
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage'
 import { RefundPolicyPage } from './pages/RefundPolicyPage'
 import { TermsPage } from './pages/TermsPage'
+import { AIVoiceAssistant } from './pages/AIVoiceAssistant'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
         <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+        <Route path="/assistant" element={<AIVoiceAssistant />} />
       </Routes>
     </BrowserRouter>
   )

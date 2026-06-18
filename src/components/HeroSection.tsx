@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FlowSection } from "./FlowArt";
+import { AssistantCanvas } from "../pages/AIVoiceAssistant";
 
 export function HeroFlowSection() {
   return (
@@ -7,59 +8,67 @@ export function HeroFlowSection() {
       aria-label="Hero"
       className="bg-bg"
     >
-      <div className="flex flex-1 flex-col justify-center section-wrap">
-        <motion.div
-          initial={{ opacity: 0, y: 48 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="mb-6 inline-flex rounded-full border border-border bg-bg-soft/60 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-blue uppercase backdrop-blur">
-            India's #1 Clinic Management App
-          </p>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 48 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display leading-[0.92] tracking-[-0.03em]"
-          style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
-        >
-          India's clinics
-          <br />
-          <span className="text-ink/25">deserve better.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-8 max-w-[640px] text-base leading-relaxed text-ink-soft md:text-lg md:leading-8"
-        >
-          A complete clinic &amp; hospital management app — built for India's doctors,
-          staff, and patients. From walk-in OPD queues to digital prescriptions
-          and UPI billing — all in one place.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 flex flex-wrap gap-4"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-bg transition-colors hover:bg-blue"
+      <div className="flex flex-col lg:flex-row items-center justify-between section-wrap gap-8 lg:gap-12 relative z-10 w-full pt-12 pb-12">
+        {/* Left text section */}
+        <div className="flex flex-1 flex-col justify-center w-full lg:w-1/2">
+          <motion.div
+            initial={{ opacity: 0, y: 48 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            Book a Free Demo <span className="ml-2">→</span>
-          </a>
-          <a
-            href="#solution"
-            className="inline-flex items-center rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-blue hover:text-blue"
+            <p className="mb-6 inline-flex rounded-full border border-border bg-bg-soft/60 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-blue uppercase backdrop-blur">
+              India's #1 Clinic Management App
+            </p>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 48 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display leading-[0.92] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
           >
-            See how it works
-          </a>
-        </motion.div>
+            India's clinics
+            <br />
+            <span className="text-ink/25">deserve better.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 max-w-[640px] text-base leading-relaxed text-ink-soft md:text-lg md:leading-8"
+          >
+            A complete clinic &amp; hospital management app — built for India's doctors,
+            staff, and patients. From walk-in OPD queues to digital prescriptions
+            and UPI billing — all in one place.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-10 flex flex-wrap gap-4"
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-bg transition-colors hover:bg-blue"
+            >
+              Book a Free Demo <span className="ml-2">→</span>
+            </a>
+            <a
+              href="#solution"
+              className="inline-flex items-center rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-blue hover:text-blue"
+            >
+              See how it works
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Right 3D Assistant Section */}
+        <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] relative pointer-events-auto">
+          <AssistantCanvas />
+        </div>
       </div>
 
       {/* Bottom stat bar */}
