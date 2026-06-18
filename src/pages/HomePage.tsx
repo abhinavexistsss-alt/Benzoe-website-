@@ -1,5 +1,6 @@
 import FlowArt, { FlowSection } from '../components/ui/story-scroll';
 import { CinematicFooter } from '../components/ui/motion-footer';
+import { AssistantCanvas } from './AIVoiceAssistant';
 
 export function HomePage() {
   return (
@@ -9,16 +10,22 @@ export function HomePage() {
         <FlowSection aria-label="Who we are" style={{ backgroundColor: '#fd5200', color: '#fff' }}>
           <p className="text-xs font-bold uppercase tracking-[0.2em]">01 — Who we are</p>
           <hr className="my-[2vw] border-none border-t border-black opacity-100" />
-          <div>
-            <h1 className="text-[clamp(2.3rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
-              India&apos;s
-              <br />
-              Clinics
-              <br />
-              Deserve
-              <br />
-              Better
-            </h1>
+          
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 lg:gap-[4vw] w-full flex-1">
+            <div className="flex flex-col justify-center flex-1">
+              <h1 className="text-[clamp(2.3rem,10vw,12rem)] font-bold leading-[0.85] uppercase tracking-tight">
+                India&apos;s
+                <br />
+                Clinics
+                <br />
+                Deserve
+                <br />
+                Better
+              </h1>
+            </div>
+            <div className="w-full lg:w-[45vw] h-[350px] lg:h-[550px] relative pointer-events-auto flex items-center justify-center">
+              <AssistantCanvas />
+            </div>
           </div>
           <hr className="my-[2vw] border-none border-t border-black opacity-100" />
           <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
