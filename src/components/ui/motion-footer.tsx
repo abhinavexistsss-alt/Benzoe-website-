@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from 'react-router-dom';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -117,6 +118,8 @@ const STYLES = `
 type MagneticButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     as?: React.ElementType;
+    to?: string;
+    [key: string]: any;
   };
 
 const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
@@ -361,29 +364,29 @@ export function CinematicFooter() {
               {/* Secondary Links */}
               <div className="flex flex-wrap justify-center gap-3 md:gap-4 w-full mt-2">
                 <MagneticButton
-                  as="a"
-                  href="/privacy-policy"
+                  as={Link}
+                  to="/privacy-policy"
                   className="footer-glass-pill px-5 md:px-6 py-2.5 md:py-3 rounded-full text-white/60 font-medium text-xs md:text-sm hover:text-white"
                 >
                   Privacy Policy
                 </MagneticButton>
                 <MagneticButton
-                  as="a"
-                  href="/terms"
+                  as={Link}
+                  to="/terms"
                   className="footer-glass-pill px-5 md:px-6 py-2.5 md:py-3 rounded-full text-white/60 font-medium text-xs md:text-sm hover:text-white"
                 >
                   Terms of Service
                 </MagneticButton>
                 <MagneticButton
-                  as="a"
-                  href="/refund-policy"
+                  as={Link}
+                  to="/refund-policy"
                   className="footer-glass-pill px-5 md:px-6 py-2.5 md:py-3 rounded-full text-white/60 font-medium text-xs md:text-sm hover:text-white"
                 >
                   Refund Policy
                 </MagneticButton>
                 <MagneticButton
-                  as="a"
-                  href="/cookie-policy"
+                  as={Link}
+                  to="/cookie-policy"
                   className="footer-glass-pill px-5 md:px-6 py-2.5 md:py-3 rounded-full text-white/60 font-medium text-xs md:text-sm hover:text-white"
                 >
                   Cookie Policy
