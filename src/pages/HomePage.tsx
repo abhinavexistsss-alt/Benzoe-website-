@@ -7,32 +7,41 @@ export function HomePage() {
     <>
       <FlowArt aria-label="Benzoe — Clinic Management for India">
         {/* 01 — Hero / Who we are */}
-        <FlowSection aria-label="Who we are" style={{ backgroundColor: '#fd5200', color: '#fff' }}>
-          <p className="text-xs font-bold uppercase tracking-[0.2em]">01 — Who we are</p>
-          <hr className="my-[2vw] border-none border-t border-black opacity-100" />
+        <FlowSection aria-label="Who we are" style={{ backgroundColor: '#fd5200', color: '#fff', position: 'relative' }}>
           
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 lg:gap-[4vw] w-full flex-1">
-            <div className="flex flex-col justify-center flex-1">
-              <h1 className="text-[clamp(2.3rem,10vw,12rem)] font-bold leading-[0.85] uppercase tracking-tight">
-                India&apos;s
-                <br />
-                Clinics
-                <br />
-                Deserve
-                <br />
-                Better
-              </h1>
-            </div>
-            <div className="w-full lg:w-[45vw] h-[350px] lg:h-[550px] relative pointer-events-auto flex items-center justify-center">
-              <AssistantCanvas />
-            </div>
+          {/* Canvas acting as the background for the entire section so shockwaves cover the screen */}
+          <div className="absolute inset-0 w-full h-full pointer-events-auto z-0 overflow-hidden">
+            <AssistantCanvas />
           </div>
-          <hr className="my-[2vw] border-none border-t border-black opacity-100" />
-          <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-            Benzoe is a complete clinic and hospital management app — built for India&apos;s doctors,
-            staff, and patients. One app to replace paper queues, lost prescriptions, and cash-only
-            billing.
-          </p>
+
+          <div className="relative z-10 flex flex-col w-full h-full pointer-events-none">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] pointer-events-auto w-max">01 — Who we are</p>
+            <hr className="my-[2vw] border-none border-t border-black opacity-100" />
+            
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 lg:gap-[4vw] w-full flex-1">
+              <div className="flex flex-col justify-center flex-1 pointer-events-auto">
+                <h1 className="text-[clamp(2.3rem,10vw,12rem)] font-bold leading-[0.85] uppercase tracking-tight">
+                  India&apos;s
+                  <br />
+                  Clinics
+                  <br />
+                  Deserve
+                  <br />
+                  Better
+                </h1>
+              </div>
+              <div className="w-full lg:w-[45vw] h-[350px] lg:h-[550px] flex items-center justify-center">
+                {/* Empty placeholder to reserve layout space for the 3D assistant */}
+              </div>
+            </div>
+
+            <hr className="my-[2vw] border-none border-t border-black opacity-100" />
+            <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed pointer-events-auto">
+              Benzoe is a complete clinic and hospital management app — built for India&apos;s doctors,
+              staff, and patients. One app to replace paper queues, lost prescriptions, and cash-only
+              billing.
+            </p>
+          </div>
         </FlowSection>
 
         {/* 02 — The Problem */}

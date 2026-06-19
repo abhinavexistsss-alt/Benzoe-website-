@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
 import { Link } from 'react-router-dom';
 
@@ -192,59 +192,92 @@ function Eyes() {
 
 function MainAssistant() {
   const groupRef = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Rotate group based on mouse to track cursor
-      const targetX = (state.pointer.x * Math.PI) / 4;
-      const targetY = (state.pointer.y * Math.PI) / 4;
+      // Calculate sphere's center in NDC (Normalized Device Coordinates)
+      const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : viewport.width < 4.0;
+      // posX is viewport.width * 0.28, which in NDC is 0.56
+      const ndcX = isMobile ? 0 : 0.56;
+      // posY is -viewport.height * 0.25, which in NDC is -0.5
+      const ndcY = isMobile ? -0.5 : 0;
+
+      // Mouse pointer relative to the sphere's actual position on screen
+      const relX = state.pointer.x - ndcX;
+      const relY = state.pointer.y - ndcY;
+
+      // Rotate ONLY the sphere and eyes based on relative mouse to track cursor
+      // Increased rotation multiplier (PI/3 instead of PI/4) for wider tracking range
+      const targetX = (relX * Math.PI) / 3;
+      const targetY = (relY * Math.PI) / 3;
       
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
+      // Increased lerp speed (0.1 instead of 0.05) to make it snappier and more responsive
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.1);
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.1);
     }
   });
 
   return (
-    <group ref={groupRef}>
-      <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-        <InnerSphere />
-        {/* The Outer Glass Sphere - pure gloss, purely additive to avoid transparency issues */}
-        <mesh>
-          <sphereGeometry args={[1, 256, 256]} />
-          <meshPhysicalMaterial 
-            transparent
-            blending={THREE.AdditiveBlending}
-            color="#000000"
-            emissive="#000000"
-            roughness={0}
-            metalness={1}
-            clearcoat={1}
-            clearcoatRoughness={0}
-            depthWrite={false}
-          />
-        </mesh>
-        <Eyes />
+    <group scale={0.85}>
+      <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
+        <group ref={groupRef}>
+          <InnerSphere />
+          <Eyes />
+        </group>
+        <SoundWaves />
+        <Particles />
       </Float>
     </group>
   );
 }
+
+const particleVertexShader = `
+  attribute float size;
+  attribute vec4 aColor;
+  varying vec4 vColor;
+  void main() {
+    vColor = aColor;
+    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+    // sizeAttenuation effect (points get smaller as they go further away)
+    // 800.0 is a multiplier that scales the pixel size correctly for our perspective
+    gl_PointSize = size * (800.0 / -mvPosition.z);
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
+
+const particleFragmentShader = `
+  varying vec4 vColor;
+  void main() {
+    // gl_PointCoord goes from (0,0) to (1,1) across the point sprite
+    vec2 pt = gl_PointCoord - vec2(0.5);
+    float dist = length(pt) * 2.0; // 0 at center, 1 at edge
+    
+    // Discard corners to make it a perfect circle
+    if (dist > 1.0) discard;
+    
+    // Glow effect: very bright in the center, smoothly fading out
+    float core = smoothstep(0.2, 0.0, dist);
+    float halo = smoothstep(1.0, 0.2, dist) * 0.5;
+    
+    float alpha = core + halo;
+    
+    gl_FragColor = vec4(vColor.rgb, vColor.a * alpha);
+  }
+`;
 
 function Particles() {
   const pointsRef = useRef<THREE.Points>(null);
   
   const particlesCount = 5000;
 
-  // Store initial positions, lifetimes, and colors
-  const { startPos, life, speeds, dirs, baseColors, currentColors } = useMemo(() => {
+  const { startPos, life, speeds, dirs, currentColors, sizes } = useMemo(() => {
     const sPos = new Float32Array(particlesCount * 3);
     const l = new Float32Array(particlesCount);
     const spd = new Float32Array(particlesCount);
     const d = new Float32Array(particlesCount);
-    const baseCols = new Float32Array(particlesCount * 3);
-    const currCols = new Float32Array(particlesCount * 3);
-
-    const gold = new THREE.Color('#ffcc00');
-    const white = new THREE.Color('#ffffff');
+    const currCols = new Float32Array(particlesCount * 4);
+    const sz = new Float32Array(particlesCount);
 
     for (let i = 0; i < particlesCount; i++) {
       const angle = Math.random() * Math.PI * 2;
@@ -259,23 +292,22 @@ function Particles() {
       l[i] = Math.random(); // random start life so it's continuous
       spd[i] = 0.15 + Math.random() * 0.1; // rate of falling
 
-      // Randomly assign gold or white color
-      const color = Math.random() > 0.4 ? gold : white; // 60% gold, 40% white
-      baseCols[i * 3] = color.r;
-      baseCols[i * 3 + 1] = color.g;
-      baseCols[i * 3 + 2] = color.b;
+      // Always white for better visibility on orange background
+      currCols[i * 4] = 1.0;
+      currCols[i * 4 + 1] = 1.0;
+      currCols[i * 4 + 2] = 1.0;
+      currCols[i * 4 + 3] = 1.0;
 
-      currCols[i * 3] = color.r;
-      currCols[i * 3 + 1] = color.g;
-      currCols[i * 3 + 2] = color.b;
+      // Two size variants as requested by the user
+      sz[i] = Math.random() > 0.5 ? 0.025 : 0.05;
     }
-    return { startPos: sPos, life: l, speeds: spd, dirs: d, baseColors: baseCols, currentColors: currCols };
+    return { startPos: sPos, life: l, speeds: spd, dirs: d, currentColors: currCols, sizes: sz };
   }, []);
 
   useFrame((_, delta) => {
     if (!pointsRef.current) return;
     const posArray = pointsRef.current.geometry.attributes.position.array as Float32Array;
-    const colorArray = pointsRef.current.geometry.attributes.color.array as Float32Array;
+    const colorArray = pointsRef.current.geometry.attributes.aColor.array as Float32Array;
 
     for (let i = 0; i < particlesCount; i++) {
       life[i] += speeds[i] * delta;
@@ -300,17 +332,18 @@ function Particles() {
       posArray[i * 3 + 1] = startPos[i * 3 + 1] + (dirs[i] * fallDistance);
       posArray[i * 3 + 2] = startPos[i * 3 + 2];
 
-      // Fade out particles extremely close to the sphere
+      // Fade out particles extremely close to the sphere via ALPHA channel
       let fade = 1.0;
       if (t > 0.25) {
         fade = Math.max(0, 1.0 - ((t - 0.25) / 0.2)); // Fades from 1.0 to 0.0 between t=0.25 and t=0.45
       }
-      colorArray[i * 3] = baseColors[i * 3] * fade;
-      colorArray[i * 3 + 1] = baseColors[i * 3 + 1] * fade;
-      colorArray[i * 3 + 2] = baseColors[i * 3 + 2] * fade;
+      colorArray[i * 4] = 1.0;
+      colorArray[i * 4 + 1] = 1.0;
+      colorArray[i * 4 + 2] = 1.0;
+      colorArray[i * 4 + 3] = fade;
     }
     pointsRef.current.geometry.attributes.position.needsUpdate = true;
-    pointsRef.current.geometry.attributes.color.needsUpdate = true;
+    pointsRef.current.geometry.attributes.aColor.needsUpdate = true;
   });
 
   // Calculate an initial dummy position array so bufferAttribute is happy
@@ -327,21 +360,26 @@ function Particles() {
           args={[initialPositions, 3]}
         />
         <bufferAttribute 
-          attach="attributes-color" 
-          count={currentColors.length / 3} 
+          attach="attributes-aColor" 
+          count={currentColors.length / 4} 
           array={currentColors} 
-          itemSize={3} 
-          args={[currentColors, 3]}
+          itemSize={4} 
+          args={[currentColors, 4]}
+        />
+        <bufferAttribute 
+          attach="attributes-size" 
+          count={sizes.length} 
+          array={sizes} 
+          itemSize={1} 
+          args={[sizes, 1]}
         />
       </bufferGeometry>
-      <pointsMaterial 
-        size={0.018} 
-        vertexColors={true}
-        transparent 
-        opacity={0.9} 
+      <shaderMaterial 
+        vertexShader={particleVertexShader}
+        fragmentShader={particleFragmentShader}
+        transparent={true} 
         blending={THREE.AdditiveBlending}
         depthWrite={false}
-        sizeAttenuation={true} 
       />
     </points>
   );
@@ -412,7 +450,7 @@ function SoundWaveRing({ delay, maxScale }: { delay: number, maxScale: number })
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, -2]}>
+    <mesh ref={meshRef} position={[0, 0, 0]}>
       {/* Plane geometry is perfect for rendering a smooth radial gradient shader */}
       <planeGeometry args={[2, 2]} />
       <shaderMaterial 
@@ -432,10 +470,27 @@ function SoundWaveRing({ delay, maxScale }: { delay: number, maxScale: number })
 function SoundWaves() {
   return (
     <group>
-      {/* First wave expands to a larger radius */}
-      <SoundWaveRing delay={0.0} maxScale={3.5} />
-      {/* Second wave expands to a smaller radius, creating a layered shockwave */}
-      <SoundWaveRing delay={0.5} maxScale={2.5} />
+      {/* Shockwaves originate from the equator to perfectly eliminate parallax misalignment */}
+      <SoundWaveRing delay={0.0} maxScale={6.5} />
+      <SoundWaveRing delay={0.5} maxScale={4.5} />
+    </group>
+  );
+}
+
+function SceneLayout({ children }: { children: React.ReactNode }) {
+  const { viewport } = useThree();
+  
+  // Use window width to reliably match Tailwind's lg breakpoint (1024px)
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : viewport.width < 4.0;
+  
+  // Shift the assistant further to the right on desktop so it completely clears the text area
+  const posX = isMobile ? 0 : viewport.width * 0.28;
+  // Shift slightly up on mobile if it's too low, otherwise -0.25 is fine
+  const posY = isMobile ? -viewport.height * 0.25 : 0;
+  
+  return (
+    <group position={[posX, posY, 0]}>
+      {children}
     </group>
   );
 }
@@ -444,18 +499,17 @@ function SoundWaves() {
 
 export function AssistantCanvas() {
   return (
-    <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} gl={{ alpha: true }}>
+    <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} gl={{ alpha: true }}>
       <ambientLight intensity={3} />
-      {/* Custom abstract environment for reflections - a massive soft white dome above */}
       <Environment resolution={256}>
         <mesh position={[0, 20, 10]} scale={15}>
           <sphereGeometry args={[32, 32]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       </Environment>
-      <SoundWaves />
-      <MainAssistant />
-      <Particles />
+      <SceneLayout>
+        <MainAssistant />
+      </SceneLayout>
     </Canvas>
   );
 }
