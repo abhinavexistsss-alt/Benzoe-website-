@@ -5,6 +5,8 @@
     --font-serif: "Instrument Serif", Georgia, serif;
     --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
     --font-garamond: "EB Garamond", Georgia, serif;
+    --font-condensed: "Bebas Neue", "Anton", system-ui, sans-serif;
+    --font-functional: "Inter", system-ui, sans-serif;
 
     --color-bg: #fafafa;
     --color-bg-soft: #f4f4f1;
@@ -172,4 +174,92 @@ body.menu-open {
         0 6px 20px -6px rgba(0,0,0,0.08),
         inset 0 1px 1px rgba(255,255,255,1);
     transform: translateY(-1px);
+}
+
+/* ── Patch-Inspired Structural Classes ── */
+
+.font-condensed {
+    font-family: var(--font-condensed);
+}
+
+.font-functional {
+    font-family: var(--font-functional);
+}
+
+/* Section corner marker — bordered square with section number */
+.section-marker {
+    position: absolute;
+    top: clamp(1.5rem, 4vw, 2.5rem);
+    right: clamp(1.5rem, 4vw, 2.5rem);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid currentColor;
+    opacity: 0.5;
+    font-family: var(--font-condensed);
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    z-index: 5;
+}
+
+/* Feature row — numbered list with border and hover */
+.feature-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: clamp(1rem, 2vw, 1.5rem) 0;
+    border-top: 1px solid currentColor;
+    opacity: 0.35;
+    transition: all 0.25s ease;
+}
+
+.feature-row:last-child {
+    border-bottom: 1px solid currentColor;
+}
+
+.feature-row:hover,
+.feature-row:focus-within {
+    opacity: 1;
+}
+
+.feature-row .feature-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid currentColor;
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    opacity: 0.7;
+}
+
+.feature-row .feature-title {
+    font-family: var(--font-condensed);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.feature-row .feature-desc {
+    font-family: var(--font-functional);
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    line-height: 1.5;
+    opacity: 0.7;
+    max-width: 50ch;
+    margin-top: 0.35rem;
+}
+
+/* Label uppercase — small functional labels */
+.label-uppercase {
+    font-family: var(--font-functional);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }

@@ -34,7 +34,7 @@ function LiveClock() {
   }, []);
 
   return (
-    <span className="font-mono-display text-[14px] tabular-nums tracking-tight text-blue">
+    <span className="font-mono-display text-[14px] tabular-nums tracking-tight text-white/80">
       {time}
     </span>
   );
@@ -51,7 +51,7 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
       <div className="section-wrap flex h-full flex-col py-6 md:py-8">
         <div className="flex items-center justify-between border-b border-white/15 pb-4">
           <div className="flex items-center">
-            <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-widest uppercase opacity-90 drop-shadow-sm">Benzoe</span>
+            <span className="font-condensed text-[clamp(1.5rem,3vw,2.5rem)] tracking-widest uppercase opacity-90 drop-shadow-sm">Benzoe</span>
           </div>
           <button
             type="button"
@@ -77,7 +77,7 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
               }}
               className="group border-b border-white/15 py-5 md:py-7"
             >
-              <span className="font-display text-[clamp(2.5rem,8vw,5.5rem)] leading-none transition-colors group-hover:text-green">
+              <span className="font-condensed text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.90] tracking-tight transition-colors group-hover:text-white/60">
                 {item.label}
               </span>
             </motion.a>
@@ -119,7 +119,7 @@ export function SiteHeader() {
       <div className="fixed top-0 right-0 left-0 z-[90] bg-[#fd5200] text-white">
         <div className="section-wrap flex items-center justify-between py-3">
           <div className="flex items-center">
-            <a href="#" className="text-[clamp(1.5rem,2vw,1.75rem)] font-bold tracking-widest uppercase opacity-90 drop-shadow-sm hover:opacity-100 transition-opacity">
+            <a href="#" className="font-condensed text-[clamp(1.5rem,2vw,2rem)] tracking-widest uppercase opacity-90 drop-shadow-sm hover:opacity-100 transition-opacity">
               Benzoe
             </a>
           </div>
@@ -129,7 +129,7 @@ export function SiteHeader() {
               <a
                 key={link.label}
                 href={link.href}
-                className="header-glass-pill px-5 py-2 rounded-full text-[13px] font-semibold text-white/90 hover:text-white transition-all"
+                className="header-glass-pill px-5 py-2 rounded-full text-[13px] font-functional font-semibold text-white/90 hover:text-white transition-all tracking-wide uppercase"
               >
                 {link.label}
               </a>
