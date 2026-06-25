@@ -46,13 +46,12 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-menu text-white"
+      className="fixed inset-0 z-[200] bg-[#fd5200] text-white"
     >
       <div className="section-wrap flex h-full flex-col py-6 md:py-8">
         <div className="flex items-center justify-between border-b border-white/15 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold md:text-base">Benzoe</span>
-            <span className="text-sm text-green">Healthtech</span>
+          <div className="flex items-center">
+            <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-widest uppercase opacity-90 drop-shadow-sm">Benzoe</span>
           </div>
           <button
             type="button"
@@ -88,7 +87,7 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between border-t border-white/15 pt-4 text-sm text-white/60">
           <div className="flex items-center gap-2">
             <span className="pulse-green h-2 w-2 rounded-full bg-green" />
-            <span>Founded 2025</span>
+            <span>Founded 2026</span>
           </div>
           <a href="mailto:hello@benzoe.health" className="hover:text-white">
             hello@benzoe.health
@@ -117,13 +116,12 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-[90] border-b border-border bg-bg/95 backdrop-blur-sm">
+      <div className="fixed top-0 right-0 left-0 z-[90] bg-[#fd5200] text-white">
         <div className="section-wrap flex items-center justify-between py-3">
-          <div className="flex items-center gap-2 md:gap-3">
-            <a href="#" className="text-sm font-semibold md:text-[15px]">
+          <div className="flex items-center">
+            <a href="#" className="text-[clamp(1.5rem,2vw,1.75rem)] font-bold tracking-widest uppercase opacity-90 drop-shadow-sm hover:opacity-100 transition-opacity">
               Benzoe
             </a>
-            <span className="text-sm text-blue md:text-[15px]">Healthtech</span>
           </div>
 
           <nav className="hidden items-center gap-3 md:flex">
@@ -131,7 +129,7 @@ export function SiteHeader() {
               <a
                 key={link.label}
                 href={link.href}
-                className="header-glass-pill px-5 py-2 rounded-full text-[13px] font-semibold text-ink-soft hover:text-ink transition-all"
+                className="header-glass-pill px-5 py-2 rounded-full text-[13px] font-semibold text-white/90 hover:text-white transition-all"
               >
                 {link.label}
               </a>
@@ -141,7 +139,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-4">
             <div className="hidden items-center gap-2 lg:flex">
               <LiveClock />
-              <span className="text-[14px] text-blue">IST</span>
+              <span className="text-[14px] text-white/80">IST</span>
             </div>
 
             <div className="flex items-center gap-2">
@@ -154,7 +152,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="header-glass-pill px-4 py-2 rounded-full text-xs font-semibold text-ink-soft hover:text-ink transition-all md:text-sm"
+              className="header-glass-pill px-4 py-2 rounded-full text-xs font-semibold text-white/90 hover:text-white transition-all md:text-sm"
             >
               Menu
             </button>

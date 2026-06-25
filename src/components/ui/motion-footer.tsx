@@ -399,7 +399,7 @@ export function CinematicFooter() {
           <div className="relative z-20 w-full pb-6 md:pb-8 px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
             {/* Copyright */}
             <div className="text-white/50 text-[10px] md:text-xs font-semibold tracking-widest uppercase order-2 md:order-1">
-              &copy; 2025 Benzoe Healthcare Private Limited. AAOCB6577A
+              &copy; 2026 Benzoe Global Private Limited. All rights reserved.
             </div>
 
             {/* Made with Love Badge */}
