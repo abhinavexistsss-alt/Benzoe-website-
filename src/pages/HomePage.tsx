@@ -14,33 +14,31 @@ export function HomePage() {
             <AssistantCanvas />
           </div>
 
-          <div className="relative z-10 flex flex-col w-full h-full pointer-events-none">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] pointer-events-auto w-max">01 — Who we are</p>
-            <hr className="my-[2vw] border-none border-t border-black opacity-100" />
-            
+          <div className="relative z-10 flex flex-col w-full h-full pointer-events-none justify-center">
             <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 lg:gap-[4vw] w-full flex-1">
-              <div className="flex flex-col justify-center flex-1 pointer-events-auto">
-                <h1 className="text-[clamp(2.3rem,10vw,12rem)] font-bold leading-[0.85] uppercase tracking-tight">
-                  India&apos;s
-                  <br />
-                  Clinics
-                  <br />
-                  Deserve
-                  <br />
-                  Better
+              <div className="flex flex-col justify-center flex-1 pointer-events-auto mt-12 lg:mt-0">
+                <p className="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-widest uppercase mb-4 opacity-80 drop-shadow-sm">Benzoe</p>
+                <h1 className="text-[clamp(2.5rem,5.5vw,5.5rem)] font-extrabold leading-[1.05] tracking-tight mb-6 max-w-[15ch] drop-shadow-md">
+                  India’s first modern waiting room for healthcare
                 </h1>
+                <p className="max-w-[40ch] text-[clamp(1rem,1.5vw,1.5rem)] font-medium leading-relaxed opacity-90 mb-10 drop-shadow-sm">
+                  Manage queues, walk-ins, and patient updates without front-desk chaos.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href="https://wa.me/919999999999?text=Hi%20Benzoe%2C%20I%20want%20to%20book%20a%20demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-glass-pill px-8 md:px-10 py-4 md:py-5 rounded-full text-white font-bold text-sm md:text-base flex items-center gap-3 group w-fit"
+                  >
+                    Book a demo
+                  </a>
+                </div>
               </div>
               <div className="w-full lg:w-[45vw] h-[350px] lg:h-[550px] flex items-center justify-center">
                 {/* Empty placeholder to reserve layout space for the 3D assistant */}
               </div>
             </div>
-
-            <hr className="my-[2vw] border-none border-t border-black opacity-100" />
-            <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed pointer-events-auto">
-              Benzoe is a complete clinic and hospital management app — built for India&apos;s doctors,
-              staff, and patients. One app to replace paper queues, lost prescriptions, and cash-only
-              billing.
-            </p>
           </div>
         </FlowSection>
 

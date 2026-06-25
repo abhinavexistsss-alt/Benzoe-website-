@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const mainNav = [
-  { label: "Problem", href: "#problem" },
-  { label: "Solution", href: "#solution" },
+  { label: "For Patients", href: "#solution" },
+  { label: "For Doctors", href: "#solution" },
   { label: "How It Works", href: "#how-it-works" },
 ];
 
@@ -126,12 +126,12 @@ export function SiteHeader() {
             <span className="text-sm text-blue md:text-[15px]">Healthtech</span>
           </div>
 
-          <nav className="hidden items-center gap-5 md:flex">
+          <nav className="hidden items-center gap-3 md:flex">
             {mainNav.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-ink-soft transition-colors hover:text-ink"
+                className="header-glass-pill px-5 py-2 rounded-full text-[13px] font-semibold text-ink-soft hover:text-ink transition-all"
               >
                 {link.label}
               </a>
@@ -154,7 +154,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink md:text-sm"
+              className="header-glass-pill px-4 py-2 rounded-full text-xs font-semibold text-ink-soft hover:text-ink transition-all md:text-sm"
             >
               Menu
             </button>
