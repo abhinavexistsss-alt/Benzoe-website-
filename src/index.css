@@ -186,33 +186,50 @@ body.menu-open {
     font-family: var(--font-functional);
 }
 
-/* Section corner marker — bordered square with section number */
+/* Section corner marker — large bordered square with diagonal slash and section number */
 .section-marker {
     position: absolute;
     top: clamp(1.5rem, 4vw, 2.5rem);
     right: clamp(1.5rem, 4vw, 2.5rem);
-    width: 48px;
-    height: 48px;
+    width: clamp(56px, 6vw, 80px);
+    height: clamp(56px, 6vw, 80px);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 8px 10px;
     border: 1px solid currentColor;
-    opacity: 0.5;
+    opacity: 0.4;
     font-family: var(--font-condensed);
-    font-size: 20px;
+    font-size: clamp(18px, 2vw, 26px);
     letter-spacing: 0.02em;
     z-index: 5;
+    overflow: hidden;
 }
 
-/* Feature row — numbered list with border and hover */
+/* diagonal line across the marker, like Patch */
+.section-marker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 141%;
+    height: 1px;
+    background: currentColor;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+    opacity: 0.6;
+}
+
+/* Feature row — numbered list with border and hover-to-reveal */
 .feature-row {
     display: flex;
     align-items: flex-start;
-    gap: 1.25rem;
-    padding: clamp(1rem, 2vw, 1.5rem) 0;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(0.75rem, 1.5vw, 1.25rem) 0;
     border-top: 1px solid currentColor;
-    opacity: 0.35;
-    transition: all 0.25s ease;
+    opacity: 0.2;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: default;
 }
 
 .feature-row:last-child {
@@ -222,28 +239,30 @@ body.menu-open {
 .feature-row:hover,
 .feature-row:focus-within {
     opacity: 1;
+    transform: translateX(4px);
 }
 
 .feature-row .feature-num {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
+    width: clamp(32px, 3vw, 40px);
+    height: clamp(32px, 3vw, 40px);
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid currentColor;
     font-family: var(--font-condensed);
-    font-size: 14px;
+    font-size: clamp(12px, 1.2vw, 16px);
     letter-spacing: 0.02em;
-    opacity: 0.7;
+    opacity: 0.8;
+    margin-top: 2px;
 }
 
 .feature-row .feature-title {
     font-family: var(--font-condensed);
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    line-height: 1;
+    line-height: 0.95;
 }
 
 .feature-row .feature-desc {
@@ -263,3 +282,87 @@ body.menu-open {
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
+
+/* ── Marquee Strip ── */
+.marquee-strip {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: clamp(0.75rem, 1.5vw, 1rem) 0;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+}
+
+.marquee-strip .marquee-inner {
+    display: inline-flex;
+    gap: 2rem;
+    animation: marquee-scroll 25s linear infinite;
+    font-family: var(--font-condensed);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── Process Step Card (white card over colored bg) ── */
+.process-card {
+    background: #fff;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: grid;
+    grid-template-columns: auto 1px 1fr;
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: start;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -12px rgba(0,0,0,0.15);
+}
+
+.process-card .step-num {
+    font-family: var(--font-condensed);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.85;
+    opacity: 0.25;
+}
+
+.process-card .step-divider {
+    width: 1px;
+    height: 100%;
+    background: rgba(0,0,0,0.15);
+}
+
+.process-card .step-title {
+    font-family: var(--font-condensed);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+}
+
+.process-card .step-desc {
+    font-family: var(--font-functional);
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    line-height: 1.6;
+    opacity: 0.7;
+    margin-top: 0.75rem;
+    max-width: 45ch;
+}
+
+.process-card .step-label {
+    font-family: var(--font-functional);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
