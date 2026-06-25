@@ -5,10 +5,12 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage'
 import { RefundPolicyPage } from './pages/RefundPolicyPage'
 import { TermsPage } from './pages/TermsPage'
 import { AIVoiceAssistant } from './pages/AIVoiceAssistant'
+import { SiteHeader } from './components/SiteHeader'
 
 function App() {
   return (
     <BrowserRouter>
+      <SiteHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
