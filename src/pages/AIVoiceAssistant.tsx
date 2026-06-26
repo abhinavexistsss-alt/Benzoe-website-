@@ -488,8 +488,8 @@ function SceneLayout({ children }: { children: React.ReactNode }) {
   
   // Shift the assistant further to the right on desktop so it completely clears the text area
   const posX = isMobile ? 0 : viewport.width * 0.28;
-  // Shift slightly up on mobile if it's too low, otherwise -0.25 is fine
-  const posY = isMobile ? -viewport.height * 0.25 : 0;
+  // Move it up slightly on mobile so it sits right under the main text
+  const posY = isMobile ? -viewport.height * 0.15 : 0;
   
   return (
     <group position={[posX, posY, 0]}>

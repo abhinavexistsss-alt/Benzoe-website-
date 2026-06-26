@@ -387,7 +387,7 @@ export function HomePage() {
       
       {/* 1. HERO SECTION (Orange) */}
       <section className="relative min-h-[100svh] w-full pt-32 pb-10 flex flex-col justify-between blueprint-grid">
-        <div className="absolute left-0 right-0 bottom-0 h-[50%] md:top-0 md:h-auto z-0 pointer-events-auto overflow-hidden md:overflow-visible">
+        <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden md:overflow-visible">
           <AssistantCanvas />
         </div>
 
@@ -397,18 +397,9 @@ export function HomePage() {
             <div className="inline-block">
               <p className="label-uppercase tracking-widest text-white/80 mb-6 font-bold border border-white/20 px-4 py-2 bg-white/5">THE FUTURE OF OPD</p>
             </div>
-            <h1 className="font-condensed text-[4rem] md:text-[clamp(3.5rem,11vw,20rem)] leading-[0.85] tracking-tight uppercase text-white whitespace-normal md:whitespace-nowrap">
+            <h1 className="font-condensed text-[16vw] md:text-[clamp(3.5rem,11vw,20rem)] leading-[0.8] tracking-tight uppercase text-white whitespace-normal md:whitespace-nowrap">
               YOUR HEALTH.<br/>ZERO WAITING.
             </h1>
-          </div>
-
-          <div className="mt-auto pt-12 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-white/30 w-full text-white pointer-events-auto">
-            <Link to="/for-patients" className="font-condensed text-[clamp(1.5rem,3vw,2.5rem)] tracking-wide uppercase hover:text-white/70 transition-colors">
-              Explore Patient Journey →
-            </Link>
-            <Link to="/for-doctors" className="font-condensed text-[clamp(1.5rem,3vw,2.5rem)] tracking-wide uppercase hover:text-white/70 transition-colors">
-              Explore Clinic Solutions →
-            </Link>
           </div>
         </div>
       </section>
