@@ -266,71 +266,77 @@ const particleFragmentShader = `
   }
 `;
 
+const particlesCount = 5000;
+
+function createParticleState() {
+  const sPos = new Float32Array(particlesCount * 3);
+  const l = new Float32Array(particlesCount);
+  const spd = new Float32Array(particlesCount);
+  const d = new Float32Array(particlesCount);
+  const currCols = new Float32Array(particlesCount * 4);
+  const sz = new Float32Array(particlesCount);
+
+  for (let i = 0; i < particlesCount; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const r = 1.0 + Math.random() * 0.05; // strict outline
+    
+    sPos[i * 3] = Math.cos(angle) * r;
+    sPos[i * 3 + 1] = Math.sin(angle) * r;
+    sPos[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
+
+    d[i] = sPos[i * 3 + 1] >= 0 ? 1 : -1;
+    
+    l[i] = Math.random(); // random start life so it's continuous
+    spd[i] = 0.15 + Math.random() * 0.1; // rate of falling
+
+    // Always white for better visibility on orange background
+    currCols[i * 4] = 1.0;
+    currCols[i * 4 + 1] = 1.0;
+    currCols[i * 4 + 2] = 1.0;
+    currCols[i * 4 + 3] = 1.0;
+
+    // Two size variants as requested by the user
+    sz[i] = Math.random() > 0.5 ? 0.025 : 0.05;
+  }
+  return { startPos: sPos, life: l, speeds: spd, dirs: d, currentColors: currCols, sizes: sz };
+}
+
+const globalParticleState = createParticleState();
+const globalInitialPositions = new Float32Array(particlesCount * 3);
+
 function Particles() {
   const pointsRef = useRef<THREE.Points>(null);
-  
-  const particlesCount = 5000;
-
-  const { startPos, life, speeds, dirs, currentColors, sizes } = useMemo(() => {
-    const sPos = new Float32Array(particlesCount * 3);
-    const l = new Float32Array(particlesCount);
-    const spd = new Float32Array(particlesCount);
-    const d = new Float32Array(particlesCount);
-    const currCols = new Float32Array(particlesCount * 4);
-    const sz = new Float32Array(particlesCount);
-
-    for (let i = 0; i < particlesCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const r = 1.0 + Math.random() * 0.05; // strict outline
-      
-      sPos[i * 3] = Math.cos(angle) * r;
-      sPos[i * 3 + 1] = Math.sin(angle) * r;
-      sPos[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
-
-      d[i] = sPos[i * 3 + 1] >= 0 ? 1 : -1;
-      
-      l[i] = Math.random(); // random start life so it's continuous
-      spd[i] = 0.15 + Math.random() * 0.1; // rate of falling
-
-      // Always white for better visibility on orange background
-      currCols[i * 4] = 1.0;
-      currCols[i * 4 + 1] = 1.0;
-      currCols[i * 4 + 2] = 1.0;
-      currCols[i * 4 + 3] = 1.0;
-
-      // Two size variants as requested by the user
-      sz[i] = Math.random() > 0.5 ? 0.025 : 0.05;
-    }
-    return { startPos: sPos, life: l, speeds: spd, dirs: d, currentColors: currCols, sizes: sz };
-  }, []);
 
   useFrame((_, delta) => {
     if (!pointsRef.current) return;
     const posArray = pointsRef.current.geometry.attributes.position.array as Float32Array;
     const colorArray = pointsRef.current.geometry.attributes.aColor.array as Float32Array;
+    
+    // Use the global state object
+    const state = globalParticleState;
 
     for (let i = 0; i < particlesCount; i++) {
-      life[i] += speeds[i] * delta;
+      state.life[i] += state.speeds[i] * delta;
       
-      if (life[i] > 1.0) {
-        life[i] = 0; // Recycle particle back to outline
+      if (state.life[i] > 1.0) {
+        state.life[i] = 0; // Recycle particle back to outline
 
         // Reroll outline position to keep the cluster dynamic
         const angle = Math.random() * Math.PI * 2;
         const r = 1.0 + Math.random() * 0.05;
-        startPos[i * 3] = Math.cos(angle) * r;
-        startPos[i * 3 + 1] = Math.sin(angle) * r;
-        startPos[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
-        dirs[i] = startPos[i * 3 + 1] >= 0 ? 1 : -1;
+        state.startPos[i * 3] = Math.cos(angle) * r;
+        state.startPos[i * 3 + 1] = Math.sin(angle) * r;
+        state.startPos[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
+        state.dirs[i] = state.startPos[i * 3 + 1] >= 0 ? 1 : -1;
       }
 
       // Calculate position using an exponential curve (gravity)
-      const t = life[i];
+      const t = state.life[i];
       const fallDistance = 6.0 * Math.pow(t, 2.5);
 
-      posArray[i * 3] = startPos[i * 3];
-      posArray[i * 3 + 1] = startPos[i * 3 + 1] + (dirs[i] * fallDistance);
-      posArray[i * 3 + 2] = startPos[i * 3 + 2];
+      posArray[i * 3] = state.startPos[i * 3];
+      posArray[i * 3 + 1] = state.startPos[i * 3 + 1] + (state.dirs[i] * fallDistance);
+      posArray[i * 3 + 2] = state.startPos[i * 3 + 2];
 
       // Fade out particles extremely close to the sphere via ALPHA channel
       let fade = 1.0;
@@ -346,32 +352,29 @@ function Particles() {
     pointsRef.current.geometry.attributes.aColor.needsUpdate = true;
   });
 
-  // Calculate an initial dummy position array so bufferAttribute is happy
-  const initialPositions = useMemo(() => new Float32Array(particlesCount * 3), []);
-
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute 
           attach="attributes-position" 
-          count={initialPositions.length / 3} 
-          array={initialPositions} 
+          count={globalInitialPositions.length / 3} 
+          array={globalInitialPositions} 
           itemSize={3} 
-          args={[initialPositions, 3]}
+          args={[globalInitialPositions, 3]}
         />
         <bufferAttribute 
           attach="attributes-aColor" 
-          count={currentColors.length / 4} 
-          array={currentColors} 
+          count={globalParticleState.currentColors.length / 4} 
+          array={globalParticleState.currentColors} 
           itemSize={4} 
-          args={[currentColors, 4]}
+          args={[globalParticleState.currentColors, 4]}
         />
         <bufferAttribute 
           attach="attributes-size" 
-          count={sizes.length} 
-          array={sizes} 
+          count={globalParticleState.sizes.length} 
+          array={globalParticleState.sizes} 
           itemSize={1} 
-          args={[sizes, 1]}
+          args={[globalParticleState.sizes, 1]}
         />
       </bufferGeometry>
       <shaderMaterial 

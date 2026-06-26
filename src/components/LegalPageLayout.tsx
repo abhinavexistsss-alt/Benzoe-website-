@@ -124,7 +124,6 @@ export function LegalPageLayout({ title, children }: LegalPageProps) {
               <Link to="/" className="text-lg font-bold text-white tracking-tight">
                 Benzoe
               </Link>
-              <span className="text-sm text-white/60">Healthtech</span>
             </div>
             
             <Link
@@ -156,9 +155,7 @@ export function LegalPageLayout({ title, children }: LegalPageProps) {
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40 font-medium px-2">
               <p>Last updated: June 2026</p>
               <div className="flex items-center gap-2">
-                <span>© 2025 Benzoe Private Limited</span>
-                <span>·</span>
-                <span>Built in India 🇮🇳</span>
+                <span>© 2026 Benzoe Global Private Limited. All rights reserved.</span>
               </div>
             </div>
           </div>
