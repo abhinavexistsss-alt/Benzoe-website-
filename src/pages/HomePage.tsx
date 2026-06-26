@@ -61,11 +61,11 @@ function FAQItem({ item, isOpen, onToggle }: { item: typeof FAQ_DATA[0]; isOpen:
       className="border-t border-ink-invert cursor-pointer group"
       onClick={onToggle}
     >
-      <div className="flex items-center justify-between py-7 lg:py-9">
-        <h3 className={`font-condensed text-[clamp(1.4rem,2.5vw,2.2rem)] leading-[1] tracking-tight uppercase transition-colors duration-300 ${isOpen ? 'text-orange' : 'text-ink-invert group-hover:text-orange'}`}>
+      <div className="flex items-center justify-between py-5 md:py-7 lg:py-9">
+        <h3 className={`font-condensed text-[clamp(1.2rem,2.5vw,2.2rem)] leading-[1] tracking-tight uppercase transition-colors duration-300 ${isOpen ? 'text-orange' : 'text-ink-invert group-hover:text-orange'}`}>
           {item.q}
         </h3>
-        <div className={`flex-shrink-0 ml-8 w-10 h-10 rounded-full border-2 ${isOpen ? 'border-orange bg-orange text-white rotate-45' : 'border-ink-invert/30 text-ink-invert group-hover:border-orange group-hover:text-orange'} flex items-center justify-center transition-all duration-400`}>
+        <div className={`flex-shrink-0 ml-4 md:ml-8 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 ${isOpen ? 'border-orange bg-orange text-white rotate-45' : 'border-ink-invert/30 text-ink-invert group-hover:border-orange group-hover:text-orange'} flex items-center justify-center transition-all duration-400`}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <line x1="8" y1="2" x2="8" y2="14" />
             <line x1="2" y1="8" x2="14" y2="8" />
@@ -235,10 +235,10 @@ function StatsSection() {
   const stat4 = useCountUp(100, 2, "%", false);
 
   return (
-    <section className="relative w-full bg-bg text-white py-28 lg:py-40 overflow-hidden blueprint-grid border-y border-white/20">
+    <section className="relative w-full bg-bg text-white py-20 md:py-28 lg:py-40 overflow-hidden blueprint-grid border-y border-white/20">
       {/* Giant background number */}
       <div className="absolute inset-0 flex items-center justify-end pointer-events-none select-none overflow-hidden z-0">
-        <div ref={mainStat.ref} className="font-condensed text-[clamp(20rem,45vw,50rem)] leading-[0.75] tracking-tighter text-white/[0.06] -mr-[5vw]">
+        <div ref={mainStat.ref} className="font-condensed text-[clamp(10rem,45vw,50rem)] leading-[0.75] tracking-tighter text-white/[0.06] -mr-[5vw]">
           80L
         </div>
       </div>
@@ -247,42 +247,42 @@ function StatsSection() {
         {/* Main headline */}
         <div className="lg:w-[55%]">
           <p className="label-uppercase tracking-widest text-white/70 mb-6 font-bold border border-white/20 px-4 py-2 bg-white/5 inline-block">THE BENZOE SCALE</p>
-          <h2 className="font-condensed text-[clamp(3.5rem,7vw,7rem)] leading-[0.85] tracking-tight uppercase text-white">
+          <h2 className="font-condensed text-[clamp(2.5rem,7vw,7rem)] leading-[0.85] tracking-tight uppercase text-white">
             READY TO SERVE<br/>MORE THAN:
           </h2>
         </div>
 
         {/* The massive counter */}
-        <div className="mt-12 lg:mt-16">
+        <div className="mt-8 md:mt-12 lg:mt-16">
           <div className="flex items-baseline gap-4">
-            <span className="font-condensed text-[clamp(6rem,18vw,16rem)] leading-[0.8] tracking-tight text-white tabular-nums">
+            <span className="font-condensed text-[clamp(4rem,18vw,16rem)] leading-[0.8] tracking-tight text-white tabular-nums">
               {mainStat.display}
             </span>
           </div>
-          <p className="font-condensed text-[clamp(2rem,4vw,4rem)] leading-[1] tracking-tight uppercase text-white/80 mt-2">
+          <p className="font-condensed text-[clamp(1.5rem,4vw,4rem)] leading-[1] tracking-tight uppercase text-white/80 mt-2">
             PATIENTS EVERY SINGLE DAY
           </p>
         </div>
 
         {/* Supporting stats grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-20 lg:mt-28 border-t border-white/20 pt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 md:mt-20 lg:mt-28 border-t border-white/20 pt-10 md:pt-12">
           <div>
-            <div ref={stat2.ref} className="font-condensed text-[clamp(3rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
+            <div ref={stat2.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
               {stat2.display}
             </div>
-            <p className="font-functional text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Clinics Ready To Onboard</p>
+            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Clinics Ready To Onboard</p>
           </div>
           <div>
-            <div ref={stat3.ref} className="font-condensed text-[clamp(3rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
+            <div ref={stat3.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
               ₹0
             </div>
-            <p className="font-functional text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Setup Cost For Clinics</p>
+            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Setup Cost For Clinics</p>
           </div>
           <div>
-            <div ref={stat4.ref} className="font-condensed text-[clamp(3rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
+            <div ref={stat4.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
               {stat4.display}
             </div>
-            <p className="font-functional text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Digital & Paperless</p>
+            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Digital & Paperless</p>
           </div>
         </div>
       </div>
@@ -294,11 +294,11 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative w-full bg-white text-ink-invert py-24 lg:py-40 border-b border-ink-invert">
+    <section className="relative w-full bg-white text-ink-invert py-16 md:py-24 lg:py-40 border-b border-ink-invert">
       <div className="section-wrap max-w-5xl">
         {/* Unified Header */}
-        <div className="mb-20 lg:mb-28">
-          <h2 className="font-condensed text-[clamp(4rem,9vw,10rem)] leading-[0.85] tracking-tight uppercase text-ink-invert">
+        <div className="mb-16 md:mb-20 lg:mb-28">
+          <h2 className="font-condensed text-[clamp(3rem,9vw,10rem)] leading-[0.85] tracking-tight uppercase text-ink-invert">
             FREQUENTLY<br/>ASKED QUESTIONS
           </h2>
         </div>
@@ -393,11 +393,11 @@ export function HomePage() {
 
         <div className="section-wrap relative z-10 w-full flex-1 flex flex-col pointer-events-none">
           
-          <div className="w-full lg:w-[75%] flex flex-col items-start justify-center text-left mt-12 lg:mt-24 -ml-2 md:-ml-6 lg:-ml-8 relative">
+          <div className="w-full lg:w-[75%] flex flex-col items-start justify-center text-left mt-6 md:mt-12 lg:mt-24 ml-0 sm:-ml-2 md:-ml-6 lg:-ml-8 relative">
             <div className="inline-block">
               <p className="label-uppercase tracking-widest text-white/80 mb-6 font-bold border border-white/20 px-4 py-2 bg-white/5">THE FUTURE OF OPD</p>
             </div>
-            <h1 className="font-condensed text-[clamp(5rem,11vw,20rem)] leading-[0.85] tracking-tight uppercase text-white whitespace-nowrap">
+            <h1 className="font-condensed text-[clamp(3.5rem,11vw,20rem)] leading-[0.85] tracking-tight uppercase text-white whitespace-normal md:whitespace-nowrap">
               YOUR HEALTH.<br/>ZERO WAITING.
             </h1>
           </div>
@@ -426,10 +426,10 @@ export function HomePage() {
       </div>
 
       {/* 3. THE PROBLEM (Dark) */}
-      <section className="relative w-full bg-ink-invert text-white py-32 border-b border-white/20">
+      <section className="relative w-full bg-ink-invert text-white py-20 md:py-32 border-b border-white/20">
          <div className="section-wrap text-center max-w-5xl">
             <p className="label-uppercase tracking-widest text-orange mb-8 text-sm">THE OPD CHAOS</p>
-            <h2 className="font-condensed text-[clamp(4rem,8vw,10rem)] leading-[0.85] tracking-tight uppercase">
+            <h2 className="font-condensed text-[clamp(2.5rem,8vw,10rem)] leading-[0.85] tracking-tight uppercase">
               Paper Registers.<br/>Lost Prescriptions.<br/>Crowded Waiting Rooms.
             </h2>
             <p className="font-functional text-white/70 text-xl mt-12 max-w-3xl mx-auto leading-relaxed">
@@ -444,14 +444,14 @@ export function HomePage() {
           
           {/* Left Column (Pinned on Desktop) */}
           <div className="lg:w-[40%] flex-shrink-0 relative">
-            <div ref={stickyRef} className="lg:sticky lg:top-[120px] bg-white text-ink-invert p-8 lg:p-12 aspect-square flex flex-col justify-between overflow-hidden shadow-2xl border border-ink-invert">
+            <div ref={stickyRef} className="lg:sticky lg:top-[120px] bg-white text-ink-invert p-6 md:p-8 lg:p-12 aspect-square flex flex-col justify-between overflow-hidden shadow-2xl border border-ink-invert">
                <div>
                  <p className="label-uppercase tracking-widest text-orange mb-4 font-bold border-b border-ink-invert pb-4">HOW IT WORKS</p>
-                 <h2 className="font-condensed text-[clamp(3rem,6vw,6rem)] leading-[0.85] tracking-tight uppercase mt-4">
+                 <h2 className="font-condensed text-[clamp(2.5rem,6vw,6rem)] leading-[0.85] tracking-tight uppercase mt-4">
                     CARE WITHOUT<br/>THE CHAOS.
                  </h2>
                </div>
-               <p className="font-functional text-ink-invert/80 text-lg font-medium border-t border-ink-invert pt-4">
+               <p className="font-functional text-ink-invert/80 text-base md:text-lg font-medium border-t border-ink-invert pt-4">
                   A seamless digital ecosystem designed specifically to handle the sheer volume of walk-in Indian OPDs.
                </p>
             </div>
@@ -465,10 +465,10 @@ export function HomePage() {
                 { title: "AI PRE-CONSULT", desc: "Talk to our AI voice assistant to log your symptoms before you see the doctor, saving everyone time." },
                 { title: "DIGITAL PRESCRIPTIONS", desc: "Pay the fee via UPI and instantly receive your permanent, clear digital prescription via WhatsApp." }
              ].map((feature, i) => (
-                <div key={i} className="gsap-card bg-white border border-ink-invert p-8 lg:p-12 hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(37,37,37,1)]">
-                   <div className="flex items-center gap-6 mb-6 pb-6 border-b border-ink-invert">
-                      <span className="font-condensed text-5xl text-orange border border-ink-invert px-3 py-1 leading-none bg-orange/10">0{i+1}</span>
-                      <h3 className="font-condensed text-3xl lg:text-5xl uppercase tracking-wide">{feature.title}</h3>
+                <div key={i} className="gsap-card bg-white border border-ink-invert p-6 md:p-8 lg:p-12 hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(37,37,37,1)]">
+                   <div className="flex items-center gap-4 md:gap-6 mb-6 pb-6 border-b border-ink-invert">
+                      <span className="font-condensed text-3xl md:text-5xl text-orange border border-ink-invert px-3 py-1 leading-none bg-orange/10">0{i+1}</span>
+                      <h3 className="font-condensed text-2xl md:text-3xl lg:text-5xl uppercase tracking-wide">{feature.title}</h3>
                    </div>
                    <p className="font-functional text-lg text-ink-invert/80 leading-relaxed font-medium">
                       {feature.desc}
@@ -482,8 +482,8 @@ export function HomePage() {
       {/* 5. THE FEATURE GRID (Orange Canvas) */}
       <section className="relative w-full bg-bg text-white py-20 lg:py-32 blueprint-grid border-b border-white">
          <div className="section-wrap max-w-7xl">
-            <div className="text-center mb-20">
-               <h2 className="font-condensed text-[clamp(4rem,8vw,10rem)] leading-[0.8] uppercase tracking-tight">Everything You Need.</h2>
+            <div className="text-center mb-16 md:mb-20">
+               <h2 className="font-condensed text-[clamp(3rem,8vw,10rem)] leading-[0.8] uppercase tracking-tight">Everything You Need.</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                {[
@@ -492,10 +492,10 @@ export function HomePage() {
                  { title: "PERMANENT RECORDS", desc: "Never lose a health record again. Entire medical histories are stored securely and accessible instantly." },
                  { title: "ZERO STAFF TRAINING", desc: "Designed to drop into your existing OPD without requiring staff to learn complicated new software." }
                ].map((feat, i) => (
-                 <div key={i} className="bg-white text-ink-invert border border-ink-invert p-10 flex flex-col justify-between min-h-[300px] shadow-[8px_8px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 transition-transform">
+                 <div key={i} className="bg-white text-ink-invert border border-ink-invert p-6 md:p-10 flex flex-col justify-between min-h-[250px] md:min-h-[300px] shadow-[8px_8px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 transition-transform">
                     <div>
-                      <h3 className="font-condensed text-4xl mb-4 border-b border-ink-invert/20 pb-4">{feat.title}</h3>
-                      <p className="font-functional text-lg text-ink-invert/80 font-medium">{feat.desc}</p>
+                      <h3 className="font-condensed text-3xl md:text-4xl mb-4 border-b border-ink-invert/20 pb-4">{feat.title}</h3>
+                      <p className="font-functional text-base md:text-lg text-ink-invert/80 font-medium">{feat.desc}</p>
                     </div>
                     <Link to="/how-it-works" className="mt-8 font-bold uppercase tracking-wider text-orange hover:text-ink-invert transition-colors flex items-center gap-2">
                        Learn More <span className="text-2xl leading-none">→</span>
@@ -512,32 +512,32 @@ export function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                
                {/* Patient Card */}
-               <Link to="/for-patients" className="group relative bg-white border border-ink-invert p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[600px] shadow-[12px_12px_0px_0px_rgba(37,37,37,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(37,37,37,1)] transition-all duration-300">
+               <Link to="/for-patients" className="group relative bg-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[600px] shadow-[12px_12px_0px_0px_rgba(37,37,37,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(37,37,37,1)] transition-all duration-300">
                   <div className="absolute inset-0 bg-orange/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                   <div className="relative z-10">
                     <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-ink-invert/20 pb-4">I AM A PATIENT</p>
-                    <h2 className="font-condensed text-[clamp(4rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
+                    <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
                        SEE HOW IT<br/>WORKS FOR YOU
                     </h2>
                   </div>
-                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-ink-invert/20 pt-8">
-                    <span className="font-functional font-bold text-xl group-hover:text-orange transition-colors">Explore Patient Journey</span>
-                    <span className="text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
+                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-ink-invert/20 pt-6 md:pt-8">
+                    <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Patient Journey</span>
+                    <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
                   </div>
                </Link>
 
                {/* Doctor Card */}
-               <Link to="/for-doctors" className="group relative bg-ink-invert text-white border border-ink-invert p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[600px] shadow-[12px_12px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(253,82,0,1)] transition-all duration-300">
+               <Link to="/for-doctors" className="group relative bg-ink-invert text-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[600px] shadow-[12px_12px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(253,82,0,1)] transition-all duration-300">
                   <div className="absolute inset-0 bg-orange/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                   <div className="relative z-10">
                     <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-white/20 pb-4">I AM A DOCTOR</p>
-                    <h2 className="font-condensed text-[clamp(4rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
+                    <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
                        TRANSFORM YOUR<br/>CLINIC TODAY
                     </h2>
                   </div>
-                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-white/20 pt-8">
-                    <span className="font-functional font-bold text-xl group-hover:text-orange transition-colors">Explore Clinic Solutions</span>
-                    <span className="text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
+                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-white/20 pt-6 md:pt-8">
+                    <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Clinic Solutions</span>
+                    <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
                   </div>
                </Link>
 
@@ -552,16 +552,16 @@ export function HomePage() {
       <FAQSection />
 
       {/* 8. FINAL CTA (Dark Canvas) */}
-      <section className="relative w-full bg-ink-invert text-white py-32 border-t border-white/10">
+      <section className="relative w-full bg-ink-invert text-white py-20 md:py-32 border-t border-white/10">
          <div className="section-wrap max-w-7xl relative z-10 text-center">
-            <h2 className="font-condensed text-[clamp(4rem,10vw,12rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
+            <h2 className="font-condensed text-[clamp(3rem,10vw,12rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
               READY TO UPGRADE?
             </h2>
-            <p className="font-functional text-xl text-white/70 mt-8 max-w-2xl mx-auto">
+            <p className="font-functional text-lg md:text-xl text-white/70 mt-8 max-w-2xl mx-auto">
                Join the clinics already revolutionizing their OPD experience.
             </p>
-            <div className="mt-12">
-               <a href="#contact" className="inline-block bg-orange text-white font-condensed tracking-wider uppercase px-12 py-6 text-2xl hover:bg-orange/90 transition-colors shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1">
+            <div className="mt-10 md:mt-12">
+               <a href="#contact" className="inline-block bg-orange text-white font-condensed tracking-wider uppercase px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl hover:bg-orange/90 transition-colors shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1">
                   Book A Demo Call
                </a>
             </div>
