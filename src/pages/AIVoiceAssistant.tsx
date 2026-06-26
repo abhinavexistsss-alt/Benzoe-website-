@@ -194,10 +194,11 @@ function MainAssistant() {
   const groupRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : viewport.width < 4.0;
+
   useFrame((state) => {
     if (groupRef.current) {
       // Calculate sphere's center in NDC (Normalized Device Coordinates)
-      const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : viewport.width < 4.0;
       // posX is viewport.width * 0.28, which in NDC is 0.56
       const ndcX = isMobile ? 0 : 0.56;
       // posY is -viewport.height * 0.25, which in NDC is -0.5
@@ -221,12 +222,14 @@ function MainAssistant() {
   return (
     <group scale={0.85}>
       <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
-        <group ref={groupRef}>
-          <InnerSphere />
-          <Eyes />
+        <group scale={isMobile ? 0.65 : 1.0}>
+          <group ref={groupRef}>
+            <InnerSphere />
+            <Eyes />
+          </group>
+          <Particles />
         </group>
         <SoundWaves />
-        <Particles />
       </Float>
     </group>
   );
