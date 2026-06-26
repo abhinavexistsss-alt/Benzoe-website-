@@ -387,17 +387,17 @@ export function HomePage() {
       
       {/* 1. HERO SECTION (Orange) */}
       <section className="relative min-h-[100svh] w-full pt-32 pb-10 flex flex-col justify-between blueprint-grid">
-        <div className="absolute inset-0 z-0 pointer-events-auto">
+        <div className="absolute left-0 right-0 bottom-0 h-[50%] md:top-0 md:h-auto z-0 pointer-events-auto overflow-hidden md:overflow-visible">
           <AssistantCanvas />
         </div>
 
         <div className="section-wrap relative z-10 w-full flex-1 flex flex-col pointer-events-none">
           
-          <div className="w-full lg:w-[75%] flex flex-col items-start justify-center text-left mt-6 md:mt-12 lg:mt-24 ml-0 sm:-ml-2 md:-ml-6 lg:-ml-8 relative">
+          <div className="w-full lg:w-[75%] flex flex-col items-center md:items-start justify-start md:justify-center text-center md:text-left mt-0 md:mt-12 lg:mt-24 ml-0 sm:-ml-2 md:-ml-6 lg:-ml-8 relative">
             <div className="inline-block">
               <p className="label-uppercase tracking-widest text-white/80 mb-6 font-bold border border-white/20 px-4 py-2 bg-white/5">THE FUTURE OF OPD</p>
             </div>
-            <h1 className="font-condensed text-[clamp(3.5rem,11vw,20rem)] leading-[0.85] tracking-tight uppercase text-white whitespace-normal md:whitespace-nowrap">
+            <h1 className="font-condensed text-[4rem] md:text-[clamp(3.5rem,11vw,20rem)] leading-[0.85] tracking-tight uppercase text-white whitespace-normal md:whitespace-nowrap">
               YOUR HEALTH.<br/>ZERO WAITING.
             </h1>
           </div>
