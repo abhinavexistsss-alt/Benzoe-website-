@@ -190,7 +190,7 @@ function Eyes() {
   );
 }
 
-function MainAssistant() {
+function MainAssistant({ isFullScreen = false }: { isFullScreen?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
 
@@ -200,20 +200,18 @@ function MainAssistant() {
     if (groupRef.current) {
       // Calculate sphere's center in NDC (Normalized Device Coordinates)
       // posX is viewport.width * 0.28, which in NDC is 0.56
-      const ndcX = isMobile ? 0 : 0.56;
-      // posY is -viewport.height * 0.25, which in NDC is -0.5
-      const ndcY = isMobile ? -0.5 : 0;
+      const ndcX = isFullScreen ? 0 : (isMobile ? 0 : 0.56);
+      // posY is -viewport.height * 0.15, which in NDC is -0.3
+      const ndcY = isFullScreen ? 0.1 : (isMobile ? -0.3 : 0);
 
       // Mouse pointer relative to the sphere's actual position on screen
       const relX = state.pointer.x - ndcX;
       const relY = state.pointer.y - ndcY;
 
       // Rotate ONLY the sphere and eyes based on relative mouse to track cursor
-      // Increased rotation multiplier (PI/3 instead of PI/4) for wider tracking range
       const targetX = (relX * Math.PI) / 3;
       const targetY = (relY * Math.PI) / 3;
       
-      // Increased lerp speed (0.1 instead of 0.05) to make it snappier and more responsive
       groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.1);
       groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.1);
     }
@@ -227,7 +225,7 @@ function MainAssistant() {
             <InnerSphere />
             <Eyes />
           </group>
-          <Particles />
+          {!isFullScreen && <Particles />}
         </group>
         <SoundWaves />
       </Float>
@@ -483,16 +481,15 @@ function SoundWaves() {
   );
 }
 
-function SceneLayout({ children }: { children: React.ReactNode }) {
+function SceneLayout({ children, isFullScreen = false }: { children: React.ReactNode, isFullScreen?: boolean }) {
   const { viewport } = useThree();
   
-  // Use window width to reliably match Tailwind's lg breakpoint (1024px)
   const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : viewport.width < 4.0;
   
   // Shift the assistant further to the right on desktop so it completely clears the text area
-  const posX = isMobile ? 0 : viewport.width * 0.28;
+  const posX = isFullScreen ? 0 : (isMobile ? 0 : viewport.width * 0.28);
   // Move it up slightly on mobile so it sits right under the main text
-  const posY = isMobile ? -viewport.height * 0.15 : 0;
+  const posY = isFullScreen ? 0.2 : (isMobile ? -viewport.height * 0.15 : 0);
   
   return (
     <group position={[posX, posY, 0]}>
@@ -503,7 +500,7 @@ function SceneLayout({ children }: { children: React.ReactNode }) {
 
 // --- Main Page Component ---
 
-export function AssistantCanvas() {
+export function AssistantCanvas({ isFullScreen = false }: { isFullScreen?: boolean }) {
   return (
     <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} gl={{ alpha: true }}>
       <ambientLight intensity={3} />
@@ -513,28 +510,155 @@ export function AssistantCanvas() {
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       </Environment>
-      <SceneLayout>
-        <MainAssistant />
+      <SceneLayout isFullScreen={isFullScreen}>
+        <MainAssistant isFullScreen={isFullScreen} />
       </SceneLayout>
     </Canvas>
   );
 }
 
+type ConversationState = 'idle' | 'greeting' | 'listening' | 'speaking';
+
 export function AIVoiceAssistant() {
+  const [convState, setConvState] = useState<ConversationState>('idle');
+  const [caption, setCaption] = useState("");
+  const [showChoices, setShowChoices] = useState(false);
+  
+  // Clean up any ongoing speech on unmount
+  useEffect(() => {
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  const speak = (text: string, callback?: () => void) => {
+    setCaption(text);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+      
+      // Attempt to use a female voice
+      const preferredVoice = englishVoices.find(v => v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google UK English Female')) || englishVoices[0] || voices[0];
+      
+      if (preferredVoice) utterance.voice = preferredVoice;
+      utterance.rate = 1.0;
+      utterance.pitch = 1.1;
+      
+      utterance.onend = () => {
+        if (callback) callback();
+      };
+      
+      // Fallback in case onend doesn't fire properly on some browsers
+      const fallbackTimeout = setTimeout(() => {
+        if (callback) callback();
+      }, (text.length / 15) * 1000 + 1000);
+      
+      utterance.addEventListener('end', () => clearTimeout(fallbackTimeout));
+      
+      window.speechSynthesis.speak(utterance);
+    } else {
+      // Fallback if no TTS
+      setTimeout(() => {
+        if (callback) callback();
+      }, text.length * 60);
+    }
+  };
+
+  useEffect(() => {
+    // Start conversation after a short delay
+    const startTimer = setTimeout(() => {
+      setConvState('greeting');
+      speak("Hey, I am Benzoe AI. Are you a doctor or a patient?", () => {
+        setConvState('listening');
+        setShowChoices(true);
+      });
+    }, 1500);
+
+    return () => clearTimeout(startTimer);
+  }, []);
+
+  const handleChoice = (role: string) => {
+    setShowChoices(false);
+    setConvState('speaking');
+    
+    if (role === 'patient') {
+      speak("Great! Let's get you booked for an appointment without any waiting. I can find the best doctors near you and book a slot instantly. What specialty are you looking for?", () => {
+        setConvState('listening');
+      });
+    } else {
+      speak("Welcome doctor. Let me show you how to completely automate your clinic, from intelligent queuing to digital prescriptions. Would you like a quick demo?", () => {
+        setConvState('listening');
+      });
+    }
+  };
+
   return (
-    <div className="relative w-screen h-screen bg-black overflow-hidden flex items-center justify-center">
+    <div className="relative w-screen h-screen bg-black overflow-hidden flex items-center justify-center font-functional">
       {/* R3F Canvas */}
       <div className="absolute inset-0">
-        <AssistantCanvas />
+        <AssistantCanvas isFullScreen={true} />
       </div>
 
       {/* Back Button */}
       <Link 
         to="/" 
         className="absolute top-6 left-6 z-20 px-5 py-2.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-medium text-sm hover:bg-white/20 transition-all flex items-center gap-2"
+        onClick={() => {
+          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        }}
       >
         <span>←</span> Back to Home
       </Link>
+
+      {/* UI Overlay */}
+      <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-end items-center pb-24 md:pb-32 px-6">
+        
+        {/* Captions */}
+        <div className={`transition-all duration-700 ease-out max-w-2xl text-center ${caption && (convState === 'greeting' || convState === 'speaking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className="text-white text-2xl md:text-3xl lg:text-4xl font-condensed tracking-wide drop-shadow-2xl leading-tight">
+            "{caption}"
+          </p>
+        </div>
+
+        {/* Listening Indicator */}
+        <div className={`mt-8 transition-all duration-500 flex flex-col items-center ${convState === 'listening' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+          
+          <div className="flex items-center gap-1.5 h-10 mb-6">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div 
+                key={i} 
+                className="w-1.5 bg-orange rounded-full animate-pulse" 
+                style={{ 
+                  height: `${Math.max(30, Math.random() * 100)}%`,
+                  animationDelay: `${i * 0.1}s`,
+                  animationDuration: '0.6s'
+                }}
+              />
+            ))}
+          </div>
+
+          {/* User Choices */}
+          <div className={`flex gap-4 pointer-events-auto transition-all duration-700 delay-300 ${showChoices ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <button 
+              onClick={() => handleChoice('patient')}
+              className="px-8 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-bold hover:bg-white/20 hover:scale-105 transition-all"
+            >
+              I am a Patient
+            </button>
+            <button 
+              onClick={() => handleChoice('doctor')}
+              className="px-8 py-4 rounded-full border border-orange/50 bg-orange/20 backdrop-blur-md text-white font-bold hover:bg-orange/40 hover:scale-105 transition-all shadow-[0_0_20px_rgba(253,82,0,0.3)]"
+            >
+              I am a Doctor
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { CinematicFooter } from "../components/ui/motion-footer";
 import { AssistantCanvas } from "./AIVoiceAssistant";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -320,6 +320,7 @@ function FAQSection() {
 }
 
 export function HomePage() {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -387,7 +388,10 @@ export function HomePage() {
       
       {/* 1. HERO SECTION (Orange) */}
       <section className="relative min-h-[100svh] w-full pt-32 pb-10 flex flex-col justify-between blueprint-grid">
-        <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden md:overflow-visible">
+        <div 
+          className="absolute inset-0 z-0 pointer-events-auto overflow-hidden md:overflow-visible cursor-pointer"
+          onClick={() => navigate('/assistant')}
+        >
           <AssistantCanvas />
         </div>
 
