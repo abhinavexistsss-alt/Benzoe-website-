@@ -3,6 +3,7 @@ import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
 import { Link } from 'react-router-dom';
+import { AIVoiceInput } from '../components/ui/ai-voice-input';
 
 // --- Custom Shaders ---
 const innerVertexShader = `
@@ -522,7 +523,6 @@ type ConversationState = 'idle' | 'greeting' | 'listening' | 'speaking';
 export function AIVoiceAssistant() {
   const [convState, setConvState] = useState<ConversationState>('idle');
   const [caption, setCaption] = useState("");
-  const [showChoices, setShowChoices] = useState(false);
   
   // Clean up any ongoing speech on unmount
   useEffect(() => {
@@ -574,7 +574,6 @@ export function AIVoiceAssistant() {
       setConvState('greeting');
       speak("Hey, I am Benzoe AI. Are you a doctor or a patient?", () => {
         setConvState('listening');
-        setShowChoices(true);
       });
     }, 1500);
 
@@ -582,7 +581,6 @@ export function AIVoiceAssistant() {
   }, []);
 
   const handleChoice = (role: string) => {
-    setShowChoices(false);
     setConvState('speaking');
     
     if (role === 'patient') {
@@ -624,38 +622,15 @@ export function AIVoiceAssistant() {
           </p>
         </div>
 
-        {/* Listening Indicator */}
-        <div className={`mt-8 transition-all duration-500 flex flex-col items-center ${convState === 'listening' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-          
-          <div className="flex items-center gap-1.5 h-10 mb-6">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div 
-                key={i} 
-                className="w-1.5 bg-orange rounded-full animate-pulse" 
-                style={{ 
-                  height: `${Math.max(30, Math.random() * 100)}%`,
-                  animationDelay: `${i * 0.1}s`,
-                  animationDuration: '0.6s'
-                }}
-              />
-            ))}
-          </div>
-
-          {/* User Choices */}
-          <div className={`flex gap-4 pointer-events-auto transition-all duration-700 delay-300 ${showChoices ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <button 
-              onClick={() => handleChoice('patient')}
-              className="px-8 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-bold hover:bg-white/20 hover:scale-105 transition-all"
-            >
-              I am a Patient
-            </button>
-            <button 
-              onClick={() => handleChoice('doctor')}
-              className="px-8 py-4 rounded-full border border-orange/50 bg-orange/20 backdrop-blur-md text-white font-bold hover:bg-orange/40 hover:scale-105 transition-all shadow-[0_0_20px_rgba(253,82,0,0.3)]"
-            >
-              I am a Doctor
-            </button>
-          </div>
+        {/* Listening Indicator / Voice Input */}
+        <div className={`mt-8 transition-all duration-500 flex flex-col items-center pointer-events-auto ${convState === 'listening' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+          <AIVoiceInput 
+            onStart={() => console.log("User started speaking...")}
+            onStop={() => {
+              // Mock picking a response after voice input stops
+              handleChoice(Math.random() > 0.5 ? 'patient' : 'doctor');
+            }}
+          />
         </div>
 
       </div>
