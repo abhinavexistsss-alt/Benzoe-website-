@@ -393,7 +393,7 @@ export function HomePage() {
 
         <div className="section-wrap relative z-10 w-full flex-1 flex flex-col pointer-events-none">
           
-          <div className="w-full lg:w-[75%] flex flex-col items-center md:items-start justify-start md:justify-center text-center md:text-left mt-0 md:mt-12 lg:mt-24 ml-0 sm:-ml-2 md:-ml-6 lg:-ml-8 relative">
+          <div className="w-full lg:w-[75%] flex flex-col items-center md:items-start justify-start md:justify-center text-center md:text-left -mt-8 md:mt-12 lg:mt-24 ml-0 sm:-ml-2 md:-ml-6 lg:-ml-8 relative">
             <div className="inline-block">
               <p className="label-uppercase tracking-widest text-white/80 mb-6 font-bold border border-white/20 px-4 py-2 bg-white/5">THE FUTURE OF OPD</p>
             </div>
