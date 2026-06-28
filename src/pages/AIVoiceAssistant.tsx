@@ -3,7 +3,7 @@ import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
 import { AIVoiceInput } from '../components/ui/ai-voice-input';
-import { DiaText } from '../components/ui/dia-text';
+import { Typewriter } from '../components/ui/typewriter';
 
 // --- Custom Shaders ---
 const innerVertexShader = `
@@ -610,7 +610,12 @@ export function AIVoiceAssistant() {
         {/* Captions */}
         <div className={`transition-all duration-700 ease-out max-w-2xl text-center ${caption && (convState === 'greeting' || convState === 'speaking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <div className="font-light text-3xl md:text-4xl tracking-tight text-[#252525] drop-shadow-sm leading-tight">
-            <DiaText text={`"${caption}"`} />
+            <Typewriter 
+              text={`"${caption}"`} 
+              speed={40}
+              cursorChar="_" 
+              className="whitespace-pre-wrap inline-block"
+            />
           </div>
         </div>
 
