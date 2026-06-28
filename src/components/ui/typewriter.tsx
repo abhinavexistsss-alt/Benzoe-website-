@@ -35,7 +35,7 @@ export function Typewriter({
   }, [text]);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayText === currentText) {
       // Finished typing current string
