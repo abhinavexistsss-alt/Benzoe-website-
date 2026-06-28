@@ -4,19 +4,25 @@ import { AssistantCanvas } from "./AIVoiceAssistant";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function MarqueeStrip({ items, className = "" }: { items: string[]; className?: string }) {
   const doubled = [...items, ...items, ...items];
   return (
-    <div className={`marquee-strip ${className}`}>
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      className={`marquee-strip ${className}`}
+    >
       <div className="marquee-inner">
         {doubled.map((item, i) => (
           <span key={i}>{item} ✦</span>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -55,9 +61,13 @@ const FAQ_DATA = [
   },
 ];
 
-function FAQItem({ item, isOpen, onToggle }: { item: typeof FAQ_DATA[0]; isOpen: boolean; onToggle: () => void }) {
+function FAQItem({ item, isOpen, onToggle, index }: { item: typeof FAQ_DATA[0]; isOpen: boolean; onToggle: () => void; index: number }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
       className="border-t border-ink-invert cursor-pointer group"
       onClick={onToggle}
     >
@@ -80,7 +90,7 @@ function FAQItem({ item, isOpen, onToggle }: { item: typeof FAQ_DATA[0]; isOpen:
           {item.a}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -311,6 +321,7 @@ function FAQSection() {
               item={item}
               isOpen={openIndex === i}
               onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              index={i}
             />
           ))}
         </div>
@@ -487,7 +498,15 @@ export function HomePage() {
                  { title: "PERMANENT RECORDS", desc: "Never lose a health record again. Entire medical histories are stored securely and accessible instantly." },
                  { title: "ZERO STAFF TRAINING", desc: "Designed to drop into your existing OPD without requiring staff to learn complicated new software." }
                ].map((feat, i) => (
-                 <div key={i} className="bg-white text-ink-invert border border-ink-invert p-6 md:p-10 flex flex-col justify-between min-h-[250px] md:min-h-[300px] shadow-[8px_8px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 transition-transform">
+                 <motion.div 
+                   key={i} 
+                   initial={{ opacity: 0, y: 40 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true, margin: "-50px" }}
+                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                   whileHover={{ y: -8, boxShadow: "12px 12px 0px 0px rgba(253,82,0,1)" }}
+                   className="bg-white text-ink-invert border border-ink-invert p-6 md:p-10 flex flex-col justify-between min-h-[250px] md:min-h-[300px] shadow-[8px_8px_0px_0px_rgba(253,82,0,1)] transition-colors cursor-pointer"
+                 >
                     <div>
                       <h3 className="font-condensed text-3xl md:text-4xl mb-4 border-b border-ink-invert/20 pb-4">{feat.title}</h3>
                       <p className="font-functional text-base md:text-lg text-ink-invert/80 font-medium">{feat.desc}</p>
@@ -495,7 +514,7 @@ export function HomePage() {
                     <Link to="/how-it-works" className="mt-8 font-bold uppercase tracking-wider text-orange hover:text-ink-invert transition-colors flex items-center gap-2">
                        Learn More <span className="text-2xl leading-none">→</span>
                     </Link>
-                 </div>
+                 </motion.div>
                ))}
             </div>
          </div>
@@ -507,34 +526,52 @@ export function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                
                {/* Patient Card */}
-               <Link to="/for-patients" className="group relative bg-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[600px] shadow-[12px_12px_0px_0px_rgba(37,37,37,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(37,37,37,1)] transition-all duration-300">
-                  <div className="absolute inset-0 bg-orange/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
-                  <div className="relative z-10">
-                    <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-ink-invert/20 pb-4">I AM A PATIENT</p>
-                    <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
-                       SEE HOW IT<br/>WORKS FOR YOU
-                    </h2>
-                  </div>
-                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-ink-invert/20 pt-6 md:pt-8">
-                    <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Patient Journey</span>
-                    <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
-                  </div>
-               </Link>
+               <motion.div
+                 initial={{ opacity: 0, x: -50 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, margin: "-100px" }}
+                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                 whileHover={{ y: -8, boxShadow: "16px 16px 0px 0px rgba(37,37,37,1)" }}
+                 className="shadow-[12px_12px_0px_0px_rgba(37,37,37,1)] h-full"
+               >
+                 <Link to="/for-patients" className="group relative bg-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between h-full min-h-[400px] md:min-h-[600px] transition-all duration-300 block">
+                    <div className="absolute inset-0 bg-orange/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+                    <div className="relative z-10">
+                      <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-ink-invert/20 pb-4">I AM A PATIENT</p>
+                      <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
+                         SEE HOW IT<br/>WORKS FOR YOU
+                      </h2>
+                    </div>
+                    <div className="relative z-10 flex items-center justify-between mt-12 border-t border-ink-invert/20 pt-6 md:pt-8">
+                      <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Patient Journey</span>
+                      <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
+                    </div>
+                 </Link>
+               </motion.div>
 
                {/* Doctor Card */}
-               <Link to="/for-doctors" className="group relative bg-ink-invert text-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[600px] shadow-[12px_12px_0px_0px_rgba(253,82,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(253,82,0,1)] transition-all duration-300">
-                  <div className="absolute inset-0 bg-orange/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
-                  <div className="relative z-10">
-                    <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-white/20 pb-4">I AM A DOCTOR</p>
-                    <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
-                       TRANSFORM YOUR<br/>CLINIC TODAY
-                    </h2>
-                  </div>
-                  <div className="relative z-10 flex items-center justify-between mt-12 border-t border-white/20 pt-6 md:pt-8">
-                    <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Clinic Solutions</span>
-                    <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
-                  </div>
-               </Link>
+               <motion.div
+                 initial={{ opacity: 0, x: 50 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, margin: "-100px" }}
+                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                 whileHover={{ y: -8, boxShadow: "16px 16px 0px 0px rgba(253,82,0,1)" }}
+                 className="shadow-[12px_12px_0px_0px_rgba(253,82,0,1)] h-full"
+               >
+                 <Link to="/for-doctors" className="group relative bg-ink-invert text-white border border-ink-invert p-8 md:p-12 lg:p-20 overflow-hidden flex flex-col justify-between h-full min-h-[400px] md:min-h-[600px] transition-all duration-300 block">
+                    <div className="absolute inset-0 bg-orange/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+                    <div className="relative z-10">
+                      <p className="label-uppercase tracking-widest text-orange mb-6 font-bold border-b border-white/20 pb-4">I AM A DOCTOR</p>
+                      <h2 className="font-condensed text-[clamp(2.5rem,7vw,8rem)] leading-[0.85] tracking-tight uppercase">
+                         TRANSFORM YOUR<br/>CLINIC TODAY
+                      </h2>
+                    </div>
+                    <div className="relative z-10 flex items-center justify-between mt-12 border-t border-white/20 pt-6 md:pt-8">
+                      <span className="font-functional font-bold text-lg md:text-xl group-hover:text-orange transition-colors">Explore Clinic Solutions</span>
+                      <span className="text-4xl md:text-5xl group-hover:translate-x-4 transition-transform text-orange">→</span>
+                    </div>
+                 </Link>
+               </motion.div>
 
             </div>
          </div>
@@ -547,8 +584,14 @@ export function HomePage() {
       <FAQSection />
 
       {/* 8. FINAL CTA (Dark Canvas) */}
-      <section className="relative w-full bg-ink-invert text-white py-20 md:py-32 border-t border-white/10">
-         <div className="section-wrap max-w-7xl relative z-10 text-center">
+      <section className="relative w-full bg-ink-invert text-white py-20 md:py-32 border-t border-white/10 overflow-hidden">
+         <motion.div 
+           initial={{ opacity: 0, scale: 0.95, y: 50 }}
+           whileInView={{ opacity: 1, scale: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+           className="section-wrap max-w-7xl relative z-10 text-center"
+         >
             <h2 className="font-condensed text-[clamp(3rem,10vw,12rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
               READY TO UPGRADE?
             </h2>
@@ -556,11 +599,16 @@ export function HomePage() {
                Join the clinics already revolutionizing their OPD experience.
             </p>
             <div className="mt-10 md:mt-12">
-               <a href="#contact" className="inline-block bg-orange text-white font-condensed tracking-wider uppercase px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl hover:bg-orange/90 transition-colors shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1">
+               <motion.a 
+                 whileHover={{ scale: 1.05, y: -5 }}
+                 whileTap={{ scale: 0.95 }}
+                 href="#contact" 
+                 className="inline-block bg-orange text-white font-condensed tracking-wider uppercase px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] transition-shadow"
+               >
                   Book A Demo Call
-               </a>
+               </motion.a>
             </div>
-         </div>
+         </motion.div>
       </section>
 
       {/* Cinematic Footer */}
