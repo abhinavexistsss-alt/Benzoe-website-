@@ -606,16 +606,41 @@ export function AIVoiceAssistant() {
 
       {/* UI Overlay */}
       <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end items-center pb-12 md:pb-16 px-6">
-        
-        {/* Captions */}
-        <div className={`transition-all duration-700 ease-out max-w-2xl text-center ${caption && (convState === 'greeting' || convState === 'speaking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="font-light text-3xl md:text-4xl tracking-tight text-[#252525] drop-shadow-sm leading-tight">
-            <Typewriter 
-              text={`"${caption}"`} 
-              speed={40}
-              cursorChar="_" 
-              className="whitespace-pre-wrap inline-block"
-            />
+        {/* Captions & Text Container */}
+        <div className={`transition-all duration-700 ease-out w-full max-w-3xl text-center ${(caption || convState === 'idle') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="mx-auto bg-white/30 backdrop-blur-3xl border border-white/40 shadow-[0_16px_40px_rgba(0,0,0,0.05)] rounded-[2.5rem] p-8 md:p-12 flex flex-col items-center justify-center min-h-[140px] md:min-h-[180px] relative overflow-hidden">
+            {/* Inner subtle liquid shine */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none rounded-[2.5rem]" />
+            
+            <div className="font-light text-2xl md:text-4xl tracking-tight text-[#252525] drop-shadow-sm leading-tight relative z-10 w-full">
+              {!caption ? (
+                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                  <span>We're born 🌞 to</span>
+                  <Typewriter
+                    text={[
+                      "experience",
+                      "dance",
+                      "love",
+                      "be alive",
+                      "create things that make the world a better place",
+                    ]}
+                    speed={70}
+                    className="text-[#fd5200] font-medium"
+                    waitTime={1500}
+                    deleteSpeed={40}
+                    cursorChar="_"
+                    loop={true}
+                  />
+                </div>
+              ) : (
+                <Typewriter 
+                  text={`"${caption}"`} 
+                  speed={40}
+                  cursorChar="_" 
+                  className="whitespace-pre-wrap inline-block"
+                />
+              )}
+            </div>
           </div>
         </div>
 
