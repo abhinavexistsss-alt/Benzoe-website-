@@ -15,37 +15,13 @@ function MarqueeStrip({ items, className = "" }: { items: string[]; className?: 
           <span key={i}>{item} ✦</span>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export function ForDoctorsPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const featureRows = gsap.utils.toArray<HTMLElement>('.feature-row-trigger');
-    featureRows.forEach((row) => {
-      gsap.fromTo(row, 
-        { opacity: 0.2, x: -10 },
-        {
-          opacity: 1, x: 0,
-          scrollTrigger: {
-            trigger: row,
-            start: "top 80%",
-            end: "bottom center",
-            toggleActions: "play reverse play reverse",
-          }
-        }
-      );
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
-    <div ref={containerRef} className="w-full bg-beige text-ink-invert overflow-hidden selection:bg-orange selection:text-white pt-24">
+    <div className="w-full bg-beige text-ink-invert overflow-hidden selection:bg-orange selection:text-white pt-24">
       
       {/* HEADER MARQUEE */}
       <MarqueeStrip items={[
@@ -58,20 +34,36 @@ export function ForDoctorsPage() {
       ]} className="text-orange" />
 
       {/* AUTOMATE / THE PROBLEM SECTION */}
-      <section className="relative w-full bg-beige text-ink-invert blueprint-grid-dark py-20 lg:py-32">
+      <section className="relative w-full bg-beige text-ink-invert blueprint-grid-dark py-20 lg:py-32 overflow-hidden">
         {/* Section corner marker */}
-        <div className="section-marker text-orange opacity-40">02</div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.4, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="section-marker text-orange"
+        >
+          02
+        </motion.div>
 
         <div className="section-wrap w-full flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
           
           {/* Sticky Left Box */}
           <div className="lg:w-[35%] flex-shrink-0 relative z-10">
-            <div className="sticky top-32 p-8 lg:p-10 flex flex-col justify-center text-left relative overflow-hidden border border-ink-invert/10 bg-white shadow-xl">
-               <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold">THE BENZOE PROMISE</p>
-               <p className="font-functional text-ink-invert text-lg leading-relaxed font-medium">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)" }}
+              className="sticky top-32 p-8 lg:p-12 flex flex-col justify-center text-left relative overflow-hidden border border-white/40 bg-white/40 backdrop-blur-3xl shadow-[0_16px_40px_rgba(0,0,0,0.05)] rounded-[2rem] transition-all duration-300"
+            >
+               <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none rounded-[2rem]" />
+               <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold relative z-10">THE BENZOE PROMISE</p>
+               <p className="font-functional text-ink-invert text-lg md:text-xl leading-relaxed font-medium relative z-10">
                  Your clinic deserves more than paper. We're built for the real Indian OPD — walk-ins, queues, and chaos included.
                </p>
-            </div>
+            </motion.div>
           </div>
 
           {/* Scrolling Right List */}
@@ -85,13 +77,21 @@ export function ForDoctorsPage() {
                 { num: "05", title: "CROWDED WAITING ROOMS", desc: "No live queue visibility. Patients arrive hours early and wait anxiously with no sense of position." },
                 { num: "06", title: "STAFF OVERLOAD", desc: "Front-desk staff juggle queues, billing, and queries — all manually, every single day." }
               ].map((item, idx) => (
-                <div key={idx} className="feature-row feature-row-trigger py-10 border-t border-ink-invert/10 last:border-b hover:bg-black/5 transition-colors pl-4">
-                  <div className="feature-num text-orange border-ink-invert/20 font-bold">{item.num}</div>
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 16, backgroundColor: "rgba(0,0,0,0.03)" }}
+                  className="py-10 border-t border-ink-invert/10 last:border-b transition-colors pl-4 md:pl-8 rounded-xl cursor-pointer"
+                >
+                  <div className="feature-num text-orange font-bold text-lg mb-2">{item.num}</div>
                   <div>
-                    <h3 className="font-condensed text-[clamp(2rem,4vw,3.5rem)] leading-[0.9] tracking-tight uppercase text-ink-invert mb-2">{item.title}</h3>
-                    <p className="font-functional text-ink-invert opacity-70 text-[15px] max-w-xl">{item.desc}</p>
+                    <h3 className="font-condensed text-[clamp(2rem,4vw,3.5rem)] leading-[0.9] tracking-tight uppercase text-ink-invert mb-3">{item.title}</h3>
+                    <p className="font-functional text-ink-invert opacity-75 text-base md:text-lg max-w-xl leading-relaxed">{item.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -99,17 +99,28 @@ export function ForDoctorsPage() {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="relative w-full bg-orange text-white py-32 border-t border-ink-invert/10">
-         <div className="section-wrap max-w-7xl relative z-10 text-center">
+      <section className="relative w-full bg-orange text-white py-32 border-t border-ink-invert/10 overflow-hidden">
+         <motion.div 
+           initial={{ opacity: 0, scale: 0.95, y: 50 }}
+           whileInView={{ opacity: 1, scale: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+           className="section-wrap max-w-7xl relative z-10 text-center"
+         >
             <h2 className="font-condensed text-[clamp(4rem,10vw,8rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
-              Ready To Upgrade?
+              Upgrade Your<br/>Practice Today
             </h2>
-            <div className="mt-12">
-               <a href="#" className="inline-block bg-white text-[#252525] font-condensed tracking-wider uppercase px-8 py-4 text-lg hover:bg-white/90 transition-colors shadow-lg">
-                  Book A Demo Call
-               </a>
+            <div className="mt-12 flex justify-center gap-4">
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#" 
+                className="inline-block bg-white text-[#252525] font-condensed tracking-wider uppercase px-8 py-4 text-lg hover:bg-white/90 shadow-xl rounded-full"
+              >
+                Book a Demo
+              </motion.a>
             </div>
-         </div>
+         </motion.div>
       </section>
 
       <div className="relative z-[100] bg-ink-invert">
