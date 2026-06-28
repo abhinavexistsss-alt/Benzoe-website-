@@ -28,36 +28,36 @@ function MarqueeStrip({ items, className = "" }: { items: string[]; className?: 
 
 const FAQ_DATA = [
   {
-    q: "DO I NEED TO DOWNLOAD AN APP?",
-    a: "No. Benzoe is 100% browser-based. Patients simply scan a QR code at the clinic and everything runs instantly in their mobile browser — no app store, no sign-up, no friction."
+    q: "IS THIS A WEB APP OR A MOBILE APP?",
+    a: "Benzoe provides a complete mobile ecosystem. We are launching full-featured native applications for both iOS and Android, providing a comprehensive in-app experience for patients and doctors alike."
   },
   {
-    q: "HOW DOES THE LIVE QUEUE WORK?",
-    a: "When a patient scans the clinic QR, they're added to a real-time digital queue. They can track their exact position from anywhere — grab a coffee, sit in their car, or wait at home nearby. The queue updates live, every second."
+    q: "HOW DOES LIVE TRACKING & NAVIGATION WORK?",
+    a: "Patients track their exact position in the queue live through the app. In addition, an integrated map (like Google Maps or Ola) helps patients seamlessly navigate and drive straight to your clinic."
   },
   {
     q: "WHAT IS THE AI VOICE ASSISTANT?",
-    a: "Before seeing the doctor, patients can chat with our AI assistant to log their symptoms. This pre-consultation data is shared with the doctor so they walk into the cabin already knowing why you're there — saving time for both sides."
+    a: "Patients can chat with our multilingual AI assistant to log their symptoms in their preferred language. This pre-consultation data is securely shared with the doctor before the patient even enters the cabin."
   },
   {
     q: "HOW DO DIGITAL PRESCRIPTIONS WORK?",
-    a: "After the consultation, the doctor generates a clear, typed prescription digitally. The patient receives it instantly via WhatsApp as a permanent PDF — no more unreadable handwriting or lost slips."
+    a: "Doctors generate clear, typed prescriptions instantly via the Benzoe ecosystem. These are delivered directly and securely into the patient's mobile application, while WhatsApp is used simply to send friendly notifications."
   },
   {
-    q: "IS THIS ONLY FOR LARGE HOSPITALS?",
-    a: "Not at all. Benzoe is designed specifically for small-to-medium Indian clinics and OPDs. Solo practitioners, polyclinics, and multi-doctor setups all work seamlessly. If you have walk-in patients, Benzoe works for you."
+    q: "WHAT IF A PATIENT WALKS IN WITHOUT THE APP?",
+    a: "No problem. Your front-desk can manually add them to the queue on the spot. The patient can then simply download the Benzoe app right in the clinic to continue their digital journey."
   },
   {
     q: "DO MY STAFF NEED TRAINING?",
-    a: "Zero training required. Benzoe is designed to drop into your existing workflow without disruption. Your front-desk staff will be up and running within minutes, not weeks."
+    a: "Zero training required. Benzoe is designed as an intuitive, one-stop ecosystem that drops right into your existing workflow without disruption. Your team will be up and running within minutes."
   },
   {
-    q: "IS PATIENT DATA SECURE?",
-    a: "Absolutely. All patient data is encrypted end-to-end and stored on secure cloud infrastructure compliant with Indian healthcare data regulations. Only the patient and their doctor can access their medical records."
+    q: "CAN I TRACK MY CLINIC'S REVENUE?",
+    a: "Yes. The Benzoe platform functions as a comprehensive revenue dashboard. Track all cash inflow, outflow, UPI payments, and generate detailed financial reports directly from your dashboard."
   },
   {
     q: "HOW DO I GET STARTED?",
-    a: "Book a free demo call with our team. We'll set up your entire digital clinic system — QR codes, queue management, prescription templates, UPI billing — completely hands-off for you. You focus on patients, we handle the tech."
+    a: "Book a demo with our team. We'll set up your entire all-in-one clinic system — digital queues, prescription templates, instant/emergency bookings, and revenue tracking — completely hands-off for you."
   },
 ];
 
@@ -466,10 +466,10 @@ export function HomePage() {
           {/* Right Column (Scrolling Stark Cards) */}
           <div ref={scrollingCardsRef} className="flex-1 flex flex-col gap-8 lg:py-0">
              {[
-                { title: "NO APP REQUIRED", desc: "Just scan a QR code at the clinic and join the live queue instantly from your mobile browser." },
-                { title: "LIVE TRACKING", desc: "Grab a coffee and wait comfortably. You'll see your exact position in the queue update live." },
-                { title: "AI PRE-CONSULT", desc: "Talk to our AI voice assistant to log your symptoms before you see the doctor, saving everyone time." },
-                { title: "DIGITAL PRESCRIPTIONS", desc: "Pay the fee via UPI and instantly receive your permanent, clear digital prescription via WhatsApp." }
+                { title: "JOIN THE QUEUE", desc: "Scan a QR code at the clinic to instantly join the digital queue and download the patient mobile app." },
+                { title: "LIVE TRACKING", desc: "Track your exact position in the queue live through the app. A built-in map navigation helps you drive straight to the clinic when it's your turn." },
+                { title: "MULTILINGUAL AI", desc: "Talk to our AI voice assistant in your native language to log symptoms before seeing the doctor, saving everyone time." },
+                { title: "IN-APP PRESCRIPTIONS", desc: "Pay the fee via UPI and instantly receive your permanent, clear digital prescription securely inside your patient app." }
              ].map((feature, i) => (
                 <div key={i} className="gsap-card bg-white border border-ink-invert p-6 md:p-8 lg:p-12 hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(37,37,37,1)]">
                    <div className="flex items-center gap-4 md:gap-6 mb-6 pb-6 border-b border-ink-invert">
@@ -493,10 +493,10 @@ export function HomePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                {[
-                 { title: "WHATSAPP INTEGRATION", desc: "Instantly deliver prescriptions and follow-up reminders straight to the patient's WhatsApp." },
-                 { title: "INTEGRATED UPI", desc: "Keep track of every rupee with built-in UPI receipting directly linked to patient files." },
-                 { title: "PERMANENT RECORDS", desc: "Never lose a health record again. Entire medical histories are stored securely and accessible instantly." },
-                 { title: "ZERO STAFF TRAINING", desc: "Designed to drop into your existing OPD without requiring staff to learn complicated new software." }
+                 { title: "EMERGENCY & INSTANT QUEUES", desc: "Instantly manage walk-ins and prioritize emergency patients to maximize your clinic's capacity and boost overall revenue." },
+                 { title: "COMPREHENSIVE REVENUE TRACKING", desc: "Monitor all cash inflows, outflows, and UPI payments in real-time through a powerful, built-in financial dashboard." },
+                 { title: "END-TO-END ECOSYSTEM", desc: "A true one-stop solution for clinics. No need for separate queue managers, patient logs, or revenue applications." },
+                 { title: "WHATSAPP NOTIFICATIONS", desc: "Keep patients informed with real-time queue updates and friendly reminders seamlessly delivered via WhatsApp." }
                ].map((feat, i) => (
                  <motion.div 
                    key={i} 

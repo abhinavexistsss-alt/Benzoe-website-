@@ -59,9 +59,9 @@ export function ForDoctorsPage() {
               className="sticky top-32 p-8 lg:p-12 flex flex-col justify-center text-left relative overflow-hidden border border-white/40 bg-white/40 backdrop-blur-3xl shadow-[0_16px_40px_rgba(0,0,0,0.05)] rounded-[2rem] transition-all duration-300"
             >
                <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none rounded-[2rem]" />
-               <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold relative z-10">THE BENZOE PROMISE</p>
+               <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold relative z-10">THE COMPLETE ECOSYSTEM</p>
                <p className="font-functional text-ink-invert text-lg md:text-xl leading-relaxed font-medium relative z-10">
-                 Your clinic deserves more than paper. We're built for the real Indian OPD — walk-ins, queues, and chaos included.
+                 Benzoe is the ultimate all-in-one digital platform for your clinic. Manage patients, monitor revenue flows, and eliminate OPD chaos forever.
                </p>
             </motion.div>
           </div>
@@ -70,12 +70,12 @@ export function ForDoctorsPage() {
           <div className="flex-1 flex flex-col py-10 lg:py-0 relative z-10">
             <div className="flex flex-col">
               {[
-                { num: "01", title: "PAPER REGISTERS", desc: "Walk-in queues written by hand. 'Mera number kab aayega?' echoes through every OPD, every day." },
-                { num: "02", title: "LOST PRESCRIPTIONS", desc: "Handwritten prescriptions are hard to read and easy to lose. Every follow-up starts without context." },
-                { num: "03", title: "CASH-ONLY BILLING", desc: "Payments and receipts stay outside a digital trail, making records messy for everyone." },
-                { num: "04", title: "NO PATIENT HISTORY", desc: "Old files get buried. Patients can't access their own health records without visiting again." },
-                { num: "05", title: "CROWDED WAITING ROOMS", desc: "No live queue visibility. Patients arrive hours early and wait anxiously with no sense of position." },
-                { num: "06", title: "STAFF OVERLOAD", desc: "Front-desk staff juggle queues, billing, and queries — all manually, every single day." }
+                { num: "01", title: "PAPER REGISTERS", desc: "Manually written walk-in queues create chaos. 'Mera number kab aayega?' echoes through the waiting room, stressing your front-desk staff." },
+                { num: "02", title: "CROWDED WAITING ROOMS", desc: "Without live queue visibility, patients arrive hours early and wait anxiously. Benzoe's digital queue completely clears the physical room." },
+                { num: "03", title: "LOST PRESCRIPTIONS", desc: "Handwritten prescriptions are easily lost, leaving follow-ups without context. Benzoe secures permanent digital records instantly inside the app." },
+                { num: "04", title: "REVENUE TRACKING", desc: "Cash-only billing and scattered UPI payments make accounting a nightmare. Our financial dashboard tracks all cash inflows, outflows, and UPI settlements in one place." },
+                { num: "05", title: "INSTANT & EMERGENCY", desc: "Struggling to fit urgent cases into a packed schedule? Use instant bookings and emergency queues to manage capacity and significantly boost your clinic's revenue." },
+                { num: "06", title: "STAFF OVERLOAD", desc: "Front-desk staff juggle queues, billing, and patient queries simultaneously. Benzoe completely automates the workflow so they can focus on patient care." }
               ].map((item, idx) => (
                 <motion.div 
                   key={idx} 

@@ -60,7 +60,7 @@ export function HowItWorksPage() {
                <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none rounded-[2rem]" />
                <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold relative z-10">THE BENZOE SYSTEM</p>
                <p className="font-functional text-ink-invert text-lg md:text-xl leading-relaxed font-medium relative z-10">
-                 Most clinic owners are too busy to track patient history. Hand-written prescriptions are slipping through the cracks and you don't even notice.
+                 Most clinic owners are too busy to track patient history or measure revenue. Stop losing patients and profits to an outdated analog system.
                </p>
             </motion.div>
           </div>
@@ -69,10 +69,10 @@ export function HowItWorksPage() {
           <div className="flex-1 flex flex-col py-10 lg:py-0 relative z-10">
             <div className="flex flex-col">
               {[
-                { num: "01", title: "STOP THE LEAK", desc: "Without a digital system, every piece of paper is a point of failure. We plug the holes in your operational bucket by moving everything to the cloud." },
-                { num: "02", title: "BUILD A BETTER BUCKET", desc: "Digital queues, WhatsApp prescriptions, and UPI billing built for you 100% hands off. We'll handle the system, you focus on the patients." },
-                { num: "03", title: "OVERFILL THE BUCKET", desc: "With Benzoe in place, word of mouth and patient retention will be flowing. Expect a lot of new faces to walk in the door." },
-                { num: "04", title: "SEAMLESS INTEGRATION", desc: "Our system is designed to drop right into your existing Indian OPD environment without requiring your staff to learn complicated new software." }
+                { num: "01", title: "STOP THE LEAK", desc: "Without a digital ecosystem, every piece of paper is a point of failure. We plug the operational holes by moving your entire clinic management to a powerful mobile platform." },
+                { num: "02", title: "BUILD A BETTER BUCKET", desc: "Digital queues, in-app map navigation, instant UPI billing, and comprehensive revenue tracking. We provide the complete digital infrastructure, so you can focus on your patients." },
+                { num: "03", title: "OVERFILL THE BUCKET", desc: "With emergency queues, instant bookings, and multilingual AI pre-consultations, you can maximize your clinic's capacity and drastically boost your overall revenue." },
+                { num: "04", title: "SEAMLESS INTEGRATION", desc: "Our one-stop solution is designed to drop right into your existing OPD environment. No fragmented tools, no CRM headaches—just one unified ecosystem." }
               ].map((item, idx) => (
                 <motion.div 
                   key={idx} 

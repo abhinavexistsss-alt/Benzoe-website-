@@ -69,11 +69,11 @@ export function ForPatientsPage() {
           <div className="flex-1 flex flex-col py-10 lg:py-0 relative z-10">
             <div className="flex flex-col">
               {[
-                { num: "01", title: "SCAN & JOIN", desc: "Scan the clinic's QR code with your phone to instantly join the live queue. No app required." },
-                { num: "02", title: "TRACK LIVE", desc: "Grab a coffee. You can track your exact position in the queue live from your browser." },
-                { num: "03", title: "AI ASSISTANT", desc: "Have a quick chat with our AI to log your symptoms before you even step into the doctor's cabin." },
-                { num: "04", title: "CONSULT", desc: "Walk in exactly when it's your turn. Your doctor already knows why you're there." },
-                { num: "05", title: "WHATSAPP PRESCRIPTIONS", desc: "Pay via UPI and receive your permanent digital prescription directly on WhatsApp." }
+                { num: "01", title: "JOIN THE QUEUE", desc: "Scan the clinic's QR code to instantly join the live queue and seamlessly download the patient app. Alternatively, the clinic can manually add you to the queue on the spot." },
+                { num: "02", title: "TRACK & NAVIGATE", desc: "Monitor your exact queue position live through the app. When your turn approaches, the integrated map navigation directs you straight to the clinic." },
+                { num: "03", title: "MULTILINGUAL AI", desc: "Have a pre-consultation chat with our AI voice assistant in your native language, seamlessly logging your symptoms to save time." },
+                { num: "04", title: "THE CONSULTATION", desc: "Walk into the cabin exactly when it's your turn. The doctor already has your full health context from the AI pre-consultation." },
+                { num: "05", title: "IN-APP RECORDS", desc: "Pay securely via UPI and instantly receive your permanent digital prescription safely stored inside your patient application." }
               ].map((item, idx) => (
                 <motion.div 
                   key={idx} 
