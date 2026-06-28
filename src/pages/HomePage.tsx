@@ -191,19 +191,12 @@ function useCountUp(target: number, duration: number = 2, suffix: string = "", p
     };
 
     const triggerFeedback = (pattern: number | number[]) => {
-      if (!playSound) return;
-      
-      const isMobile = typeof window !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // Mobile: Strong haptic feedback, no sound
-        if (typeof window !== "undefined" && navigator.vibrate) {
-          try { navigator.vibrate(pattern); } catch (e) {}
-        }
-      } else {
-        // Desktop: Tick sound, no vibration
-        playTickSound();
+      // 1. Always attempt vibration (silently fails on desktop)
+      if (typeof window !== "undefined" && navigator.vibrate && playSound) {
+        try { navigator.vibrate(pattern); } catch (e) {}
       }
+      // 2. Always attempt audio (works on desktop/dev tools)
+      playTickSound();
     };
 
     const playCounter = () => {
@@ -222,7 +215,7 @@ function useCountUp(target: number, duration: number = 2, suffix: string = "", p
 
           const now = Date.now();
           if (now - lastVibrateTime > 80) {
-            triggerFeedback(15); // Stronger haptic pattern
+            triggerFeedback(5);
             lastVibrateTime = now;
           }
         },
