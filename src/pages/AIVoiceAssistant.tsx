@@ -2,9 +2,7 @@ import * as THREE from 'three';
 import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
-import { Link } from 'react-router-dom';
 import { AIVoiceInput } from '../components/ui/ai-voice-input';
-import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 
 // --- Custom Shaders ---
 const innerVertexShader = `
