@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { CinematicFooter } from "../components/ui/motion-footer";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function MarqueeStrip({ items, className = "" }: { items: string[]; className?: string }) {
   const doubled = [...items, ...items];
   return (
-    <div className={`marquee-strip border-y border-ink-invert/10 ${className}`}>
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      className={`marquee-strip border-y border-ink-invert/10 ${className}`}
+    >
       <div className="marquee-inner">
         {doubled.map((item, i) => (
           <span key={i}>{item} ✦</span>
