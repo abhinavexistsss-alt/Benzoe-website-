@@ -61,7 +61,7 @@ export function ForDoctorsPage() {
                <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none rounded-[2rem]" />
                <p className="label-uppercase tracking-widest text-orange mb-4 text-xs font-bold relative z-10">THE COMPLETE ECOSYSTEM</p>
                <p className="font-functional text-ink-invert text-lg md:text-xl leading-relaxed font-medium relative z-10">
-                 Benzoe is the ultimate all-in-one digital platform for your clinic. Manage patients, monitor revenue flows, and eliminate OPD chaos forever.
+                 Benzoe is the ultimate all-in-one digital platform for your clinic/hospital. Manage patients, monitor revenue flows, and eliminate OPD chaos forever.
                </p>
             </motion.div>
           </div>
@@ -74,7 +74,7 @@ export function ForDoctorsPage() {
                 { num: "02", title: "CROWDED WAITING ROOMS", desc: "Without live queue visibility, patients arrive hours early and wait anxiously. Benzoe's digital queue completely clears the physical room." },
                 { num: "03", title: "LOST PRESCRIPTIONS", desc: "Handwritten prescriptions are easily lost, leaving follow-ups without context. Benzoe secures permanent digital records instantly inside the app." },
                 { num: "04", title: "REVENUE TRACKING", desc: "Cash-only billing and scattered UPI payments make accounting a nightmare. Our financial dashboard tracks all cash inflows, outflows, and UPI settlements in one place." },
-                { num: "05", title: "INSTANT & EMERGENCY", desc: "Struggling to fit urgent cases into a packed schedule? Use instant bookings and emergency queues to manage capacity and significantly boost your clinic's revenue." },
+                { num: "05", title: "INSTANT & EMERGENCY", desc: "Struggling to fit urgent cases into a packed schedule? Use instant bookings and emergency queues to manage capacity and significantly boost your clinic/hospital's revenue." },
                 { num: "06", title: "STAFF OVERLOAD", desc: "Front-desk staff juggle queues, billing, and patient queries simultaneously. Benzoe completely automates the workflow so they can focus on patient care." }
               ].map((item, idx) => (
                 <motion.div 
@@ -98,27 +98,43 @@ export function ForDoctorsPage() {
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
-      <section className="relative w-full bg-orange text-white py-32 border-t border-ink-invert/10 overflow-hidden">
+      {/* UNIVERSAL CTA (Dark Canvas) */}
+      <section className="relative w-full bg-ink-invert text-white py-24 md:py-40 border-t border-white/10 overflow-hidden flex items-center justify-center min-h-[70vh]">
+         {/* Subtle Background Glow */}
+         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-30">
+           <div className="w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] rounded-full bg-orange blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
+         </div>
+         
          <motion.div 
            initial={{ opacity: 0, scale: 0.95, y: 50 }}
            whileInView={{ opacity: 1, scale: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-           className="section-wrap max-w-7xl relative z-10 text-center"
+           className="section-wrap max-w-5xl relative z-10 text-center flex flex-col items-center"
          >
-            <h2 className="font-condensed text-[clamp(4rem,10vw,8rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
-              Upgrade Your<br/>Practice Today
+            <h2 className="font-condensed text-[clamp(3.5rem,10vw,10rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
+              THE FUTURE OF<br/>HEALTHCARE IS HERE.
             </h2>
-            <div className="mt-12 flex justify-center gap-4">
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#" 
-                className="inline-block bg-white text-[#252525] font-condensed tracking-wider uppercase px-8 py-4 text-lg hover:bg-white/90 shadow-xl rounded-full"
-              >
-                Book a Demo
-              </motion.a>
+            <p className="font-functional text-lg md:text-2xl text-white/70 mt-8 max-w-2xl mx-auto font-medium">
+               Whether you are a patient seeking care, or a doctor bringing order to the chaos.
+            </p>
+            <div className="mt-12 md:mt-16 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
+               <motion.a 
+                 whileHover={{ scale: 1.05, y: -2 }}
+                 whileTap={{ scale: 0.95 }}
+                 href="/for-doctors" 
+                 className="inline-flex items-center justify-center bg-orange text-white font-condensed tracking-wider uppercase px-8 py-5 text-xl shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all w-full sm:w-auto"
+               >
+                  I am a Doctor / Hospital
+               </motion.a>
+               <motion.a 
+                 whileHover={{ scale: 1.05, y: -2 }}
+                 whileTap={{ scale: 0.95 }}
+                 href="/for-patients" 
+                 className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-condensed tracking-wider uppercase px-8 py-5 text-xl hover:bg-white/10 transition-all w-full sm:w-auto"
+               >
+                  I am a Patient
+               </motion.a>
             </div>
          </motion.div>
       </section>

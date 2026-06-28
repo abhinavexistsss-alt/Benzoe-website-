@@ -269,17 +269,12 @@ export function CinematicFooter() {
     <>
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
 
-      {/* Curtain Reveal Wrapper — sits after FlowArt in normal flow */}
-      <div
+      {/* Standard Scrolling Footer */}
+      <footer
         ref={wrapperRef}
-        className="relative h-screen w-full"
-        style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}
+        className="relative flex h-screen w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper"
+        style={{ backgroundColor: '#fd5200', color: '#fff' }}
       >
-        {/* Fixed footer revealed by scrolling past the clip wrapper */}
-        <footer
-          className="fixed bottom-0 left-0 flex h-screen w-full flex-col justify-between overflow-hidden cinematic-footer-wrapper"
-          style={{ backgroundColor: '#fd5200', color: '#fff' }}
-        >
           {/* Ambient Light & Grid Background */}
           <div className="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[80px] pointer-events-none z-0" />
           <div className="footer-bg-grid absolute inset-0 z-0 pointer-events-none" />
@@ -436,7 +431,6 @@ export function CinematicFooter() {
             </MagneticButton>
           </div>
         </footer>
-      </div>
     </>
   );
 }

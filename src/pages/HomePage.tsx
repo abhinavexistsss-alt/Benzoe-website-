@@ -32,8 +32,12 @@ const FAQ_DATA = [
     a: "Benzoe provides a complete mobile ecosystem. We are launching full-featured native applications for both iOS and Android, providing a comprehensive in-app experience for patients and doctors alike."
   },
   {
+    q: "IS THIS ONLY FOR LARGE HOSPITALS?",
+    a: "Not at all. Benzoe is designed specifically for small-to-medium Indian doctors and clinic/hospitals. Solo practitioners, polyclinics, and multi-doctor setups all work seamlessly. If you have walk-in patients, Benzoe works for you."
+  },
+  {
     q: "HOW DOES LIVE TRACKING & NAVIGATION WORK?",
-    a: "Patients track their exact position in the queue live through the app. In addition, an integrated map (like Google Maps or Ola) helps patients seamlessly navigate and drive straight to your clinic."
+    a: "Patients track their exact position in the queue live through the app. In addition, an integrated map (like Google Maps or Ola) helps patients seamlessly navigate and drive straight to the clinic/hospital."
   },
   {
     q: "WHAT IS THE AI VOICE ASSISTANT?",
@@ -45,19 +49,19 @@ const FAQ_DATA = [
   },
   {
     q: "WHAT IF A PATIENT WALKS IN WITHOUT THE APP?",
-    a: "No problem. Your front-desk can manually add them to the queue on the spot. The patient can then simply download the Benzoe app right in the clinic to continue their digital journey."
+    a: "No problem. Your front-desk can manually add them to the queue on the spot. The patient can then simply download the Benzoe app right there to continue their digital journey."
   },
   {
     q: "DO MY STAFF NEED TRAINING?",
     a: "Zero training required. Benzoe is designed as an intuitive, one-stop ecosystem that drops right into your existing workflow without disruption. Your team will be up and running within minutes."
   },
   {
-    q: "CAN I TRACK MY CLINIC'S REVENUE?",
+    q: "CAN I TRACK MY CLINIC/HOSPITAL'S REVENUE?",
     a: "Yes. The Benzoe platform functions as a comprehensive revenue dashboard. Track all cash inflow, outflow, UPI payments, and generate detailed financial reports directly from your dashboard."
   },
   {
     q: "HOW DO I GET STARTED?",
-    a: "Book a demo with our team. We'll set up your entire all-in-one clinic system — digital queues, prescription templates, instant/emergency bookings, and revenue tracking — completely hands-off for you."
+    a: "Book a demo with our team. We'll set up your entire all-in-one system — digital queues, prescription templates, instant/emergency bookings, and revenue tracking — completely hands-off for you."
   },
 ];
 
@@ -280,13 +284,13 @@ function StatsSection() {
             <div ref={stat2.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
               {stat2.display}
             </div>
-            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Clinics Ready To Onboard</p>
+            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Doctors Ready To Onboard</p>
           </div>
           <div>
             <div ref={stat3.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
               ₹0
             </div>
-            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Setup Cost For Clinics</p>
+            <p className="font-functional text-xs md:text-sm text-white/60 uppercase tracking-wider font-bold mt-2">Setup Cost For Doctors</p>
           </div>
           <div>
             <div ref={stat4.ref} className="font-condensed text-[clamp(2.5rem,6vw,5rem)] leading-[0.9] tracking-tight text-white">
@@ -466,8 +470,8 @@ export function HomePage() {
           {/* Right Column (Scrolling Stark Cards) */}
           <div ref={scrollingCardsRef} className="flex-1 flex flex-col gap-8 lg:py-0">
              {[
-                { title: "JOIN THE QUEUE", desc: "Scan a QR code at the clinic to instantly join the digital queue and download the patient mobile app." },
-                { title: "LIVE TRACKING", desc: "Track your exact position in the queue live through the app. A built-in map navigation helps you drive straight to the clinic when it's your turn." },
+                { title: "JOIN THE QUEUE", desc: "Join the digital queue from your couch at home and reach the clinic right on time. If you walk in without the app, the front desk simply adds you manually." },
+                { title: "LIVE TRACKING", desc: "Track your exact position in the queue live through the app. A built-in map navigation helps you drive straight to the clinic/hospital when it's your turn." },
                 { title: "MULTILINGUAL AI", desc: "Talk to our AI voice assistant in your native language to log symptoms before seeing the doctor, saving everyone time." },
                 { title: "IN-APP PRESCRIPTIONS", desc: "Pay the fee via UPI and instantly receive your permanent, clear digital prescription securely inside your patient app." }
              ].map((feature, i) => (
@@ -493,9 +497,9 @@ export function HomePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                {[
-                 { title: "EMERGENCY & INSTANT QUEUES", desc: "Instantly manage walk-ins and prioritize emergency patients to maximize your clinic's capacity and boost overall revenue." },
+                 { title: "EMERGENCY & INSTANT QUEUES", desc: "Instantly manage walk-ins and prioritize emergency patients to maximize your clinic/hospital's capacity and boost overall revenue." },
                  { title: "COMPREHENSIVE REVENUE TRACKING", desc: "Monitor all cash inflows, outflows, and UPI payments in real-time through a powerful, built-in financial dashboard." },
-                 { title: "END-TO-END ECOSYSTEM", desc: "A true one-stop solution for clinics. No need for separate queue managers, patient logs, or revenue applications." },
+                 { title: "END-TO-END ECOSYSTEM", desc: "A true one-stop solution for doctors. No need for separate queue managers, patient logs, or revenue applications." },
                  { title: "WHATSAPP NOTIFICATIONS", desc: "Keep patients informed with real-time queue updates and friendly reminders seamlessly delivered via WhatsApp." }
                ].map((feat, i) => (
                  <motion.div 
@@ -583,29 +587,42 @@ export function HomePage() {
       {/* 8. FAQ SECTION (White Canvas) */}
       <FAQSection />
 
-      {/* 8. FINAL CTA (Dark Canvas) */}
-      <section className="relative w-full bg-ink-invert text-white py-20 md:py-32 border-t border-white/10 overflow-hidden">
+      {/* 8. UNIVERSAL CTA (Dark Canvas) */}
+      <section className="relative w-full bg-ink-invert text-white py-24 md:py-40 border-t border-white/10 overflow-hidden flex items-center justify-center min-h-[70vh]">
+         {/* Subtle Background Glow */}
+         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-30">
+           <div className="w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] rounded-full bg-orange blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
+         </div>
+         
          <motion.div 
            initial={{ opacity: 0, scale: 0.95, y: 50 }}
            whileInView={{ opacity: 1, scale: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-           className="section-wrap max-w-7xl relative z-10 text-center"
+           className="section-wrap max-w-5xl relative z-10 text-center flex flex-col items-center"
          >
-            <h2 className="font-condensed text-[clamp(3rem,10vw,12rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
-              READY TO UPGRADE?
+            <h2 className="font-condensed text-[clamp(3.5rem,10vw,10rem)] leading-[0.8] uppercase tracking-tight drop-shadow-sm">
+              THE FUTURE OF<br/>HEALTHCARE IS HERE.
             </h2>
-            <p className="font-functional text-lg md:text-xl text-white/70 mt-8 max-w-2xl mx-auto">
-               Join the clinics already revolutionizing their OPD experience.
+            <p className="font-functional text-lg md:text-2xl text-white/70 mt-8 max-w-2xl mx-auto font-medium">
+               Whether you are a patient seeking care, or a doctor bringing order to the chaos.
             </p>
-            <div className="mt-10 md:mt-12">
+            <div className="mt-12 md:mt-16 flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
                <motion.a 
-                 whileHover={{ scale: 1.05, y: -5 }}
+                 whileHover={{ scale: 1.05, y: -2 }}
                  whileTap={{ scale: 0.95 }}
-                 href="#contact" 
-                 className="inline-block bg-orange text-white font-condensed tracking-wider uppercase px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] transition-shadow"
+                 href="/for-doctors" 
+                 className="inline-flex items-center justify-center bg-orange text-white font-condensed tracking-wider uppercase px-8 py-5 text-xl shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all w-full sm:w-auto"
                >
-                  Book A Demo Call
+                  I am a Doctor / Hospital
+               </motion.a>
+               <motion.a 
+                 whileHover={{ scale: 1.05, y: -2 }}
+                 whileTap={{ scale: 0.95 }}
+                 href="/for-patients" 
+                 className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-condensed tracking-wider uppercase px-8 py-5 text-xl hover:bg-white/10 transition-all w-full sm:w-auto"
+               >
+                  I am a Patient
                </motion.a>
             </div>
          </motion.div>
