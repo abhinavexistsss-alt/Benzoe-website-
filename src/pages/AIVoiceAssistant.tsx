@@ -607,14 +607,14 @@ export function AIVoiceAssistant() {
       {/* UI Overlay */}
       <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end items-center pb-12 md:pb-16 px-6">
         {/* Captions & Text Container */}
-        <div className={`transition-all duration-700 ease-out w-full max-w-3xl text-center ${(caption || convState === 'idle') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="mx-auto bg-white/30 backdrop-blur-3xl border border-white/40 shadow-[0_16px_40px_rgba(0,0,0,0.05)] rounded-[2.5rem] p-8 md:p-12 flex flex-col items-center justify-center min-h-[140px] md:min-h-[180px] relative overflow-hidden">
+        <div className={`transition-all duration-700 ease-out w-full max-w-3xl ${(caption || convState === 'idle') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="mx-auto bg-white/30 backdrop-blur-3xl border border-white/40 shadow-[0_16px_40px_rgba(0,0,0,0.05)] rounded-[2rem] p-6 md:p-8 flex flex-col items-start justify-start min-h-[100px] md:min-h-[120px] max-h-[30vh] overflow-y-auto relative styled-scrollbar">
             {/* Inner subtle liquid shine */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none rounded-[2.5rem]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none rounded-[2rem]" />
             
-            <div className="font-light text-2xl md:text-4xl tracking-tight text-[#252525] drop-shadow-sm leading-tight relative z-10 w-full">
+            <div className="text-base md:text-lg tracking-normal text-[#252525] leading-relaxed relative z-10 w-full text-left">
               {!caption ? (
-                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                <div className="flex flex-wrap items-center justify-start gap-x-2 gap-y-1">
                   <span>We're born 🌞 to</span>
                   <Typewriter
                     text={[
@@ -634,9 +634,9 @@ export function AIVoiceAssistant() {
                 </div>
               ) : (
                 <Typewriter 
-                  text={`"${caption}"`} 
+                  text={caption} 
                   speed={40}
-                  cursorChar="_" 
+                  cursorChar="█" 
                   className="whitespace-pre-wrap inline-block"
                 />
               )}
