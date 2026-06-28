@@ -594,7 +594,7 @@ export function AIVoiceAssistant() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center font-functional bg-[radial-gradient(125%_125%_at_50%_101%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)]">
+    <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center font-functional bg-[#f6f6ef] bg-[radial-gradient(150%_45%_at_50%_100%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)] md:bg-[radial-gradient(80%_60%_at_50%_100%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)]">
       
       {/* R3F Canvas */}
       <div className="absolute inset-0 z-10">
