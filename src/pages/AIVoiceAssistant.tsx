@@ -3,6 +3,7 @@ import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
 import { AIVoiceInput } from '../components/ui/ai-voice-input';
+import { DiaText } from '../components/ui/dia-text';
 
 // --- Custom Shaders ---
 const innerVertexShader = `
@@ -597,22 +598,24 @@ export function AIVoiceAssistant() {
     <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center font-functional bg-[#f6f6ef] bg-[radial-gradient(150%_45%_at_50%_100%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)] md:bg-[radial-gradient(80%_60%_at_50%_100%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)]">
       
       {/* R3F Canvas */}
-      <div className="absolute inset-0 z-10">
+      <div className={`absolute inset-0 z-10 transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        (convState === 'listening' || convState === 'speaking') ? '-translate-y-[12vh]' : 'translate-y-0'
+      }`}>
         <AssistantCanvas isFullScreen={true} />
       </div>
 
       {/* UI Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-end items-center pb-24 md:pb-32 px-6">
+      <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end items-center pb-12 md:pb-16 px-6">
         
         {/* Captions */}
         <div className={`transition-all duration-700 ease-out max-w-2xl text-center ${caption && (convState === 'greeting' || convState === 'speaking') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <p className="text-white text-2xl md:text-3xl lg:text-4xl font-condensed tracking-wide drop-shadow-2xl leading-tight">
-            "{caption}"
-          </p>
+          <div className="font-light text-3xl md:text-4xl tracking-tight text-[#252525] drop-shadow-sm leading-tight">
+            <DiaText text={`"${caption}"`} />
+          </div>
         </div>
 
         {/* Listening Indicator / Voice Input */}
-        <div className={`mt-8 transition-all duration-500 flex flex-col items-center pointer-events-auto ${convState === 'listening' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+        <div className={`mt-6 transition-all duration-500 flex flex-col items-center pointer-events-auto ${convState === 'listening' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
           <AIVoiceInput 
             onStart={() => console.log("User started speaking...")}
             onStop={() => {
