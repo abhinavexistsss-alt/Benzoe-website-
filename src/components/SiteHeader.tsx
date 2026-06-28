@@ -74,9 +74,6 @@ function FullScreenMenu({ onClose }: { onClose: () => void }) {
             <span className="pulse-green h-2 w-2 rounded-full bg-green" />
             <span>Founded 2026</span>
           </div>
-          <a href="mailto:hello@benzoe.health" className="hover:text-ink">
-            hello@benzoe.health
-          </a>
         </div>
       </div>
     </motion.div>
