@@ -87,6 +87,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isAssistantPage = location.pathname === "/assistant";
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
@@ -103,12 +104,24 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-[90] text-ink">
+      <div className={`fixed top-0 right-0 left-0 z-[90] ${isAssistantPage ? 'text-[#252525]' : 'text-ink'}`}>
         <div className="section-wrap flex items-center justify-between py-4">
           <div className="flex items-center">
-            <Link to="/" className="font-condensed text-[clamp(1.5rem,2vw,2rem)] tracking-widest uppercase opacity-90 hover:opacity-100 transition-opacity">
-              Benzoe
-            </Link>
+            {isAssistantPage ? (
+              <Link 
+                to="/" 
+                className="px-5 py-2.5 rounded-full border border-[#252525]/20 bg-[#252525]/5 backdrop-blur-md font-functional font-medium text-sm hover:bg-[#252525]/10 transition-all flex items-center gap-2 shadow-sm"
+                onClick={() => {
+                  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                }}
+              >
+                <span>←</span> Back to Home
+              </Link>
+            ) : (
+              <Link to="/" className="font-condensed text-[clamp(1.5rem,2vw,2rem)] tracking-widest uppercase opacity-90 hover:opacity-100 transition-opacity">
+                Benzoe
+              </Link>
+            )}
           </div>
 
           {/* Nav pills — ONLY on homepage */}
@@ -167,11 +180,15 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="flex h-9 w-12 flex-col items-center justify-center gap-1.5 rounded bg-white/10 border border-white/20 transition-colors hover:bg-white/20"
+              className={`flex h-9 w-12 flex-col items-center justify-center gap-1.5 rounded transition-colors ${
+                isAssistantPage
+                  ? 'bg-[#252525]/5 border border-[#252525]/20 hover:bg-[#252525]/10'
+                  : 'bg-white/10 border border-white/20 hover:bg-white/20'
+              }`}
               aria-label="Menu"
             >
-              <span className="block h-[2px] w-6 bg-ink"></span>
-              <span className="block h-[2px] w-6 bg-ink"></span>
+              <span className={`block h-[2px] w-6 ${isAssistantPage ? 'bg-[#252525]' : 'bg-ink'}`}></span>
+              <span className={`block h-[2px] w-6 ${isAssistantPage ? 'bg-[#252525]' : 'bg-ink'}`}></span>
             </button>
           </div>
         </div>

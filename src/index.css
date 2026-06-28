@@ -372,3 +372,20 @@ body.menu-open {
     margin-bottom: 0.5rem;
 }
 
+/* ── Liquid Glass UI Background ── */
+@keyframes liquid-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bg-liquid {
+    background: 
+        radial-gradient(circle at 15% 50%, #ff8c00, transparent 50%),
+        radial-gradient(circle at 85% 30%, #ff2a00, transparent 50%),
+        radial-gradient(circle at 50% 80%, #e64a00, transparent 50%),
+        linear-gradient(135deg, #ff9a44, #fc6076);
+    background-size: 150% 150%;
+    animation: liquid-gradient 12s ease infinite alternate;
+}
+

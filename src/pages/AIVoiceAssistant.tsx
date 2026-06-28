@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment } from '@react-three/drei';
 import { Link } from 'react-router-dom';
 import { AIVoiceInput } from '../components/ui/ai-voice-input';
+import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 
 // --- Custom Shaders ---
 const innerVertexShader = `
@@ -102,10 +103,10 @@ const innerFragmentShader = `
     float n2 = snoise(vPosition * 0.8 - uTime * 0.02);
     float n3 = snoise(vPosition * 0.5 + uTime * 0.025);
 
-    vec3 color1 = vec3(0.0, 1.0, 1.0); // Bright Cyan
-    vec3 color2 = vec3(1.0, 0.0, 0.85); // Hot Magenta
-    vec3 color3 = vec3(1.0, 0.15, 0.0); // Fiery Red-Orange
-    vec3 color4 = vec3(0.45, 0.0, 1.0); // Deep Purple
+    vec3 color1 = vec3(0.992, 0.322, 0.0);   // #fd5200 - Brand Orange
+    vec3 color2 = vec3(0.78, 0.77, 0.72);    // Muted Beige (dimmed)
+    vec3 color3 = vec3(0.902, 0.29, 0.0);    // #e64a00 - Darker Orange
+    vec3 color4 = vec3(0.7, 0.69, 0.65);     // Darker Beige
 
     float m1 = smoothstep(0.2, 0.8, n1 * 0.5 + 0.5);
     float m2 = smoothstep(0.25, 0.75, n2 * 0.5 + 0.5);
@@ -595,22 +596,12 @@ export function AIVoiceAssistant() {
   };
 
   return (
-    <div className="relative w-screen h-screen bg-black overflow-hidden flex items-center justify-center font-functional">
+    <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center font-functional bg-[radial-gradient(125%_125%_at_50%_101%,rgba(253,82,0,1)_10.5%,rgba(253,110,30,1)_16%,rgba(245,140,60,1)_17.5%,rgba(245,180,130,1)_25%,rgba(240,230,215,1)_40%,rgba(240,240,232,1)_65%,rgba(246,246,239,1)_100%)]">
+      
       {/* R3F Canvas */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-10">
         <AssistantCanvas isFullScreen={true} />
       </div>
-
-      {/* Back Button */}
-      <Link 
-        to="/" 
-        className="absolute top-6 left-6 z-20 px-5 py-2.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-medium text-sm hover:bg-white/20 transition-all flex items-center gap-2"
-        onClick={() => {
-          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-        }}
-      >
-        <span>←</span> Back to Home
-      </Link>
 
       {/* UI Overlay */}
       <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-end items-center pb-24 md:pb-32 px-6">
