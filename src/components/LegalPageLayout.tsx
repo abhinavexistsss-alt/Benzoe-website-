@@ -155,7 +155,7 @@ export function LegalPageLayout({ title, children }: LegalPageProps) {
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40 font-medium px-2">
               <p>Last updated: June 2026</p>
               <div className="flex items-center gap-2">
-                <span>© 2026 Benzoe Global Private Limited. All rights reserved.</span>
+                <span>© 2026 Benzoe. All rights reserved.</span>
               </div>
             </div>
           </div>
